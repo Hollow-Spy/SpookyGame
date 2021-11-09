@@ -39,13 +39,18 @@ public class PlayerController : MonoBehaviour
             is_crouched = true;
             transform.localScale = new Vector3(1, .5f, 1);
         }
-        if(Input.GetKeyUp(KeyCode.LeftControl) )
+
+    
+
+       
+        if (Input.GetKeyUp(KeyCode.LeftControl) && !Physics.Raycast(transform.position, Vector3.up,1)) 
         {
+           
             is_crouched = false;
             transform.localScale = new Vector3(1, 1, 1);
 
         }
-
+     
         if (!Physics.CheckSphere(GroundCheck.position, .1f, GroundLayer))
         {
             is_airborn = true;
