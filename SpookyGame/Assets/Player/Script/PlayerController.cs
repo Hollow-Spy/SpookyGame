@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public bool is_walking;
     public bool is_airborn;
     public bool is_sprinting;
+   
+
     [SerializeField] LayerMask GroundLayer;
     [SerializeField] Transform GroundCheck;
 
@@ -28,7 +30,9 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
     }
-
+    
+    
+    
     // Update is called once per frame
     void Update()
     {
@@ -65,6 +69,7 @@ public class PlayerController : MonoBehaviour
         MovePlayer();
         MoveCamera();
     }
+    
     void MovePlayer()
     {
         if(MoveInput.x != 0 || MoveInput.z != 0)
@@ -109,9 +114,12 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+    
     void MoveCamera()
     {
         xRot -= MouseInput.y * sensitivity;
+
+        xRot = Mathf.Clamp(xRot, -50, 50);
 
         body.transform.Rotate(0, MouseInput.x * sensitivity, 0);
         PlayerCam.transform.localRotation = Quaternion.Euler(xRot,0,0);
