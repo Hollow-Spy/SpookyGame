@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public bool is_walking;
     public bool is_airborn;
     public bool is_sprinting;
+    public bool is_hidden;
    
 
     [SerializeField] LayerMask GroundLayer;
@@ -24,6 +25,19 @@ public class PlayerController : MonoBehaviour
     public float sprintmultiplier;
     [SerializeField] float sensitivity;
     [SerializeField] float jumpforce;
+
+    public void Hiding(Vector3 pos)
+    {
+        is_hidden = true;
+        GameObject.FindGameObjectWithTag("Janitor").SendMessage("PlayerHide",pos);
+    }
+
+
+    public void NotHiding( )
+    {
+        is_hidden = false;
+    
+    }
 
     void Start()
     {

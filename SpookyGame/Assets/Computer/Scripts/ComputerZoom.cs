@@ -24,8 +24,8 @@ public class ComputerZoom : MonoBehaviour
 
             //the actives / deactives
             Crosshairs.SetActive(false);
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = false;
-            GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Rigidbody>().isKinematic = true;
+            GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>().enabled = false;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().isKinematic = true;
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<HeadBop>().enabled = false;
             //end
 
@@ -54,8 +54,8 @@ public class ComputerZoom : MonoBehaviour
         CameraPos.position = OGcam;
 
         Crosshairs.SetActive(true);
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = true;
-        GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Rigidbody>().isKinematic = false;
+        GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>().enabled = true;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().isKinematic = false;
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<HeadBop>().enabled = true;
         Zoomed = false;
 
