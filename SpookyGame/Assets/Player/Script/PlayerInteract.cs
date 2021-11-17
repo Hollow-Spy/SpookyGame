@@ -6,6 +6,8 @@ public class PlayerInteract : MonoBehaviour
 {
     [SerializeField] float RaycastLengh;
     [SerializeField] LayerMask InteractiveLayer;
+    public GameObject normalCrosshair;
+    public GameObject handInteractionUI;
 
 
     void Update()
@@ -13,10 +15,20 @@ public class PlayerInteract : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(transform.position,transform.forward, out hit , RaycastLengh,InteractiveLayer))
         {
-            if(Input.GetMouseButtonDown(0))
+            // change icon
+            normalCrosshair.SetActive(false);
+            handInteractionUI.SetActive(true);
+
+            if (Input.GetMouseButtonDown(0))
             {
                 hit.transform.gameObject.SendMessage("Interaction");
             }
+        }
+        else
+        {
+            //change icon
+            normalCrosshair.SetActive(true);
+            handInteractionUI.SetActive(false);
         }
     }
 }

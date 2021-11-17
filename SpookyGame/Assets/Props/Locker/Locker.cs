@@ -5,18 +5,17 @@ using UnityEngine;
 public class Locker : MonoBehaviour
 {
     public Transform otherObject;
+    public Transform objToRotate;
     public float speed = 1f;
     bool rotate = false;
 
     Quaternion startRotation;
-
-    float t;
     Quaternion targetRotation;
 
 
     void Start() 
     {
-        startRotation = transform.rotation;
+        startRotation = objToRotate.transform.rotation;
     
     }
 
@@ -24,39 +23,34 @@ public class Locker : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            rotate = true;
 
-        }
-
-        if (transform.rotation.normalized == otherObject.rotation.normalized)
+        if (objToRotate.transform.rotation.normalized == otherObject.rotation.normalized)
         {
             targetRotation = startRotation;
         }
-        else if (transform.rotation == startRotation)
+        else if (objToRotate.transform.rotation == startRotation)
         {
             targetRotation = otherObject.rotation;
         }
 
         if (rotate)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, t += speed * Time.deltaTime);
-
-            if (transform.rotation.normalized == targetRotation.normalized)
+            objToRotate.transform.rotation = Quaternion.Slerp(objToRotate.transform.rotation, targetRotation, speed * Time.deltaTime);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
+            if (objToRotate.transform.rotation.normalized == targetRotation.normalized)
             {
                 rotate = false;
             }
         }
 
 
-      //  t += speed * Time.deltaTime
-
-
-
-
-
-
-
     }
+
+    public void Interaction()
+    {
+        rotate = true;
+    }
+
+
+
 }

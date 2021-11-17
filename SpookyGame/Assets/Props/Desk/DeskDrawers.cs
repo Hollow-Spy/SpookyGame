@@ -9,14 +9,12 @@ public class DeskDrawers : MonoBehaviour
 
     public float speed;
 
-    // move by 0.308f
-    // axis depends from rotation of the desk
-    Vector3 openPos, closedPos, targetPos;
+    public Vector3 openPos, closedPos, targetPos;
 
     void Start()
     {
-        closedPos = transform.position;
-        openPos = closedPos + new Vector3(0.6f, 0f, 0f);
+        closedPos = transform.localPosition;    // I'm using localPosition so that it work if object is rotated 
+        openPos = closedPos + new Vector3(0f, -0.00377f, 0f);
     }
 
     void Update()
@@ -27,20 +25,22 @@ public class DeskDrawers : MonoBehaviour
 
         }
         
-        if (transform.position == openPos)
+        if (transform.localPosition == openPos)
         {
             targetPos = closedPos;
         }
-        else if (transform.position == closedPos)
+        else if (transform.localPosition == closedPos)
         {
             targetPos = openPos;
         }
 
         if (moving)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPos, Time.deltaTime * speed);
 
-            if (transform.position == targetPos)
+           // transform.position -= transform.up * Time.deltaTime * speed;
+
+            if (transform.localPosition == targetPos)
             {
                 moving = false;
             }
@@ -49,5 +49,12 @@ public class DeskDrawers : MonoBehaviour
 
     }
 
- 
+
+
+    public void Interaction()
+    {
+        moving = true;
+    }
+
+
 }
