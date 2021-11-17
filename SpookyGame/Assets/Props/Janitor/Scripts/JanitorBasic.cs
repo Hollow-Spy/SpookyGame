@@ -133,7 +133,22 @@ public class JanitorBasic : MonoBehaviour
                     detection = 0;
                     if(knowshider)
                     {
-                        Debug.Log("not confused");
+                        Debug.Log("not foncfs");
+
+                        Vector3 dir = playerpos.position - transform.position;
+                        Quaternion rot = Quaternion.LookRotation(dir);
+                        while (transform.rotation != rot)
+                        {
+                            yield return null;
+                             dir = playerpos.position - transform.position;
+                            dir.y = 0;//This allows the object to only rotate on its y axis
+                             rot = Quaternion.LookRotation(dir);
+                            transform.rotation = Quaternion.Lerp(transform.rotation, rot, 10 * Time.deltaTime);
+
+                        }
+                        animator.SetBool("grabunder",true);
+
+
                     }
                     else
                     {
