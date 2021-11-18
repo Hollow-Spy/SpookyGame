@@ -13,6 +13,10 @@ public class HeadBop : MonoBehaviour
     float timebop;
     float ogfrequency;
 
+   
+
+
+
     void Start()
     {
         ogfrequency = frequency;
@@ -24,6 +28,8 @@ public class HeadBop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
      if(controller.is_sprinting)
         {
             frequency = ogfrequency / 2;

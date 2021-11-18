@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] LayerMask GroundLayer;
     [SerializeField] Transform GroundCheck;
+    [SerializeField] LayerMask defaultlayer;
 
     [SerializeField] Transform PlayerCam;
     public Rigidbody body;
@@ -47,25 +48,29 @@ public class PlayerController : MonoBehaviour
         //dISTORTION SETTING
        // RenderSettings.ambientLight = new Color(RenderSettings.ambientLight.r, RenderSettings.ambientLight.g, RenderSettings.ambientLight.b, .0f);
     }
-    
-    
-    
+
+
+ 
+
+
     // Update is called once per frame
     void Update()
     {
         MoveInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         MouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y") );
+
         if(Input.GetKeyDown(KeyCode.LeftControl))
         {
             is_crouched = true;
             transform.localScale = new Vector3(1, .5f, 1);
         }
 
-    
-
        
-        if (Input.GetKeyUp(KeyCode.LeftControl) && !Physics.Raycast(transform.position, Vector3.up,1)) 
+
+
+        if (Input.GetKeyUp(KeyCode.LeftControl) &&  !Physics.CheckSphere(new Vector3(body.transform.position.x,body.transform.position.y+.2f,body.transform.position.z),.3f,defaultlayer) ) 
         {
+            
            
             is_crouched = false;
             transform.localScale = new Vector3(1, 1, 1);

@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class JanitorBasic : MonoBehaviour
 {
     // Start is called before the first frame update
+    
+
     NavMeshAgent agent;
     public Transform playerpos;
     public bool Wandering;
@@ -21,12 +23,26 @@ public class JanitorBasic : MonoBehaviour
     private IEnumerator Chasecoroutine,Wandercoroutine;
     [SerializeField] Transform[] PatrolPoints;
     Animator animator;
+    float OGplayerspeed;
+    [SerializeField] float BasicSpeed;
+    [SerializeField] Transform freezerpos;
+    [SerializeField] Transform punchposition;
 
+    public GameObject punchtrigger;
+
+    bool SecondCatch;
+    public Camera grabcamera;
+     Camera maincamera;
+    public GameObject BlackOutScreen;
+    
     void Awake()
     {
+        maincamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>();
-        playerpos = GameObject.FindGameObjectWithTag("Player").transform;
+
+        OGplayerspeed = player.speed;
+      playerpos = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         fov = GetComponent<JanitorFOV>();
     }
@@ -42,12 +58,38 @@ public class JanitorBasic : MonoBehaviour
             inRange = true;
           if(!player.is_hidden)
             {
+                for(int i = 0;i<20;i++)
+                {
+
+                    Vector3 dir = playerpos.position - transform.position;
+                    dir.y = 0;//This allows the object to only rotate on its y axis
+                    Quaternion rot = Quaternion.LookRotation(dir);
+                    transform.rotation = Quaternion.Lerp(transform.rotation, rot, 10 * Time.deltaTime);
+                    if(transform.rotation == rot)
+                    {
+                        i = 21;
+                    }
+                    
+                }
+                animator.SetTrigger("punch");
+                detection += detectionTime;
 
             }
+          
         }
     }
+
+
+
+   public void Punch()
+    {
+        Instantiate(punchtrigger, punchposition.position, Quaternion.identity);
+    }
+
+
     private void OnTriggerExit(Collider other)
     {
+        animator.ResetTrigger("punch");
         if (other.CompareTag("Player"))
         {
             inRange = false;
@@ -101,6 +143,35 @@ public class JanitorBasic : MonoBehaviour
 
     }
 
+    public void JanitorGrabed()
+    {
+        maincamera.tag = "Untagged";
+        grabcamera.gameObject.SetActive(true);
+        grabcamera.tag = "MainCamera";
+        player.gameObject.SetActive(false);
+    }
+
+    public void JanitorFreezeThrow()
+    {
+        grabcamera.GetComponent<Animator>().SetTrigger("throw");
+        Instantiate(BlackOutScreen, transform.position, Quaternion.identity);
+    }
+
+    public void JanitorGrabFreezer()
+    {
+        if(SecondCatch)
+        {
+
+        }
+        else
+        {
+           
+            agent.speed = BasicSpeed * 2;
+            agent.SetDestination(freezerpos.position);
+        }
+      
+    }
+
 
     IEnumerator ChaseNumerator()
     {
@@ -121,6 +192,16 @@ public class JanitorBasic : MonoBehaviour
           if(!player.is_hidden)
             {
                 agent.SetDestination(playerpos.position);
+                if(inRange)
+                {
+                    agent.speed = 0;
+
+                }
+                else
+                {
+                    agent.speed = BasicSpeed;
+                }
+
 
             }
           else
@@ -134,6 +215,7 @@ public class JanitorBasic : MonoBehaviour
                     if(knowshider)
                     {
                         Debug.Log("not foncfs");
+                        player.speed = 0;
 
                         Vector3 dir = playerpos.position - transform.position;
                         Quaternion rot = Quaternion.LookRotation(dir);
@@ -144,10 +226,47 @@ public class JanitorBasic : MonoBehaviour
                             dir.y = 0;//This allows the object to only rotate on its y axis
                              rot = Quaternion.LookRotation(dir);
                             transform.rotation = Quaternion.Lerp(transform.rotation, rot, 10 * Time.deltaTime);
+                            Debug.Log("help");
+                        }
+                        
+
+                        animator.SetBool("grabunder",true);
+                        yield return new WaitForSeconds(3.1f);
+                        if (!SecondCatch)
+                        {
+
+                            while (agent.remainingDistance > .1f)
+                            {
+                                yield return null;
+                            }
+                            agent.speed = BasicSpeed;
+                            SecondCatch = true;
+
+                            animator.SetBool("grabunder", false);
+
+                            yield return new WaitForSeconds(5);
+                            transform.position = PatrolPoints[Random.Range(2, 4)].position;
+                            agent.SetDestination(PatrolPoints[Random.Range(0, PatrolPoints.Length)].position);
+                            yield return new WaitForSeconds(1);
+                            player.gameObject.SetActive(true);
+
+                            player.is_crouched = false;
+                            player.transform.localScale = new Vector3(1, 1, 1);
+                            player.is_hidden = false;
+
+                           playerpos.position = freezerpos.position;
+                            grabcamera.tag = "Untagged";
+                            grabcamera.gameObject.SetActive(false);
+                            maincamera.tag = "MainCamera";
+                            player.speed = OGplayerspeed;
+
 
                         }
-                        animator.SetBool("grabunder",true);
+                        else
+                        {
+                            Debug.Log("die");
 
+                        }
 
                     }
                     else
