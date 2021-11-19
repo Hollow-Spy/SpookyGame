@@ -219,7 +219,7 @@ public class JanitorBasic : MonoBehaviour
 
                         Vector3 dir = playerpos.position - transform.position;
                         Quaternion rot = Quaternion.LookRotation(dir);
-                        while (transform.rotation != rot)
+                        for(int i=0;i<30;i++) 
                         {
                             yield return null;
                              dir = playerpos.position - transform.position;
