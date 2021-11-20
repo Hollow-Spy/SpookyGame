@@ -14,7 +14,7 @@ public class Locker : MonoBehaviour
     Quaternion startRotation;
     Quaternion targetRotation;
     //handle hidden trigger
-   
+    public BoxCollider HideTrigger;
 
     void Start() 
     {
@@ -54,7 +54,22 @@ public class Locker : MonoBehaviour
 
     public void Interaction()
     {
-        
+        if(!rotate)
+        {
+           
+            if (HideTrigger.enabled)
+            {
+                HideTrigger.enabled = false;
+                GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>().NotHiding();
+
+            }
+            else
+            {
+                HideTrigger.enabled = true;
+
+            }
+        }
+      
 
 
         rotate = true;

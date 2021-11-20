@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour
     public float sprintmultiplier;
     [SerializeField] float sensitivity;
     [SerializeField] float jumpforce;
+    public Locker currentlocker;
+
+
+   
 
     public void Hiding(Vector3 pos, bool isdesk)
     {
@@ -38,7 +42,8 @@ public class PlayerController : MonoBehaviour
     public void NotHiding( )
     {
         is_hidden = false;
-    
+       
+
     }
 
     void Start()

@@ -77,6 +77,7 @@ MonoBehaviour:
   otherObject: {fileID: 136568170651388999}
   objToRotate: {fileID: 0}
   speed: 4
+  HideScript: {fileID: 0}
 --- !u!1 &4127360836720349680
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,6 +189,7 @@ MonoBehaviour:
   otherObject: {fileID: 136568170651388999}
   objToRotate: {fileID: 136568171455162945}
   speed: 4
+  HideScript: {fileID: 0}
 --- !u!1 &6936541571644731293
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,6 +202,7 @@ GameObject:
   - component: {fileID: 4439786080816606416}
   - component: {fileID: 7795587381016760381}
   - component: {fileID: 2103203747787613433}
+  - component: {fileID: 2575128355957680438}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -284,6 +287,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -462981019419857548, guid: 63493117acb5d0d48afbade7976bc6b4, type: 3}
+--- !u!114 &2575128355957680438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6936541571644731293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab62bcb46edd466458d57fdda77e291d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpos: {fileID: 0}
+  NotLocker: 1
 --- !u!1 &8282815700886179766
 GameObject:
   m_ObjectHideFlags: 0

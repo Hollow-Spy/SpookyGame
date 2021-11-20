@@ -41,7 +41,9 @@ public class JanitorBasic : MonoBehaviour
     
     public PostProcessVolume hurteffect;
     IEnumerator grabcoroutine;
-    
+
+    float contactTime;
+
     bool inCutscene;
     public AudioSource detectionSound;
     public AudioSource chasesong;
@@ -127,7 +129,22 @@ public class JanitorBasic : MonoBehaviour
             chasesong.volume -= Time.deltaTime;
         }
 
-        animator.SetBool("grabunder", true);
+        if(!player.hiddendesk)
+        {
+            if(player.currentlocker)
+            {
+                player.currentlocker.Interaction();
+
+            }
+            animator.SetBool("grablock", true);
+
+        }
+        else
+        {
+            animator.SetBool("grabunder", true);
+
+        }
+
         yield return new WaitForSeconds(3.1f);
         if (!SecondCatch)
         {
@@ -140,7 +157,16 @@ public class JanitorBasic : MonoBehaviour
             agent.speed = BasicSpeed;
             SecondCatch = true;
 
-            animator.SetBool("grabunder", false);
+            if (!player.hiddendesk)
+            {
+                animator.SetBool("grablock", false);
+
+            }
+            else
+            {
+                animator.SetBool("grabunder", false);
+
+            }
 
             yield return new WaitForSeconds(5);
             transform.position = PatrolPoints[Random.Range(2, 4)].position;
@@ -232,7 +258,7 @@ public class JanitorBasic : MonoBehaviour
         hidingplace = pos;
       
        
-        if (fov.canSeePlayer || inRange || detection >= maxDetection-2)
+        if (fov.canSeePlayer || inRange || contactTime >= 0)
         {
             knowshider = true;
 
@@ -286,6 +312,12 @@ public class JanitorBasic : MonoBehaviour
         grabcamera.gameObject.SetActive(true);
         grabcamera.tag = "MainCamera";
         player.gameObject.SetActive(false);
+        if(!player.hiddendesk)
+        {
+            grabcamera.GetComponent<Animator>().SetTrigger("locker");
+        }
+      
+
     }
 
     public void JanitorFreezeThrow()
@@ -430,8 +462,12 @@ public class JanitorBasic : MonoBehaviour
        {
             detection += Time.deltaTime ;
             detection += .05f - Mathf.Clamp(Vector3.Distance(playerpos.position, transform.position),0,4) * .01f;
-            
 
+            contactTime += Time.deltaTime;
+            if(contactTime > 2)
+            {
+                contactTime = 2;
+            }
             
             
 
@@ -454,6 +490,13 @@ public class JanitorBasic : MonoBehaviour
         }
         else
         {
+            if (contactTime > 0)
+            {
+                contactTime -= Time.deltaTime;
+            }
+          
+           
+
             if (detection > 0 )
             {
                 detectionSound.volume -= Time.deltaTime * .5f;
