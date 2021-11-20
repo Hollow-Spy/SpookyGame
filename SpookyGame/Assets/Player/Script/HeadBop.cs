@@ -13,9 +13,11 @@ public class HeadBop : MonoBehaviour
     float timebop;
     float ogfrequency;
 
-   
+    float shakepower;
+    float shakeduration;
+    float shakefrequency;
 
-
+    bool shaking;
 
     void Start()
     {
@@ -25,10 +27,41 @@ public class HeadBop : MonoBehaviour
         body = controller.body;
     }
 
+    public void Shake(float power, float time, float frequency)
+    {
+        shakepower = power;
+        shakefrequency = frequency;
+        shakeduration = time;
+
+        IEnumerator shakecoroutine;
+        shakecoroutine = ShakeNumerator();
+        StartCoroutine(shakecoroutine);
+    }
+ IEnumerator ShakeNumerator()
+    {
+        shaking = true;
+        while(shakeduration > 0)
+        {
+            
+            yield return new WaitForSeconds(shakefrequency);
+            shakeduration -= Time.deltaTime;
+            transform.localPosition = new Vector3(transform.localPosition.x + Random.Range(-1, 1), transform.localPosition.y + Random.Range(-1, 1), transform.localPosition.z) * shakepower;
+            yield return new WaitForSeconds(shakefrequency);
+            transform.localPosition = ogPos;
+        }
+        shaking = false;
+
+
+    }
+
+
     // Update is called once per frame
     void Update()
     {
+        if(!shaking)
+        {
 
+       
         
      if(controller.is_sprinting)
         {
@@ -66,7 +99,7 @@ public class HeadBop : MonoBehaviour
                 transform.localPosition =  Vector3.Lerp(transform.localPosition,new Vector3(transform.localPosition.x,ogPos.y,transform.localPosition.z),Time.deltaTime * 10);
             }
 
+        }
 
-        
     }
 }

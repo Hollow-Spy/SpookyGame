@@ -7,11 +7,14 @@ public class Locker : MonoBehaviour
     public Transform otherObject;
     public Transform objToRotate;
     public float speed = 1f;
-    bool rotate = false;
+     bool rotate = false;
+
+   
 
     Quaternion startRotation;
     Quaternion targetRotation;
-
+    //handle hidden trigger
+   
 
     void Start() 
     {
@@ -26,11 +29,14 @@ public class Locker : MonoBehaviour
 
         if (objToRotate.transform.rotation.normalized == otherObject.rotation.normalized)
         {
+          
             targetRotation = startRotation;
+           
         }
         else if (objToRotate.transform.rotation == startRotation)
         {
             targetRotation = otherObject.rotation;
+         
         }
 
         if (rotate)
@@ -48,6 +54,9 @@ public class Locker : MonoBehaviour
 
     public void Interaction()
     {
+        
+
+
         rotate = true;
     }
 

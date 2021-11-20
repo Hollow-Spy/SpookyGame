@@ -8,7 +8,8 @@ public class PunchTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<HeadBop>().Shake(.23f, .013f, 0.05f);
+            GameObject.FindGameObjectWithTag("Janitor").GetComponent<JanitorBasic>().PlayerHurt();
         }
     }
 }

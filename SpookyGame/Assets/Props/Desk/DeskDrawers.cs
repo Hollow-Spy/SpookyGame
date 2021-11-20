@@ -19,11 +19,7 @@ public class DeskDrawers : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            moving = true;
 
-        }
         
         if (transform.localPosition == openPos)
         {

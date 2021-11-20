@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.UI;
 
 public class JanitorBasic : MonoBehaviour
 {
@@ -27,14 +29,23 @@ public class JanitorBasic : MonoBehaviour
     [SerializeField] float BasicSpeed;
     [SerializeField] Transform freezerpos;
     [SerializeField] Transform punchposition;
-
+    [SerializeField] float maxDetection;
     public GameObject punchtrigger;
+    float cooldown = 1;
 
     bool SecondCatch;
     public Camera grabcamera;
      Camera maincamera;
-    public GameObject BlackOutScreen;
+    public GameObject BlackOutScreen,punchblackout;
+    public GameObject LoseScreen;
     
+    public PostProcessVolume hurteffect;
+    IEnumerator grabcoroutine;
+    
+    bool inCutscene;
+    public AudioSource detectionSound;
+    public AudioSource chasesong;
+
     void Awake()
     {
         maincamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -51,13 +62,131 @@ public class JanitorBasic : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void PlayerHurt()
+    {
+        if(hurteffect.weight == 0)
+        {
+            
+            cooldown = 3f;
+            Physics.IgnoreCollision(GetComponent<BoxCollider>(), GameObject.FindGameObjectWithTag("Player").GetComponent<CapsuleCollider>(), true);
+
+            player.enabled = false;
+            playerpos.GetComponent<Rigidbody>().AddForce(transform.forward * 17,ForceMode.Impulse);
+            hurteffect.weight = 1;
+            IEnumerator reducehurtcoroutine;
+            reducehurtcoroutine = ReduceHurtNumerator();
+            StartCoroutine(reducehurtcoroutine);
+        }
+        else
+        {
+            agent.speed = BasicSpeed * 4;
+            Instantiate(punchblackout, transform.position, Quaternion.identity);
+            grabcoroutine = GrabCutscene();
+            StartCoroutine(grabcoroutine);
+        }
+
+    }
+    IEnumerator ReduceHurtNumerator()
+    {
+        yield return new WaitForSeconds(1);
+        player.enabled = true;
+
+        while (hurteffect.weight > 0)
+        {
+            hurteffect.weight -= Time.deltaTime * .25f;
+            yield return new WaitForSeconds(.01f);
+        }
+        hurteffect.weight = 0;
+        yield return null;
+
+    }
+
+    IEnumerator GrabCutscene()
+    {
+
+        player.speed = 0;
+        inCutscene = true;
+        StopCoroutine(Chasecoroutine);
+        detection = 0;
+        agent.speed = BasicSpeed * 2;
+
+        Vector3 dir = playerpos.position - transform.position;
+        Quaternion rot = Quaternion.LookRotation(dir);
+        for (int i = 0; i < 30; i++)
+        {
+            yield return null;
+            dir = playerpos.position - transform.position;
+            dir.y = 0;//This allows the object to only rotate on its y axis
+            rot = Quaternion.LookRotation(dir);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, 10 * Time.deltaTime);
+           
+        }
+        while (chasesong.volume > 0)
+        {
+            yield return null;
+            chasesong.volume -= Time.deltaTime;
+        }
+
+        animator.SetBool("grabunder", true);
+        yield return new WaitForSeconds(3.1f);
+        if (!SecondCatch)
+        {
+
+            while (agent.remainingDistance > .1f)
+            {
+                
+                yield return null;
+            }
+            agent.speed = BasicSpeed;
+            SecondCatch = true;
+
+            animator.SetBool("grabunder", false);
+
+            yield return new WaitForSeconds(5);
+            transform.position = PatrolPoints[Random.Range(2, 4)].position;
+            agent.SetDestination(PatrolPoints[Random.Range(0, PatrolPoints.Length)].position);
+            Chasing = false;
+            inRange = false;
+            inCutscene = false;
+
+            yield return new WaitForSeconds(1);
+            player.gameObject.SetActive(true);
+
+            player.is_crouched = false;
+            player.transform.localScale = new Vector3(1, 1, 1);
+            player.is_hidden = false;
+
+            playerpos.position = freezerpos.position;
+            grabcamera.tag = "Untagged";
+            grabcamera.gameObject.SetActive(false);
+            maincamera.tag = "MainCamera";
+            player.speed = OGplayerspeed;
+         
+
+
+        }
+        else
+        {
+            yield return new WaitForSeconds(4);
+            GameObject screen = Instantiate(LoseScreen, transform.position, Quaternion.identity);
+            screen.GetComponentInChildren<Text>().text = "The Janitor Caught You";
+
+
+
+        }
+
+    }
+
+
+
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             inRange = true;
-          if(!player.is_hidden)
+          if(!player.is_hidden && !inCutscene && cooldown <= 0)
             {
+                cooldown = 1;
                 for(int i = 0;i<20;i++)
                 {
 
@@ -83,6 +212,7 @@ public class JanitorBasic : MonoBehaviour
 
    public void Punch()
     {
+       
         Instantiate(punchtrigger, punchposition.position, Quaternion.identity);
     }
 
@@ -100,8 +230,9 @@ public class JanitorBasic : MonoBehaviour
     public void PlayerHide(Vector3 pos)
     {
         hidingplace = pos;
-        detection += 7;
-        if (fov.canSeePlayer || inRange)
+      
+       
+        if (fov.canSeePlayer || inRange || detection >= maxDetection-2)
         {
             knowshider = true;
 
@@ -112,11 +243,17 @@ public class JanitorBasic : MonoBehaviour
             knowshider = false;
         }
 
+        if (Chasing)
+        {
+            detection += 7;
+        }
     }
 
     IEnumerator WanderingNumerator()
     {
-        while(Wandering)
+        animator.SetFloat("walkspeed", 1);
+        agent.speed = BasicSpeed;
+        while (Wandering)
         {
             Vector3 randompatrol = PatrolPoints[Random.Range(0, PatrolPoints.Length)].position;
             agent.SetDestination(randompatrol);
@@ -153,7 +290,10 @@ public class JanitorBasic : MonoBehaviour
 
     public void JanitorFreezeThrow()
     {
-        grabcamera.GetComponent<Animator>().SetTrigger("throw");
+    
+            grabcamera.GetComponent<Animator>().SetTrigger("throw");
+        
+  
         Instantiate(BlackOutScreen, transform.position, Quaternion.identity);
     }
 
@@ -161,7 +301,8 @@ public class JanitorBasic : MonoBehaviour
     {
         if(SecondCatch)
         {
-
+            grabcamera.GetComponent<Animator>().SetTrigger("kill");
+            
         }
         else
         {
@@ -175,6 +316,13 @@ public class JanitorBasic : MonoBehaviour
 
     IEnumerator ChaseNumerator()
     {
+        detectionSound.Stop();
+        chasesong.Play();
+        chasesong.volume = 1;
+        detectionSound.volume = 0;
+
+      
+
         detection += ExtraChaseTime;
         animator.SetBool("sad", false);
         if(Wandercoroutine != null)
@@ -194,12 +342,13 @@ public class JanitorBasic : MonoBehaviour
                 agent.SetDestination(playerpos.position);
                 if(inRange)
                 {
-                    agent.speed = 0;
+                    agent.speed = 1f;
 
                 }
                 else
                 {
-                    agent.speed = BasicSpeed;
+                    animator.SetFloat("walkspeed", 2);
+                    agent.speed = BasicSpeed * 2;
                 }
 
 
@@ -214,58 +363,14 @@ public class JanitorBasic : MonoBehaviour
                     detection = 0;
                     if(knowshider)
                     {
-                        Debug.Log("not foncfs");
-                        player.speed = 0;
+                        grabcoroutine = GrabCutscene();
+                        StartCoroutine(grabcoroutine);
 
-                        Vector3 dir = playerpos.position - transform.position;
-                        Quaternion rot = Quaternion.LookRotation(dir);
-                        for(int i=0;i<30;i++) 
+
+                        yield return new WaitForSeconds(.1f);
+                      while(inCutscene)
                         {
                             yield return null;
-                             dir = playerpos.position - transform.position;
-                            dir.y = 0;//This allows the object to only rotate on its y axis
-                             rot = Quaternion.LookRotation(dir);
-                            transform.rotation = Quaternion.Lerp(transform.rotation, rot, 10 * Time.deltaTime);
-                            Debug.Log("help");
-                        }
-                        
-
-                        animator.SetBool("grabunder",true);
-                        yield return new WaitForSeconds(3.1f);
-                        if (!SecondCatch)
-                        {
-
-                            while (agent.remainingDistance > .1f)
-                            {
-                                yield return null;
-                            }
-                            agent.speed = BasicSpeed;
-                            SecondCatch = true;
-
-                            animator.SetBool("grabunder", false);
-
-                            yield return new WaitForSeconds(5);
-                            transform.position = PatrolPoints[Random.Range(2, 4)].position;
-                            agent.SetDestination(PatrolPoints[Random.Range(0, PatrolPoints.Length)].position);
-                            yield return new WaitForSeconds(1);
-                            player.gameObject.SetActive(true);
-
-                            player.is_crouched = false;
-                            player.transform.localScale = new Vector3(1, 1, 1);
-                            player.is_hidden = false;
-
-                           playerpos.position = freezerpos.position;
-                            grabcamera.tag = "Untagged";
-                            grabcamera.gameObject.SetActive(false);
-                            maincamera.tag = "MainCamera";
-                            player.speed = OGplayerspeed;
-
-
-                        }
-                        else
-                        {
-                            Debug.Log("die");
-
                         }
 
                     }
@@ -284,7 +389,14 @@ public class JanitorBasic : MonoBehaviour
 
 
         }
+        animator.SetFloat("walkspeed", 1);
+
         Chasing = false;
+        while(chasesong.volume > 0)
+        {
+            yield return null;
+            chasesong.volume -= Time.deltaTime;
+        }
       
     }
 
@@ -294,10 +406,46 @@ public class JanitorBasic : MonoBehaviour
     void Update()
     {
    
+        if(cooldown > 0)
+        {
+            cooldown -= Time.deltaTime;
+        }
+        else
+        {
+            if (GameObject.FindGameObjectWithTag("Player") )
+            {
+                Physics.IgnoreCollision(GetComponent<BoxCollider>(), GameObject.FindGameObjectWithTag("Player").GetComponent<CapsuleCollider>(), false);
+
+            }
+
+            cooldown = 0;
+        }
+
+        if(detection > maxDetection)
+        {
+            detection = maxDetection;
+        }
+
       if(fov.canSeePlayer)
        {
-            detection += Time.deltaTime;
-            if(detection >= detectionTime && !Chasing)
+            detection += Time.deltaTime ;
+            detection += .05f - Mathf.Clamp(Vector3.Distance(playerpos.position, transform.position),0,4) * .01f;
+            
+
+            
+            
+
+            if(!Chasing)
+            {
+                if(!detectionSound.isPlaying)
+                {
+                    detectionSound.Play();
+
+                }
+                detectionSound.volume += Time.deltaTime * .5f; 
+            }
+
+            if(detection >= detectionTime && !Chasing && !inCutscene)
             {
                 Chasecoroutine = ChaseNumerator();
                 StartCoroutine(Chasecoroutine);
@@ -307,14 +455,16 @@ public class JanitorBasic : MonoBehaviour
         else
         {
             if (detection > 0 )
-            { 
-            detection -= Time.deltaTime;
+            {
+                detectionSound.volume -= Time.deltaTime * .5f;
+                detection -= Time.deltaTime;
             }
 
         }
         
-        if(detection <= 0 && !Wandering && !Chasing)
+        if(detection <= 0 && !Wandering && !Chasing && !inCutscene)
         {
+           
             Wandering = true;
             Wandercoroutine = WanderingNumerator();
             StartCoroutine(Wandercoroutine);

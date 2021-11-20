@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public bool is_airborn;
     public bool is_sprinting;
     public bool is_hidden;
-   
+    public bool hiddendesk;
 
     [SerializeField] LayerMask GroundLayer;
     [SerializeField] Transform GroundCheck;
@@ -27,8 +27,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float sensitivity;
     [SerializeField] float jumpforce;
 
-    public void Hiding(Vector3 pos)
+    public void Hiding(Vector3 pos, bool isdesk)
     {
+        hiddendesk = isdesk;
         is_hidden = true;
         GameObject.FindGameObjectWithTag("Janitor").SendMessage("PlayerHide",pos);
     }

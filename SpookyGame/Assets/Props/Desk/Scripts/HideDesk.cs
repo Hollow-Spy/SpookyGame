@@ -6,23 +6,24 @@ public class HideDesk : MonoBehaviour
 {
 
     public Transform checkpos;
+    public bool NotLocker;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == 10 )
+        if(other.CompareTag("Player") )
         {
-            Debug.Log("hi");
+           
 
-            GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>().Hiding(checkpos.position);
+          other.GetComponentInParent<PlayerController>().Hiding(checkpos.position,NotLocker);
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == 10)
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("bye");
 
-            GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>().NotHiding();
+
+            other.GetComponentInParent<PlayerController>().NotHiding();
         }
     }
 }
