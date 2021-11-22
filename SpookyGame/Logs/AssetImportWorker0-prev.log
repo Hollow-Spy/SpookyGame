@@ -15,11 +15,11 @@ C:/Users/Spy/Desktop/Spookygame/SpookyGame/SpookyGame
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-62582
+50227
 Successfully changed project path to: C:/Users/Spy/Desktop/Spookygame/SpookyGame/SpookyGame
 C:/Users/Spy/Desktop/Spookygame/SpookyGame/SpookyGame
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 135.81 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 74.42 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.18f1 (a7d1c678663c)
 [Subsystems] Discovering subsystems at path C:/Program Files/2020.3.18f1/Editor/Data/Resources/UnitySubsystems
@@ -35,89 +35,89 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/2020.3.18f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/2020.3.18f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/2020.3.18f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56900
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56816
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/2020.3.18f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.004550 seconds.
+Registered in 0.009417 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 57.27 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 94.07 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in 11.875 seconds
+- Completed reload, in 13.489 seconds
 Domain Reload Profiling:
-	ReloadAssembly (11875ms)
-		BeginReloadAssembly (112ms)
+	ReloadAssembly (13490ms)
+		BeginReloadAssembly (179ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (783ms)
-			LoadAssemblies (110ms)
+			CreateAndSetChildDomain (2ms)
+		EndReloadAssembly (981ms)
+			LoadAssemblies (176ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (336ms)
+			SetupTypeCache (341ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (51ms)
-			SetupLoadedEditorAssemblies (258ms)
+			RebuildScriptCaches (92ms)
+			SetupLoadedEditorAssemblies (400ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (9ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (57ms)
-				BeforeProcessingInitializeOnLoad (26ms)
-				ProcessInitializeOnLoadAttributes (123ms)
-				ProcessInitializeOnLoadMethodAttributes (42ms)
+				InitializePlatformSupportModulesInManaged (15ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (94ms)
+				BeforeProcessingInitializeOnLoad (36ms)
+				ProcessInitializeOnLoadAttributes (193ms)
+				ProcessInitializeOnLoadMethodAttributes (61ms)
 				AfterProcessingInitializeOnLoad (0ms)
-				EditorAssembliesLoaded (0ms)
+				EditorAssembliesLoaded (1ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.005983 seconds.
+Registered in 0.005370 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.80 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 0.78 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.961 seconds
+- Completed reload, in  2.023 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1963ms)
-		BeginReloadAssembly (508ms)
+	ReloadAssembly (2025ms)
+		BeginReloadAssembly (271ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (8ms)
 			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (84ms)
-		EndReloadAssembly (1354ms)
-			LoadAssemblies (269ms)
+			ReleaseScriptingObjects (1ms)
+			CreateAndSetChildDomain (43ms)
+		EndReloadAssembly (1626ms)
+			LoadAssemblies (157ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (499ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (65ms)
-			SetupLoadedEditorAssemblies (516ms)
+			SetupTypeCache (493ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (140ms)
+			SetupLoadedEditorAssemblies (630ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (10ms)
 				SetLoadedEditorAssemblies (1ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (120ms)
-				ProcessInitializeOnLoadAttributes (366ms)
-				ProcessInitializeOnLoadMethodAttributes (8ms)
-				AfterProcessingInitializeOnLoad (10ms)
-				EditorAssembliesLoaded (1ms)
+				BeforeProcessingInitializeOnLoad (208ms)
+				ProcessInitializeOnLoadAttributes (394ms)
+				ProcessInitializeOnLoadMethodAttributes (7ms)
+				AfterProcessingInitializeOnLoad (8ms)
+				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (9ms)
+			AwakeInstancesAfterBackupRestoration (14ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.24 seconds
-Refreshing native plugins compatible for Editor in 0.43 ms, found 2 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.21 seconds
+Refreshing native plugins compatible for Editor in 0.62 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1557 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 1559 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 78.6 MB.
 System memory in use after: 78.7 MB.
 
-Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 1997.
-Total: 3.385100 ms (FindLiveObjects: 0.204500 ms CreateObjectMapping: 0.078900 ms MarkObjects: 3.071700 ms  DeleteObjects: 0.028900 ms)
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 1999.
+Total: 5.625100 ms (FindLiveObjects: 0.478400 ms CreateObjectMapping: 1.232700 ms MarkObjects: 3.872300 ms  DeleteObjects: 0.039900 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -131,121 +131,137 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  path: Assets/Props/Janitor/Animes/GrabUnder.anim
-  artifactKey: Guid(5c10668d248e11f4a99f7a56f6238345) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Props/Janitor/Animes/GrabUnder.anim using Guid(5c10668d248e11f4a99f7a56f6238345) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'caf7bffcbca44eeec7133454282d187a') in 0.144876 seconds 
-  Import took 0.152268 seconds .
+  path: Assets/Computer/UI/Buttons/Check.png
+  artifactKey: Guid(81d9135a244b353449d759205e71d1a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Computer/UI/Buttons/Check.png using Guid(81d9135a244b353449d759205e71d1a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b59c1edd2e72aea543f4a9d519e2180') in 0.457293 seconds 
+  Import took 0.461584 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000324 seconds.
-  path: Assets/Props/Janitor/Animes
-  artifactKey: Guid(62bb632e858248a47b4c5f557c47854e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Props/Janitor/Animes using Guid(62bb632e858248a47b4c5f557c47854e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '80d0f57bcf8a02b449ee8e4f3a660b66') in 0.013051 seconds 
-  Import took 0.019193 seconds .
+  Time since last request: 0.000271 seconds.
+  path: Assets/Computer/UI/Buttons/X.png
+  artifactKey: Guid(ed307ab695dfb2e438ba208cb987681b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Computer/UI/Buttons/X.png using Guid(ed307ab695dfb2e438ba208cb987681b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2042bf74fdaf7793e6203824bee6d718') in 0.067263 seconds 
+  Import took 0.071174 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000314 seconds.
-  path: Assets/Props/Janitor/Animes/janitor_locker.fbx
-  artifactKey: Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Props/Janitor/Animes/janitor_locker.fbx using Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42155615cdd17851ca8a94f88bd4986c') in 1.212490 seconds 
-  Import took 1.219602 seconds .
+  Time since last request: 565.238796 seconds.
+  path: Assets/UI/Animes
+  artifactKey: Guid(1f6fad72fd9256046836ff22e17524d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Animes using Guid(1f6fad72fd9256046836ff22e17524d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2f536e86faa76e71909b9c66eaec27d') in 0.052493 seconds 
+  Import took 0.057988 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000320 seconds.
-  path: Assets/Props/Janitor/Animes/righthook.anim
-  artifactKey: Guid(fcb836a4d0348c14687d0184568489da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Props/Janitor/Animes/righthook.anim using Guid(fcb836a4d0348c14687d0184568489da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '712d28583117c7e44a5c9bc76ca7595a') in 0.092779 seconds 
-  Import took 0.099709 seconds .
+  Time since last request: 0.880700 seconds.
+  path: Assets/UI/Animes/check.anim
+  artifactKey: Guid(9eac5cd7dde0c47409ff0b564f430539) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Animes/check.anim using Guid(9eac5cd7dde0c47409ff0b564f430539) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f746d68ed03bf392d8a2ad9aee5328af') in 0.048124 seconds 
+  Import took 0.055934 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 15.493863 seconds.
-  path: Assets/Props/Janitor/Animes/janitor_locker.fbx
-  artifactKey: Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Props/Janitor/Animes/janitor_locker.fbx using Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '28d268711bd2e34a8e03c8a19ef12673') in 0.098819 seconds 
-  Import took 0.104403 seconds .
+  Time since last request: 0.002226 seconds.
+  path: Assets/UI/Animes/check.anim
+  artifactKey: Guid(9eac5cd7dde0c47409ff0b564f430539) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Animes/check.anim using Guid(9eac5cd7dde0c47409ff0b564f430539) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f746d68ed03bf392d8a2ad9aee5328af') in 0.036551 seconds 
+  Import took 0.040460 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 21.106870 seconds.
-  path: Assets/Props/Janitor/Animes/janitor_locker.fbx
-  artifactKey: Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Props/Janitor/Animes/janitor_locker.fbx using Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21d156e6def0c982db3b21739339e48d') in 0.121779 seconds 
-  Import took 0.137847 seconds .
+  Time since last request: 0.198867 seconds.
+  path: Assets/UI/Animes/cross.anim
+  artifactKey: Guid(dd06c134b8fe28d439911eb246faae0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Animes/cross.anim using Guid(dd06c134b8fe28d439911eb246faae0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ae31ade555716e65441ca74b576fb1e0') in 0.185148 seconds 
+  Import took 0.195324 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.003060 seconds.
-  path: Assets/Props/Janitor/Animes/janitor_locker.fbx
-  artifactKey: Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Props/Janitor/Animes/janitor_locker.fbx using Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21d156e6def0c982db3b21739339e48d') in 0.105483 seconds 
-  Import took 0.112252 seconds .
+  Time since last request: 5.882107 seconds.
+  path: Assets/UI/Animes/check.anim
+  artifactKey: Guid(9eac5cd7dde0c47409ff0b564f430539) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Animes/check.anim using Guid(9eac5cd7dde0c47409ff0b564f430539) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0b865fc92fa0c0ed6b4cf7f11846dc5') in 0.026295 seconds 
+  Import took 0.034713 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 37.528182 seconds.
-  path: Assets/Props/Janitor/Animes/janitor_locker.fbx
-  artifactKey: Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Props/Janitor/Animes/janitor_locker.fbx using Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '44b3c196d2a81406b9dcdecfff9efeb5') in 0.112929 seconds 
-  Import took 0.173030 seconds .
+  Time since last request: 5.183037 seconds.
+  path: Assets/UI/Animes/Cross.prefab
+  artifactKey: Guid(7db2a9aec1782de40bb97229566eae69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Animes/Cross.prefab using Guid(7db2a9aec1782de40bb97229566eae69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2c7d62c3406f84c5c894bc2d2c86fa40') in 0.086218 seconds 
+  Import took 0.094812 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 220.619748 seconds.
-  path: Assets/Props/Janitor/Animes/janitor_locker.fbx
-  artifactKey: Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Props/Janitor/Animes/janitor_locker.fbx using Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '731b41436d9ec74aba05033b1456a81f') in 0.114076 seconds 
-  Import took 0.138067 seconds .
+  Time since last request: 0.944947 seconds.
+  path: Assets/UI/Animes/Check.prefab
+  artifactKey: Guid(cf4ecf7a6a470554db3e627a4bfe2b68) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Animes/Check.prefab using Guid(cf4ecf7a6a470554db3e627a4bfe2b68) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba73e6f311d5d39d62950660df53ba48') in 0.032660 seconds 
+  Import took 0.040610 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 37.959815 seconds.
-  path: Assets/Props/Janitor/Animes/janitor_locker.fbx
-  artifactKey: Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Props/Janitor/Animes/janitor_locker.fbx using Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f0d76ce17fb0212337c9e402d6f1854') in 0.084499 seconds 
-  Import took 0.088544 seconds .
+  Time since last request: 0.018422 seconds.
+  path: Assets/UI/Animes/Check.prefab
+  artifactKey: Guid(cf4ecf7a6a470554db3e627a4bfe2b68) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Animes/Check.prefab using Guid(cf4ecf7a6a470554db3e627a4bfe2b68) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba73e6f311d5d39d62950660df53ba48') in 0.053587 seconds 
+  Import took 0.075648 seconds .
 
 ========================================================================
-Received Import Request.
-  Time since last request: 29.060307 seconds.
-  path: Assets/Props/Janitor/Animes/janitor_locker.fbx
-  artifactKey: Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Props/Janitor/Animes/janitor_locker.fbx using Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '297447deab09be9cb78634ac65f0bc7b') in 0.134139 seconds 
-  Import took 0.143896 seconds .
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005336 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.05 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.714 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2715ms)
+		BeginReloadAssembly (612ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (10ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (193ms)
+		EndReloadAssembly (1961ms)
+			LoadAssemblies (445ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (757ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (76ms)
+			SetupLoadedEditorAssemblies (761ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (14ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (204ms)
+				ProcessInitializeOnLoadAttributes (516ms)
+				ProcessInitializeOnLoadMethodAttributes (13ms)
+				AfterProcessingInitializeOnLoad (11ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (21ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.45 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1512 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 77.5 MB.
+System memory in use after: 77.6 MB.
 
-========================================================================
-Received Import Request.
-  Time since last request: 27.518217 seconds.
-  path: Assets/Props/Janitor/Animes/janitor_locker.fbx
-  artifactKey: Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Props/Janitor/Animes/janitor_locker.fbx using Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4093d67b5955067b746a1636cae40599') in 0.070863 seconds 
-  Import took 0.077823 seconds .
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 2007.
+Total: 3.384000 ms (FindLiveObjects: 0.182700 ms CreateObjectMapping: 0.061100 ms MarkObjects: 3.115700 ms  DeleteObjects: 0.023200 ms)
 
-========================================================================
-Received Import Request.
-  Time since last request: 6.972463 seconds.
-  path: Assets/Props/Janitor/Animes/janitor_locker.fbx
-  artifactKey: Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Props/Janitor/Animes/janitor_locker.fbx using Guid(28ccba8350b3d204ab89e8aaa75b791a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e3fbd07b2baf5ade3bdc38269f82a175') in 0.156780 seconds 
-  Import took 0.162458 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 14.627709 seconds.
-  path: Assets/Props/Janitor/Animes/metarig.003_metarig.003Action.anim
-  artifactKey: Guid(b7246f44444f67244815746b31997353) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Props/Janitor/Animes/metarig.003_metarig.003Action.anim using Guid(b7246f44444f67244815746b31997353) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'df52a84c1c7bc83a3769d18042fc55b4') in 0.051734 seconds 
-  Import took 0.057022 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.189170 seconds.
-  path: Assets/Props/Janitor/Animes/GrabLock.anim
-  artifactKey: Guid(b7246f44444f67244815746b31997353) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Props/Janitor/Animes/GrabLock.anim using Guid(b7246f44444f67244815746b31997353) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '59f4bd44f192bca62c5573badae17bcb') in 0.029615 seconds 
-  Import took 0.038741 seconds .
-
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
