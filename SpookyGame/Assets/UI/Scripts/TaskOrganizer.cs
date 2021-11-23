@@ -94,6 +94,7 @@ public class TaskOrganizer : MonoBehaviour
         }
         yield return new WaitForSeconds(1f);
 
+        ActiveTasks[num].TaskObject.SetActive(false);
         ActiveTasks.RemoveAt(num);
         Vector2 targetpos = new Vector2(OGPos.position.x, text[textnum].transform.position.y);
         while (Vector2.Distance(text[textnum].transform.position, targetpos) > 1f)
@@ -288,9 +289,9 @@ public class TaskOrganizer : MonoBehaviour
 
 
 
-
+        RegisteredTasks[random].TaskObject.SetActive(true);
         ActiveTasks.Add(new Task(RegisteredTasks[random].Priority, RegisteredTasks[random].active, RegisteredTasks[random].message, RegisteredTasks[random].Time, RegisteredTasks[random].TaskObject));
-        
+       
 
 
         IEnumerator AddCoroutine = AddNumerator(random);

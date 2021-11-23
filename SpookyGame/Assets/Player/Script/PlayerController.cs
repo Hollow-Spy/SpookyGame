@@ -56,7 +56,12 @@ public class PlayerController : MonoBehaviour
     }
 
 
- 
+    private void OnDisable()
+    {
+        is_walking = false;
+        is_sprinting = false;
+        is_airborn = false;
+    }
 
 
     // Update is called once per frame
