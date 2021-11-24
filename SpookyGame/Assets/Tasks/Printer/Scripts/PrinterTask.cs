@@ -30,6 +30,7 @@ public class PrinterTask : MonoBehaviour
         audioplayer.pitch = .8f;
         active = true;    //kinda important, we want to let the object know once he is activated by the task organizer he will be now active, both script wise and inspector wise
     }
+
     private void Start()
     {
       

@@ -45,8 +45,9 @@ public class JanitorBasic : MonoBehaviour
     float contactTime;
 
     bool inCutscene;
-    public AudioSource detectionSound;
-    public AudioSource chasesong;
+    public AudioSource detectionSound, chasesong, walkSound;
+    [SerializeField] GameObject swingSFX,PunchSFX;
+    
 
     void Awake()
     {
@@ -66,6 +67,7 @@ public class JanitorBasic : MonoBehaviour
 
     public void PlayerHurt()
     {
+        Instantiate(PunchSFX, transform.position, Quaternion.identity);
         if(hurteffect.weight == 0)
         {
             
@@ -73,7 +75,7 @@ public class JanitorBasic : MonoBehaviour
             Physics.IgnoreCollision(GetComponent<BoxCollider>(), GameObject.FindGameObjectWithTag("Player").GetComponent<CapsuleCollider>(), true);
 
             player.enabled = false;
-            playerpos.GetComponent<Rigidbody>().AddForce(transform.forward * 17,ForceMode.Impulse);
+            playerpos.GetComponent<Rigidbody>().AddForce(transform.forward * 10,ForceMode.Impulse);
             hurteffect.weight = 1;
             IEnumerator reducehurtcoroutine;
             reducehurtcoroutine = ReduceHurtNumerator();
@@ -227,6 +229,7 @@ public class JanitorBasic : MonoBehaviour
                     
                 }
                 animator.SetTrigger("punch");
+                Instantiate(swingSFX, transform.position, Quaternion.identity);
                 detection += detectionTime;
 
             }
@@ -245,7 +248,7 @@ public class JanitorBasic : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        animator.ResetTrigger("punch");
+       // animator.ResetTrigger("punch");
         if (other.CompareTag("Player"))
         {
             inRange = false;
@@ -293,10 +296,17 @@ public class JanitorBasic : MonoBehaviour
 
             while (agent.remainingDistance > .1f)
             {
-                
+                if(!walkSound.isPlaying)
+                {
+                    walkSound.pitch = Random.Range(.8f, 1.1f);
+                    walkSound.Play();
+                }
+
+
                 yield return null;
             }
-           
+            walkSound.Stop();
+
             animator.SetBool("sad", true);
             int rand = Random.Range(0, 6);
             yield return new WaitForSeconds(3 + rand);
@@ -353,7 +363,7 @@ public class JanitorBasic : MonoBehaviour
         chasesong.volume = 1;
         detectionSound.volume = 0;
 
-      
+        walkSound.Stop();
 
         detection += ExtraChaseTime;
         animator.SetBool("sad", false);

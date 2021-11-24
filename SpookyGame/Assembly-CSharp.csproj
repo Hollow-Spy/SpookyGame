@@ -54,12 +54,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Player\Script\PlayerComputing.cs" />
+    <Compile Include="Assets\Player\Script\StepSoundTrigger.cs" />
     <Compile Include="Assets\LoseScreens\GameOverScreen.cs" />
     <Compile Include="Assets\Shader\psx_retroshader-master\Assets\Shaders\Billboard\billboard.cs" />
     <Compile Include="Assets\Player\Script\HeadBop.cs" />
     <Compile Include="Assets\Computer\Scripts\BootUp.cs" />
     <Compile Include="Assets\Props\Janitor\Scripts\JanitorBasic.cs" />
     <Compile Include="Assets\UI\Scripts\TaskOrganizer.cs" />
+    <Compile Include="Assets\Player\Script\StepSounds.cs" />
     <Compile Include="Assets\Computer\Scripts\TitleEffect.cs" />
     <Compile Include="Assets\Computer\Scripts\ComputerZoom.cs" />
     <Compile Include="Assets\Tasks\Printer\Scripts\PrinterTask.cs" />
@@ -80,8 +82,9 @@
     <Compile Include="Assets\Player\Script\PlayerController.cs" />
     <Compile Include="Assets\Player\Script\PlayerInteract.cs" />
     <Compile Include="Assets\Props\Locker\Locker.cs" />
-    <Compile Include="Assets\Player\Script\StepSounds.cs" />
-    <Compile Include="Assets\Player\Script\StepSoundTrigger.cs" />
+    <Compile Include="Assets\Player\Camera\TiredNess\Tiredness.cs" />
+    <Compile Include="Assets\Player\Camera\TiredNess\VignettePulse.cs" />
+    <Compile Include="Assets\Door\DoorCreek.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shader\psx_retroshader-master\Assets\Shaders\Trasparent\psx-trasparent-unlit.shader" />

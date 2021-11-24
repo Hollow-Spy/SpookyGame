@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4346686291547344732}
   - component: {fileID: 3159087170506986858}
   - component: {fileID: -6516023237517993906}
+  - component: {fileID: -2111529121968919098}
   m_Layer: 0
   m_Name: CarpetSFX
   m_TagString: Untagged
@@ -141,3 +142,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 4
+--- !u!168 &-2111529121968919098
+AudioEchoFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2536000198161980790}
+  m_Enabled: 1
+  m_Delay: 100
+  m_DecayRatio: 0.1
+  m_WetMix: 1
+  m_DryMix: 0
