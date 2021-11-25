@@ -21,7 +21,6 @@ public class DoorCreek : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.relativeVelocity.magnitude);
         if(collision.relativeVelocity.magnitude > 3)
         {
             Instantiate(doorstepsfx, transform.position, Quaternion.identity);

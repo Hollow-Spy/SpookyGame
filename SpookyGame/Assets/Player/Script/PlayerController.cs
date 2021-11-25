@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
     {
         xRot -= MouseInput.y * sensitivity;
 
-        xRot = Mathf.Clamp(xRot, -50, 50);
+        xRot = Mathf.Clamp(xRot, -80, 80);
 
         body.transform.Rotate(0, MouseInput.x * sensitivity, 0);
         PlayerCam.transform.localRotation = Quaternion.Euler(xRot,0,0);
