@@ -2424,6 +2424,9 @@ MonoBehaviour:
   InteractiveLayer:
     serializedVersion: 2
     m_Bits: 256
+  normalCrosshair: {fileID: 0}
+  handInteractionUI: {fileID: 0}
+  active: 1
 --- !u!114 &374056595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11839,10 +11842,15 @@ MonoBehaviour:
   is_walking: 0
   is_airborn: 0
   is_sprinting: 0
+  is_hidden: 0
+  hiddendesk: 0
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
   GroundCheck: {fileID: 2063210338}
+  defaultlayer:
+    serializedVersion: 2
+    m_Bits: 0
   PlayerCam: {fileID: 374056593}
   body: {fileID: 694400689}
   is_crouched: 0
@@ -11850,6 +11858,7 @@ MonoBehaviour:
   sprintmultiplier: 2
   sensitivity: 3
   jumpforce: 10
+  currentlocker: {fileID: 0}
 --- !u!4 &1541224943
 Transform:
   m_ObjectHideFlags: 0
@@ -12222,6 +12231,7 @@ MonoBehaviour:
   Crosshairs: {fileID: 1938841046}
   puzzles:
   - {fileID: 2302891666355355906, guid: aacd920220935674a97004bcfe8b9485, type: 3}
+  computeroff: {fileID: 0}
 --- !u!65 &1587222952
 BoxCollider:
   m_ObjectHideFlags: 0
