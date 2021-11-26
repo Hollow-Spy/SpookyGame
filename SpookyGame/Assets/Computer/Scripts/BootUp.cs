@@ -6,6 +6,8 @@ public class BootUp : MonoBehaviour
 {
     public GameObject loadingCircle;
     public GameObject desktop;
+
+   
     int tries=0;
     public void Loading()
     {
@@ -13,6 +15,7 @@ public class BootUp : MonoBehaviour
 
     }
 
+ 
     public void loadchance()
     {
 

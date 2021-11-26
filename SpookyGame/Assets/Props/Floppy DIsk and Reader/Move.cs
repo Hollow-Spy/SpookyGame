@@ -60,7 +60,7 @@ public class Move : MonoBehaviour
         {
             yield return null;
         }
-        GameObject.FindGameObjectWithTag("UI").GetComponentInChildren<TaskOrganizer>().RemoveTask(gameObject, failed);
+        GameObject.FindGameObjectWithTag("UI").GetComponentInChildren<TaskOrganizer>().RemoveTask(GameObject.Find("floppy reader"), failed);
 
     }
 

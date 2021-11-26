@@ -27,6 +27,10 @@ public class Clock : MonoBehaviour
     void Update()
     {
        
+       if(hourPointer.transform.eulerAngles.x  >= 88 && hourPointer.transform.eulerAngles.x <= 94)
+        {
+            Debug.Log(TaskOrganizer.Score);
+        }
        
             if(time >= secondsWorth)
            {
