@@ -9,6 +9,7 @@ public class WrittingCheck : MonoBehaviour
     InputField input;
     public Text codetarget;
     public Text textwrite;
+    bool diff;
 
     // Start is called before the first frame update
     void Start()
@@ -24,9 +25,10 @@ public class WrittingCheck : MonoBehaviour
             return;
         }
 
-        if(codetarget.text[input.caretPosition-1] != input.text[input.caretPosition-1] )
+        if(codetarget.text.Substring(0,input.text.Length) != input.text.Substring(0,input.text.Length) )
         {
             Debug.Log("diff");
+            
 
             // Replace text with color value for character.
             textwrite.color = Color.red;
@@ -34,6 +36,11 @@ public class WrittingCheck : MonoBehaviour
         else
         {
             textwrite.color = Color.white;
+
+            if(codetarget.text.Length == input.text.Length)
+            {
+                
+            }
 
         }
 

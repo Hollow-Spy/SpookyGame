@@ -34,7 +34,7 @@ public class DoorCreek : MonoBehaviour
 
         if(Mathf.Abs (body.angularVelocity.y) > .35f)
         {
-            doorcreek.volume = body.angularVelocity.magnitude * .2f;
+            doorcreek.volume = body.angularVelocity.magnitude * .1f;
            if(!doorcreek.isPlaying)
             {
                 doorcreek.pitch = Random.Range(.8f, 1.1f);

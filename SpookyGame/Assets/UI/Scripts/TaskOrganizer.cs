@@ -216,34 +216,6 @@ public class TaskOrganizer : MonoBehaviour
                 }
                
 
-
-                /*
-                  for (int i = 0; i < ActiveTasks.Count; i++)
-                  {
-                      if (text[i].text != "")
-                      {
-                          for (int a = 0; a < text.Length; a++)
-                          {
-                              if (text[a].text == ActiveTasks[i].message)
-                              {
-                                  text[a].transform.position = Vector2.Lerp(text[a].transform.position, pos[i].position, 6 * Time.deltaTime);
-
-                                  Debug.Log("text" + text[a].gameObject.name + "pos" + i+ToString() +  text[a].text + " " + Vector2.Distance(text[a].transform.position, pos[i].position).ToString());
-
-                                  if (Vector2.Distance(text[a].transform.position, pos[i].position) < .4f && !poscheck[i])
-                                  {
-                                      finished++;
-                                      poscheck[i] = true;
-
-                                  }
-                                  a = text.Length;
-                              }
-                          }
-
-                      }
-                  }
-                */
-
                 yield return null;
             }
             busy = false;
@@ -320,7 +292,7 @@ public class TaskOrganizer : MonoBehaviour
             }
         }
 
-        Debug.Log("help");
+      
         while (Vector2.Distance(text[currentText].transform.position, pos[pos.Length - 1].position) > .35f)
         {
             text[currentText].transform.position = Vector2.Lerp(text[currentText].transform.position, pos[pos.Length - 1].position, 10 * Time.deltaTime);
@@ -341,7 +313,7 @@ public class TaskOrganizer : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Debug.Log("clic");
+            
 
             AddTask();
         }

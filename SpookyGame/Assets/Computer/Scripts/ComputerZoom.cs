@@ -11,6 +11,56 @@ public class ComputerZoom : MonoBehaviour
     IEnumerator ZoomInumerator,ZoomBackIenumerator;
     [SerializeField] GameObject Crosshairs;
     public GameObject[] puzzles;
+    [SerializeField] GameObject computeroff;
+    bool active;
+
+    private void OnEnable()
+    {
+        active = true;
+        computeroff.SetActive(false);
+
+    }
+
+    private void OnDisable()
+    {
+
+        computeroff.SetActive(true);
+        if(Zoomed)
+        {
+            if(CameraPos)
+            {
+                CameraPos.position = OGcam;
+                Crosshairs.SetActive(true);
+            }
+           
+            GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>().enabled = true;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().isKinematic = false;
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<HeadBop>().enabled = true;
+            Zoomed = false;
+        }
+    }
+    public void TaskComplete(bool failed)
+    {
+        if(active)
+        {
+            active = false;
+
+            StartCoroutine(TaskDone(failed));
+        }
+      
+    }
+
+    IEnumerator TaskDone(bool failed)
+    {
+        while (GameObject.FindGameObjectWithTag("UI").GetComponentInChildren<TaskOrganizer>().busy)
+        {
+            yield return null;
+        }
+        GameObject.FindGameObjectWithTag("UI").GetComponentInChildren<TaskOrganizer>().RemoveTask(gameObject, failed);
+
+    }
+
+
     public void Interaction()
     {
        

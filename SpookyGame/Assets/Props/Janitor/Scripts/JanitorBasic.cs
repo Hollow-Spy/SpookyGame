@@ -14,6 +14,10 @@ public class JanitorBasic : MonoBehaviour
     public Transform playerpos;
     public bool Wandering;
     public bool Chasing;
+    public bool Investigating;
+
+    public bool isEating;
+
     public float detection=0;
     JanitorFOV fov;
     public float detectionTime;
@@ -47,7 +51,7 @@ public class JanitorBasic : MonoBehaviour
     bool inCutscene;
     public AudioSource detectionSound, chasesong, walkSound;
     [SerializeField] GameObject swingSFX,PunchSFX;
-    
+    [SerializeField] GameObject ChocoParticles;
 
     void Awake()
     {
@@ -209,37 +213,83 @@ public class JanitorBasic : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if(!isEating && !inCutscene)
         {
-            inRange = true;
-          if(!player.is_hidden && !inCutscene && cooldown <= 0)
+            if (other.CompareTag("Player") )
             {
-                cooldown = 1;
-                for(int i = 0;i<20;i++)
+                inRange = true;
+                if (!player.is_hidden && !inCutscene && cooldown <= 0)
                 {
-
-                    Vector3 dir = playerpos.position - transform.position;
-                    dir.y = 0;//This allows the object to only rotate on its y axis
-                    Quaternion rot = Quaternion.LookRotation(dir);
-                    transform.rotation = Quaternion.Lerp(transform.rotation, rot, 10 * Time.deltaTime);
-                    if(transform.rotation == rot)
+                    cooldown = 1;
+                    for (int i = 0; i < 20; i++)
                     {
-                        i = 21;
+
+                        Vector3 dir = playerpos.position - transform.position;
+                        dir.y = 0;//This allows the object to only rotate on its y axis
+                        Quaternion rot = Quaternion.LookRotation(dir);
+                        transform.rotation = Quaternion.Lerp(transform.rotation, rot, 10 * Time.deltaTime);
+                        if (transform.rotation == rot)
+                        {
+                            i = 21;
+                        }
+
                     }
-                    
+                    animator.SetTrigger("punch");
+                    Instantiate(swingSFX, transform.position, Quaternion.identity);
+                    detection += detectionTime;
+
                 }
-                animator.SetTrigger("punch");
-                Instantiate(swingSFX, transform.position, Quaternion.identity);
-                detection += detectionTime;
 
             }
-          
+
+            if (other.gameObject.name == "Zork" )
+            {
+                isEating = true;
+                if(Wandering)
+                {
+                    Wandering = false;
+
+                }
+                if(Chasing)
+                {
+                    detection = 0;
+                }
+                if(Investigating)
+                {
+                    Investigating = false;
+                }
+                if(walkSound.isPlaying)
+                {
+                    walkSound.Stop();
+                }
+
+
+                agent.isStopped = true;
+
+                other.SendMessage("Ate");
+                ChocoParticles.SetActive(true);
+                animator.SetTrigger("eat");
+                IEnumerator EatCoroutine = EatingNumerator();
+                StartCoroutine(EatCoroutine);
+            }
         }
+   
+    }
+    IEnumerator EatingNumerator()
+    {
+       
+        yield return new WaitForSeconds(7);
+        
+        agent.isStopped = false;
+        isEating = false;
+        yield return new WaitForSeconds(2);
+        ChocoParticles.SetActive(false);
+
     }
 
 
 
-   public void Punch()
+    public void Punch()
     {
        
         Instantiate(punchtrigger, punchposition.position, Quaternion.identity);
@@ -355,6 +405,38 @@ public class JanitorBasic : MonoBehaviour
       
     }
 
+    public void Investigate(Vector3 pos)
+    {
+        if(Wandering)
+        {
+            Wandering = false;
+            Investigating = true;
+
+            agent.SetDestination(pos);
+
+            IEnumerator InvestigationCoroutine = InvestigationNumerator();
+            StartCoroutine(InvestigationCoroutine);
+            
+
+        }
+    }
+
+
+    IEnumerator InvestigationNumerator()
+    {
+        yield return new WaitForSeconds(.1f);
+
+        while(agent.remainingDistance > .1f && Investigating)
+        {
+            yield return null;
+        }
+        if(Investigating)
+        {
+            animator.SetTrigger("confused");
+            yield return new WaitForSeconds(4);
+            Investigating = false;
+        }
+    }
 
     IEnumerator ChaseNumerator()
     {
@@ -362,6 +444,8 @@ public class JanitorBasic : MonoBehaviour
         chasesong.Play();
         chasesong.volume = 1;
         detectionSound.volume = 0;
+
+        Investigating = false;
 
         walkSound.Stop();
 
@@ -401,6 +485,7 @@ public class JanitorBasic : MonoBehaviour
               
                 if(agent.remainingDistance < .1f)
                 {
+                    animator.SetFloat("walkspeed", 1);
 
                     detection = 0;
                     if(knowshider)
@@ -431,7 +516,7 @@ public class JanitorBasic : MonoBehaviour
 
 
         }
-        animator.SetFloat("walkspeed", 1);
+        
 
         Chasing = false;
         while(chasesong.volume > 0)
@@ -463,12 +548,16 @@ public class JanitorBasic : MonoBehaviour
             cooldown = 0;
         }
 
+    
+
         if(detection > maxDetection)
         {
             detection = maxDetection;
         }
 
-      if(fov.canSeePlayer)
+
+
+      if(fov.canSeePlayer && !isEating)
        {
             detection += Time.deltaTime ;
             detection += .05f - Mathf.Clamp(Vector3.Distance(playerpos.position, transform.position),0,4) * .01f;
@@ -515,7 +604,7 @@ public class JanitorBasic : MonoBehaviour
 
         }
         
-        if(detection <= 0 && !Wandering && !Chasing && !inCutscene)
+        if(detection <= 0 && !Wandering && !Chasing && !inCutscene && !Investigating && !isEating)
         {
            
             Wandering = true;

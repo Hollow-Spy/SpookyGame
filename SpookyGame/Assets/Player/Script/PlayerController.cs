@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float sensitivity;
     [SerializeField] float jumpforce;
     public Locker currentlocker;
-
+    Camera MainCam;
 
    
 
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-
+        MainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
         //dISTORTION SETTING
        // RenderSettings.ambientLight = new Color(RenderSettings.ambientLight.r, RenderSettings.ambientLight.g, RenderSettings.ambientLight.b, .0f);
@@ -74,9 +74,12 @@ public class PlayerController : MonoBehaviour
         {
             is_crouched = true;
             transform.localScale = new Vector3(1, .5f, 1);
+            MainCam.gameObject.transform.localScale = new Vector3(1, 2, 1);
+
+
         }
 
-       
+
 
 
         if (Input.GetKeyUp(KeyCode.LeftControl) &&  !Physics.CheckSphere(new Vector3(body.transform.position.x,body.transform.position.y+.2f,body.transform.position.z),.3f,defaultlayer) ) 
@@ -85,6 +88,7 @@ public class PlayerController : MonoBehaviour
            
             is_crouched = false;
             transform.localScale = new Vector3(1, 1, 1);
+            MainCam.gameObject.transform.localScale =  new Vector3(1, 1, 1);
 
         }
      
