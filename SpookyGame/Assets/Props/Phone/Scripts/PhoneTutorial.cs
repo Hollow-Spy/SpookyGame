@@ -8,27 +8,90 @@ public class PhoneTutorial : MonoBehaviour
     bool pickup;
     AudioSource ring;
     [SerializeField] GameObject PickUpSFX;
+    [SerializeField] GameObject Janitor;
+    [SerializeField] Transform CheckPos;
+
 
     void Start()
     {
+        ring = GetComponent<AudioSource>();
         StartCoroutine(Phone());
     }
     IEnumerator Phone()
     {
+        ring.Play();
         yield return new WaitForSeconds(1);
+        while(!pickup)
+        {
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Tiredness>().tiredLevel = 0;
+            yield return null;
+        }
+
+        //wait
+        GameObject.Find("UICanvas").GetComponentInChildren<TaskOrganizer>().AddTask();
+        yield return new WaitForSeconds(1);
+        while(TaskOrganizer.Score <= 0)
+        {
+            yield return null;
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Tiredness>().tiredLevel = 0;
+
+            if (GameObject.Find("UICanvas").GetComponentInChildren<TaskOrganizer>().ActiveTasks.Count <= 0)
+            {
+                GameObject.Find("UICanvas").GetComponentInChildren<TaskOrganizer>().AddTask();
+                yield return new WaitForSeconds(1);
+
+            }
+        }
+        pickup = false;
+        gameObject.layer = 8;
+        ring.Play();
+
+        while(!pickup)
+        {
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Tiredness>().tiredLevel = 0;
+
+            yield return null;
+        }
+
+       
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Tiredness>().tiredLevel = 50;
+
+        while (GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Tiredness>().isTired)
+        {
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Tiredness>().tiredLevel += 5 * Time.deltaTime;
+            yield return null;
+        }
+
+        pickup = false;
+        gameObject.layer = 8;
+        ring.Play();
         while(!pickup)
         {
             yield return null;
         }
 
+        yield return new WaitForSeconds(1);
+        Janitor.SetActive(true);
+        yield return new WaitForSeconds(.1f);
+      
+        Janitor.GetComponent<JanitorBasic>().Investigate(CheckPos.position);
+        while(!Janitor.GetComponent<JanitorBasic>().Wandering || !GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>().is_hidden)
+        {
+            yield return null;
+        }
 
+        pickup = false;
+        gameObject.layer = 8;
+        ring.Play();
 
     }
 
-  public void Interact()
+  public void Interaction()
     {
         if(!pickup)
         {
+            gameObject.layer = 0;
+
             Instantiate(PickUpSFX, transform.position, Quaternion.identity);
             pickup = true;
             ring.Stop();

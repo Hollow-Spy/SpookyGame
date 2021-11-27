@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossCutscene : MonoBehaviour
 {
     GameObject player;
+    [SerializeField] PhoneTutorial phone;
    public void DisablePlayer()
     {
         player = GameObject.FindGameObjectWithTag("Player").gameObject.transform.parent.gameObject;
@@ -17,6 +18,6 @@ public class BossCutscene : MonoBehaviour
 
     public void RingPhone()
     {
-
+        phone.enabled = true;
     }
 }
