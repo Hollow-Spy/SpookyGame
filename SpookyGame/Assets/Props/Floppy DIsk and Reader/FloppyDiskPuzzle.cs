@@ -31,10 +31,11 @@ public class FloppyDiskPuzzle : MonoBehaviour
     {
        
         FloppyDisk = GameObject.Find("floppy reader");
+        FloppyDisk.GetComponent<Collider>().enabled = true;
         store = FloppyDisk.GetComponent<StoreValue>();
-        currentCap += 1;        
-        store.current = 1;
+        currentCap += 1;               
         store.ObjectStored = true;
+        store.SpawnFloppy = true;
         Debug.Log("Floppy Disk Picked up!");
         Destroy(gameObject);
         IsPickedUp = false;

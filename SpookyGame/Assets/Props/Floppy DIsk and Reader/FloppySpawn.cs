@@ -41,6 +41,7 @@ public class FloppySpawn : MonoBehaviour
 
 
         }
+        //link to forum which helped me stop the problem with floppys spawning on same point: https://answers.unity.com/questions/65011/multiple-spawn-points-without-spawning-in-the-same.html
 
 
 

@@ -33,9 +33,10 @@ public class Move : MonoBehaviour
             transform.LookAt(end.position);//will always look at end.
             Debug.Log("Game backed up");//sent to console 
 
-            Destroy(gameObject);//gameObject will be destroyed after reaching destination.
+           
             DestroyFloppy();
             StartCoroutine(TaskDone(done));//once the floppy disk reaches the point, the task is completed.
+            Destroy(gameObject);//gameObject will be destroyed after reaching destination.
         }
         transform.LookAt(end.position);//This ensures that the object is always looking it's target
         transform.position = (Vector3.MoveTowards(transform.position, end.position, Time.deltaTime * Speed));//Vector3.MoveTowards will move the object towards the 
