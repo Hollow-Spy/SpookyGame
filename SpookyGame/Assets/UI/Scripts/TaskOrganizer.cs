@@ -285,7 +285,21 @@ public class TaskOrganizer : MonoBehaviour
         bool taskfound = true;
         int random = 0;
 
-        random = Random.Range(0, RegisteredTasks.Length);
+        for(int i=0;i<15;i++)
+        {
+
+            random = Random.Range(0, RegisteredTasks.Length);
+            if(RegisteredTasks[random].active)
+            {
+                i = 16;
+            }
+        }
+
+        if (!RegisteredTasks[random].active)
+        {
+            busy = false;
+            return;
+        }
 
         if (ActiveTasks.Count > 0)
         {
@@ -310,8 +324,7 @@ public class TaskOrganizer : MonoBehaviour
 
         }
 
-
-
+       
 
         RegisteredTasks[random].TaskObject.SetActive(true);
         ActiveTasks.Add(new Task(RegisteredTasks[random].Priority, RegisteredTasks[random].active, RegisteredTasks[random].message, RegisteredTasks[random].Time, RegisteredTasks[random].TaskObject));

@@ -123,6 +123,85 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: f3b813952592ea14081cb4fb2c0a6d2a, type: 2}
+--- !u!1 &366511094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 366511095}
+  - component: {fileID: 366511097}
+  - component: {fileID: 366511096}
+  m_Layer: 5
+  m_Name: Crouch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &366511095
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366511094}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 33898972752250166}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.00000095367, y: -241}
+  m_SizeDelta: {x: 1366, y: 256.6104}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &366511096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366511094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 9f81604982a5ac94eb27266e9b48681a, type: 3}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Hide under the desk 'C' to crouch
+--- !u!222 &366511097
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366511094}
+  m_CullTransparentMesh: 1
 --- !u!1001 &898545182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -527,6 +606,12 @@ MonoBehaviour:
   PickUpSFX: {fileID: 4160544817158915933, guid: 6a76fc9a8bddf8b4588fffb9c0999509, type: 3}
   Janitor: {fileID: 33898973940058631}
   CheckPos: {fileID: 33898974087510368}
+  CrouchText: {fileID: 366511094}
+  voices:
+  - {fileID: 1881349662605529682, guid: 0918c5c3fe299c34c836b5245877031a, type: 3}
+  - {fileID: 6836610279591652899, guid: 7dad473eaab7bff4da3e89fe46f5533d, type: 3}
+  - {fileID: 6681813756502364226, guid: 988ddff00d0587c4eb103d6d952a0e14, type: 3}
+  - {fileID: 2743835649652536611, guid: 46953f2aca09eda4f864b669aaf1ea02, type: 3}
 --- !u!1 &33898972129845834
 GameObject:
   m_ObjectHideFlags: 0
@@ -34619,6 +34704,7 @@ RectTransform:
   m_Children:
   - {fileID: 33898974113860278}
   - {fileID: 33898973658055590}
+  - {fileID: 366511095}
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -62737,6 +62823,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -2.35
       objectReference: {fileID: 0}
+    - target: {fileID: 7078802191772155208, guid: 5b1d1336d0235bc41acb6b1cb734bd7b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078802191772155209, guid: 5b1d1336d0235bc41acb6b1cb734bd7b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7078802191793675975, guid: 5b1d1336d0235bc41acb6b1cb734bd7b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.6
@@ -62771,7 +62865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7329129469842579526, guid: 5b1d1336d0235bc41acb6b1cb734bd7b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.68
+      value: -3.524
       objectReference: {fileID: 0}
     - target: {fileID: 7329129469842579526, guid: 5b1d1336d0235bc41acb6b1cb734bd7b, type: 3}
       propertyPath: m_LocalRotation.w

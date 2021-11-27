@@ -11,7 +11,10 @@ public class PhoneTutorial : MonoBehaviour
     [SerializeField] GameObject Janitor;
     [SerializeField] Transform CheckPos;
 
-
+    [SerializeField] GameObject CrouchText;
+    [SerializeField] GameObject[] voices;
+    GameObject currentvoice;
+    AudioSource voiceplayer;
     void Start()
     {
         ring = GetComponent<AudioSource>();
@@ -26,6 +29,15 @@ public class PhoneTutorial : MonoBehaviour
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Tiredness>().tiredLevel = 0;
             yield return null;
         }
+
+        currentvoice = Instantiate(voices[0], transform.position, Quaternion.identity);
+        voiceplayer = currentvoice.GetComponent<AudioSource>();
+        while(voiceplayer.isPlaying)
+        {
+            yield return null;
+        }
+        Instantiate(PickUpSFX, transform.position, Quaternion.identity);
+
 
         //wait
         GameObject.Find("UICanvas").GetComponentInChildren<TaskOrganizer>().AddTask();
@@ -53,7 +65,15 @@ public class PhoneTutorial : MonoBehaviour
             yield return null;
         }
 
-       
+        currentvoice = Instantiate(voices[1], transform.position, Quaternion.identity);
+        voiceplayer = currentvoice.GetComponent<AudioSource>();
+        while (voiceplayer.isPlaying)
+        {
+            yield return null;
+        }
+        Instantiate(PickUpSFX, transform.position, Quaternion.identity);
+
+
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Tiredness>().tiredLevel = 50;
 
         while (GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Tiredness>().isTired)
@@ -70,19 +90,42 @@ public class PhoneTutorial : MonoBehaviour
             yield return null;
         }
 
+        currentvoice = Instantiate(voices[2], transform.position, Quaternion.identity);
+        voiceplayer = currentvoice.GetComponent<AudioSource>();
+        while (voiceplayer.isPlaying)
+        {
+            yield return null;
+        }
+        Instantiate(PickUpSFX, transform.position, Quaternion.identity);
+
         yield return new WaitForSeconds(1);
         Janitor.SetActive(true);
         yield return new WaitForSeconds(.1f);
-      
+        CrouchText.SetActive(true);
         Janitor.GetComponent<JanitorBasic>().Investigate(CheckPos.position);
         while(!Janitor.GetComponent<JanitorBasic>().Wandering || !GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>().is_hidden)
         {
             yield return null;
         }
-
+        CrouchText.SetActive(false);
         pickup = false;
         gameObject.layer = 8;
         ring.Play();
+
+        while (!pickup)
+        {
+            yield return null;
+        }
+
+
+        currentvoice = Instantiate(voices[3], transform.position, Quaternion.identity);
+        voiceplayer = currentvoice.GetComponent<AudioSource>();
+        while (voiceplayer.isPlaying)
+        {
+            yield return null;
+        }
+        Instantiate(PickUpSFX, transform.position, Quaternion.identity);
+
 
     }
 

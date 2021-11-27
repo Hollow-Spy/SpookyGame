@@ -7,32 +7,33 @@ public class Extinguisher : MonoBehaviour
 
     bool holding;
     PlayerInteract interact;
-    Rigidbody body;
+    
     [SerializeField] Transform ExtinnguishPos;
     [SerializeField] Transform SpawnPos;
     [SerializeField] ParticleSystem Particles;
-
-    float delay;
+    [SerializeField] GameObject Fire;
 
     private void OnEnable()
     {
+        Particles.gameObject.SetActive(true);
+        Particles.Stop();
+
         transform.position = SpawnPos.position;
-
+        Fire.SetActive(true);
         transform.SetParent(null);
-        GetComponent<BoxCollider>().enabled = true;
+        GetComponent<CapsuleCollider>().enabled = true;
 
-        body = GetComponent<Rigidbody>();
-        Physics.IgnoreCollision(GetComponent<BoxCollider>(), GameObject.FindGameObjectWithTag("Player").GetComponent<CapsuleCollider>(), true);
+        Physics.IgnoreCollision(GetComponent<CapsuleCollider>(), GameObject.FindGameObjectWithTag("Player").GetComponent<CapsuleCollider>(), true);
         interact = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PlayerInteract>();
 
-        
-       
         holding = false;
-
     }
 
 
- 
+    public void FireGone()
+    {
+        StartCoroutine(TaskDone(false));
+    }
 
     IEnumerator TaskDone(bool failed)
     {
@@ -51,8 +52,12 @@ public class Extinguisher : MonoBehaviour
         {
 
             holding = false;
+            
+            Fire.SetActive(false);
 
             interact.active = true;
+
+
         }
 
 
@@ -63,21 +68,35 @@ public class Extinguisher : MonoBehaviour
         if (holding)
         {
             transform.position = ExtinnguishPos.position;
-            
+           
 
 
             if (Input.GetMouseButton(0))
             {
-               
-                GetComponent<BoxCollider>().enabled = true;
 
-                Particles.Play();
+                Debug.Log("shooting");
 
+                if(!Particles.isPlaying)
+                {
+                    Particles.Play();
+                }
+              
+
+
+                RaycastHit hit;
+
+                if (Physics.Raycast(GameObject.FindGameObjectWithTag("MainCamera").transform.position, GameObject.FindGameObjectWithTag("MainCamera").transform.forward, out hit, 4))
+                {
+                    if(hit.transform.gameObject == Fire)
+                    {
+                        Fire.GetComponent<Fire>().LoseHealth();
+                    }
+                }
 
             }
             else
             {
-                Particles.Stop();
+              Particles.Stop();
             }
           
 
@@ -93,11 +112,12 @@ public class Extinguisher : MonoBehaviour
           
             
             transform.SetParent(ExtinnguishPos);
-            GetComponent<BoxCollider>().enabled = false;
-              /*
-            transform.position = new Vector3(0.145f, -0.192f, 0.337f);
-            transform.eulerAngles = new Vector3(0f, -23.473f, 75.793f);
-              */
+            GetComponent<CapsuleCollider>().enabled = false;
+            transform.eulerAngles = new Vector3(0, 200, 0f);
+            /*
+          transform.position = new Vector3(0.145f, -0.192f, 0.337f);
+          transform.eulerAngles = new Vector3(0f, -23.473f, 75.793f);
+            */
             interact.active = false;
 
             holding = true;
