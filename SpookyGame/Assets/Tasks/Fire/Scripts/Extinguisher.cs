@@ -11,15 +11,30 @@ public class Extinguisher : MonoBehaviour
     [SerializeField] Transform ExtinnguishPos;
     [SerializeField] Transform SpawnPos;
     [SerializeField] ParticleSystem Particles;
-    [SerializeField] GameObject Fire;
+    [SerializeField] GameObject Fire,FireOutParticle;
+    AudioSource soundplayer;
+    Vector3 ogPos;
+    bool active;
+    private void Awake()
+    {
+        soundplayer = GetComponent<AudioSource>();
+        Debug.Log("Firs");
+        ogPos = ExtinnguishPos.localPosition;
+    }
 
     private void OnEnable()
     {
+        active = true;
         Particles.gameObject.SetActive(true);
         Particles.Stop();
 
+        Debug.Log("sec");
+
+        ExtinnguishPos.localPosition = ogPos;
         transform.position = SpawnPos.position;
         Fire.SetActive(true);
+        Fire.GetComponent<ParticleSystem>().Play();
+
         transform.SetParent(null);
         GetComponent<CapsuleCollider>().enabled = true;
 
@@ -30,13 +45,26 @@ public class Extinguisher : MonoBehaviour
     }
 
 
+
+
     public void FireGone()
     {
+        Instantiate(FireOutParticle, Fire.transform.position, Fire.transform.rotation );
+        active = false;
+        Fire.GetComponent<ParticleSystem>().Stop();
+      
+
         StartCoroutine(TaskDone(false));
     }
 
     IEnumerator TaskDone(bool failed)
     {
+        for (int i = 0; i < 150; i++)
+        {
+            yield return null;
+            ExtinnguishPos.localPosition = Vector3.Lerp(ExtinnguishPos.localPosition, new Vector3(ExtinnguishPos.localPosition.x, ExtinnguishPos.localPosition.y - .1f, ExtinnguishPos.localPosition.z), 35 * Time.deltaTime);
+        }
+
         while (GameObject.FindGameObjectWithTag("UI").GetComponentInChildren<TaskOrganizer>().busy)
         {
             yield return null;
@@ -71,10 +99,13 @@ public class Extinguisher : MonoBehaviour
            
 
 
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && active)
             {
 
-                Debug.Log("shooting");
+                if (!soundplayer.isPlaying)
+                {
+                    soundplayer.Play();
+                }
 
                 if(!Particles.isPlaying)
                 {
@@ -96,7 +127,10 @@ public class Extinguisher : MonoBehaviour
             }
             else
             {
-              Particles.Stop();
+
+                soundplayer.Stop();
+                
+                Particles.Stop();
             }
           
 

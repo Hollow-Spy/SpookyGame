@@ -9,21 +9,27 @@ public class ChocoTask : MonoBehaviour
     Rigidbody body;
     [SerializeField] Transform ChocoPos;
     [SerializeField] float throwstrength;
-
+    Vector3 ogpos;
     [SerializeField] Transform[] SpawnPos;
 
     float delay;
 
+    private void Awake()
+    {
+        ogpos = ChocoPos.localPosition;
+        interact = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PlayerInteract>();
+    }
+
     private void OnEnable()
     {
         transform.position = SpawnPos[Random.Range(0, SpawnPos.Length)].position;
-
+        ChocoPos.localPosition = ogpos;
         transform.SetParent(null);
         GetComponent<BoxCollider>().enabled = true;
 
         body = GetComponent<Rigidbody>();
         Physics.IgnoreCollision(GetComponent<BoxCollider>(), GameObject.FindGameObjectWithTag("Player").GetComponent<CapsuleCollider>(),true);
-        interact = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PlayerInteract>();
+       
 
         body.isKinematic = false;
         gameObject.name = "zok";

@@ -5,11 +5,35 @@ using UnityEngine.AI;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class Voice
+{
+    [SerializeField] public int priority;
+  [SerializeField]  public AudioClip[] Lines;
+}
+
+
+[System.Serializable]
+public class Voices
+ {
+    [SerializeField] public Voice Idle;
+    [SerializeField] public Voice Chase;
+    [SerializeField] public Voice Security;
+    [SerializeField] public Voice Death;
+    [SerializeField] public Voice Choco;
+    [SerializeField] public Voice Throw;
+    [SerializeField] public Voice Punch;
+    [SerializeField] public Voice Confused;
+    [SerializeField] public Voice Found;
+    [SerializeField] public Voice Toilet;
+
+}
+
 public class JanitorBasic : MonoBehaviour
 {
     // Start is called before the first frame update
-    
 
+   [SerializeField] public Voices voices;
     NavMeshAgent agent;
     public Transform playerpos;
     public bool Wandering;
@@ -52,7 +76,8 @@ public class JanitorBasic : MonoBehaviour
     public AudioSource detectionSound, chasesong, walkSound;
     [SerializeField] GameObject swingSFX,PunchSFX;
     [SerializeField] GameObject ChocoParticles;
-
+    [SerializeField] AudioSource CurrentVoice;
+    int LastVoicePriority;
     void Awake()
     {
         maincamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -64,13 +89,101 @@ public class JanitorBasic : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         fov = GetComponent<JanitorFOV>();
     }
-    void Start()
+    
+    public void SayVoice(string spot)
     {
-        
+      switch(spot)
+        {
+
+            case "Idle":
+                if (!CurrentVoice.isPlaying || voices.Idle.priority < LastVoicePriority)
+                {
+                    CurrentVoice.clip = voices.Idle.Lines[Random.Range(0, voices.Idle.Lines.Length)];
+                    CurrentVoice.Play();
+                    LastVoicePriority = voices.Idle.priority;
+                }
+                break;
+            case "Chase":
+                if (!CurrentVoice.isPlaying || voices.Chase.priority < LastVoicePriority)
+               {
+                    CurrentVoice.clip = voices.Chase.Lines[Random.Range(0, voices.Chase.Lines.Length)];
+                    CurrentVoice.Play();
+                    LastVoicePriority = voices.Chase.priority;
+               }
+                break;
+            case "Security":
+                if (!CurrentVoice.isPlaying || voices.Security.priority < LastVoicePriority)
+                {
+                    CurrentVoice.clip = voices.Security.Lines[Random.Range(0, voices.Security.Lines.Length)];
+                    CurrentVoice.Play();
+                    LastVoicePriority = voices.Security.priority;
+                }
+                break;
+            case "Death":
+                if (!CurrentVoice.isPlaying || voices.Death.priority < LastVoicePriority)
+                {
+                    CurrentVoice.clip = voices.Death.Lines[Random.Range(0, voices.Death.Lines.Length)];
+                    CurrentVoice.Play();
+                    LastVoicePriority = voices.Death.priority;
+                }
+                break;
+            case "Choco":
+                if (!CurrentVoice.isPlaying || voices.Choco.priority < LastVoicePriority)
+                {
+                    CurrentVoice.clip = voices.Choco.Lines[Random.Range(0, voices.Choco.Lines.Length)] ;
+                    CurrentVoice.Play();
+                    LastVoicePriority = voices.Choco.priority;
+                }
+                break;
+            case "Throw":
+                if (!CurrentVoice.isPlaying || voices.Throw.priority < LastVoicePriority)
+                {
+                    CurrentVoice.clip = voices.Throw.Lines[Random.Range(0, voices.Throw.Lines.Length)];
+                    CurrentVoice.Play();
+                    LastVoicePriority = voices.Throw.priority;
+                }
+                break;
+            case "Punch":
+                if (!CurrentVoice.isPlaying || voices.Punch.priority < LastVoicePriority)
+                {
+                    CurrentVoice.clip = voices.Punch.Lines[Random.Range(0, voices.Punch.Lines.Length)];
+                    CurrentVoice.Play();
+                    LastVoicePriority = voices.Punch.priority;
+                }
+                break;
+            case "Confused":
+                if (!CurrentVoice.isPlaying || voices.Confused.priority < LastVoicePriority)
+                {
+                    CurrentVoice.clip = voices.Confused.Lines[Random.Range(0, voices.Confused.Lines.Length)];
+                    CurrentVoice.Play();
+                    LastVoicePriority = voices.Confused.priority;
+                }
+                break;
+            case "Found":
+                if (!CurrentVoice.isPlaying || voices.Found.priority < LastVoicePriority)
+                {
+                    CurrentVoice.clip = voices.Found.Lines[Random.Range(0, voices.Found.Lines.Length)];
+                    CurrentVoice.Play();
+                    LastVoicePriority = voices.Found.priority;
+                }
+                break;
+            case "Toilet":
+                if (!CurrentVoice.isPlaying || voices.Toilet.priority < LastVoicePriority)
+                {
+                    CurrentVoice.clip = voices.Toilet.Lines[Random.Range(0, voices.Toilet.Lines.Length)];
+                    CurrentVoice.Play();
+                    LastVoicePriority = voices.Toilet.priority;
+                }
+                break;
+
+    }
+     
+
     }
 
     public void PlayerHurt()
     {
+
         Instantiate(PunchSFX, transform.position, Quaternion.identity);
         if(hurteffect.weight == 0)
         {
@@ -98,6 +211,7 @@ public class JanitorBasic : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         player.enabled = true;
+        SayVoice("Punch");
 
         while (hurteffect.weight > 0)
         {
@@ -154,7 +268,10 @@ public class JanitorBasic : MonoBehaviour
         yield return new WaitForSeconds(3.1f);
         if (!SecondCatch)
         {
-
+            if (!walkSound.isPlaying)
+            {
+                walkSound.Play();
+            }
             while (agent.remainingDistance > .1f)
             {
                 
@@ -162,6 +279,11 @@ public class JanitorBasic : MonoBehaviour
             }
             agent.speed = BasicSpeed;
             SecondCatch = true;
+
+            if (walkSound.isPlaying)
+            {
+                walkSound.Stop();
+            }
 
             if (!player.hiddendesk)
             {
@@ -269,6 +391,8 @@ public class JanitorBasic : MonoBehaviour
                 other.SendMessage("Ate");
                 ChocoParticles.SetActive(true);
                 animator.SetTrigger("eat");
+                SayVoice("Choco");
+
                 IEnumerator EatCoroutine = EatingNumerator();
                 StartCoroutine(EatCoroutine);
             }
@@ -278,6 +402,7 @@ public class JanitorBasic : MonoBehaviour
     IEnumerator EatingNumerator()
     {
        
+
         yield return new WaitForSeconds(7);
         
         agent.isStopped = false;
@@ -336,6 +461,13 @@ public class JanitorBasic : MonoBehaviour
         {
             Vector3 randompatrol = PatrolPoints[Random.Range(0, PatrolPoints.Length)].position;
             agent.SetDestination(randompatrol);
+
+            float randomvoice = Random.Range(0, 100);
+            if(randomvoice < 50)
+            {
+                SayVoice("Idle");
+            }
+
             yield return new WaitForSeconds(.3f);
             if (agent.remainingDistance < 2f)
             {
@@ -357,11 +489,18 @@ public class JanitorBasic : MonoBehaviour
             }
            
                 walkSound.Stop();
-
+                
+                
+              
                 animator.SetBool("sad", true);
                 int rand = Random.Range(0, 6);
-                yield return new WaitForSeconds(3 + rand);
-                animator.SetBool("sad", false);
+                yield return new WaitForSeconds(3);
+             
+           
+                SayVoice("Idle");
+            
+            yield return new WaitForSeconds(rand);
+            animator.SetBool("sad", false);
             
            
            
@@ -371,6 +510,7 @@ public class JanitorBasic : MonoBehaviour
 
     public void JanitorGrabed()
     {
+        SayVoice("Found");
         maincamera.tag = "Untagged";
         grabcamera.gameObject.SetActive(true);
         grabcamera.tag = "MainCamera";
@@ -387,8 +527,8 @@ public class JanitorBasic : MonoBehaviour
     {
     
             grabcamera.GetComponent<Animator>().SetTrigger("throw");
-        
-  
+        SayVoice("Throw");
+
         Instantiate(BlackOutScreen, transform.position, Quaternion.identity);
     }
 
@@ -397,7 +537,9 @@ public class JanitorBasic : MonoBehaviour
         if(SecondCatch)
         {
             grabcamera.GetComponent<Animator>().SetTrigger("kill");
-            
+            SayVoice("Death");
+
+
         }
         else
         {
@@ -438,13 +580,18 @@ public class JanitorBasic : MonoBehaviour
         if(Investigating)
         {
             animator.SetTrigger("confused");
+
             yield return new WaitForSeconds(4);
+
+            SayVoice("Confused");
+
             Investigating = false;
         }
     }
 
     IEnumerator ChaseNumerator()
     {
+        SayVoice("Chase");
         detectionSound.Stop();
         chasesong.Play();
         chasesong.volume = 1;
@@ -512,7 +659,7 @@ public class JanitorBasic : MonoBehaviour
                     }
 
                     yield return new WaitForSeconds(4);
-
+                    SayVoice("Confused");
                 }
                    
             }

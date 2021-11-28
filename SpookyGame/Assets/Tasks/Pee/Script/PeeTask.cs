@@ -23,6 +23,7 @@ public class PeeTask : MonoBehaviour
     {
         if(active)
         {
+            GameObject.FindGameObjectWithTag("Janitor").GetComponent<JanitorBasic>().SayVoice("Toilet");
             active = false;
             Instantiate(Flush, transform.position, Quaternion.identity);
             GameObject.FindGameObjectWithTag("Janitor").GetComponent<JanitorBasic>().Investigate(checkpos.position);
