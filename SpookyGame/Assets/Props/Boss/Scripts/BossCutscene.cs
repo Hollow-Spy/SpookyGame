@@ -6,6 +6,7 @@ public class BossCutscene : MonoBehaviour
 {
     GameObject player;
     [SerializeField] PhoneTutorial phone;
+    AudioSource audioplayer;
    public void DisablePlayer()
     {
         player = GameObject.FindGameObjectWithTag("Player").gameObject.transform.parent.gameObject;
@@ -16,6 +17,11 @@ public class BossCutscene : MonoBehaviour
         player.SetActive(true);
     }
 
+    public void BossTalk()
+    {
+       audioplayer = GetComponent<AudioSource>();
+        audioplayer.Play();
+    }
     public void RingPhone()
     {
         phone.enabled = true;

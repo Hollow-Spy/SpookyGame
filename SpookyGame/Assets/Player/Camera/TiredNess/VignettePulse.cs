@@ -6,6 +6,8 @@ public class VignettePulse : MonoBehaviour
     PostProcessVolume m_Volume;
     public static Vignette m_Vignette;
 
+
+
     void Start()
     {
         m_Vignette = ScriptableObject.CreateInstance<Vignette>();

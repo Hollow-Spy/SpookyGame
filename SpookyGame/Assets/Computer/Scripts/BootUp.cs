@@ -18,6 +18,8 @@ public class BootUp : MonoBehaviour
  
     public void loadchance()
     {
+        
+
 
         int rand = Random.Range(0, 2);
         if(rand==0)

@@ -15,6 +15,8 @@ public class PhoneTutorial : MonoBehaviour
     [SerializeField] GameObject[] voices;
     GameObject currentvoice;
     AudioSource voiceplayer;
+
+    [SerializeField] SceneLoader sceneloader;
     void Start()
     {
         ring = GetComponent<AudioSource>();
@@ -125,7 +127,7 @@ public class PhoneTutorial : MonoBehaviour
             yield return null;
         }
         Instantiate(PickUpSFX, transform.position, Quaternion.identity);
-
+        sceneloader.LoadScene(2);
 
     }
 

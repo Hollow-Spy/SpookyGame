@@ -52,7 +52,12 @@ public class PlayerController : MonoBehaviour
         MainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
         //dISTORTION SETTING
-       // RenderSettings.ambientLight = new Color(RenderSettings.ambientLight.r, RenderSettings.ambientLight.g, RenderSettings.ambientLight.b, .0f);
+        if(PlayerPrefs.GetInt("Distortion")== 0)
+        {
+            RenderSettings.ambientLight = new Color(RenderSettings.ambientLight.r, RenderSettings.ambientLight.g, RenderSettings.ambientLight.b, .0f);
+        }
+
+        
     }
 
 
