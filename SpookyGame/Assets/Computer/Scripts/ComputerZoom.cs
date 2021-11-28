@@ -14,8 +14,11 @@ public class ComputerZoom : MonoBehaviour
     [SerializeField] GameObject computeroff;
     bool active;
 
+    GameObject currentpuzzle;
     private void OnEnable()
     {
+
+
         active = true;
         computeroff.SetActive(false);
 
@@ -32,11 +35,12 @@ public class ComputerZoom : MonoBehaviour
                 CameraPos.position = OGcam;
                 Crosshairs.SetActive(true);
             }
-           
+            Cursor.lockState = CursorLockMode.Locked;
             GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>().enabled = true;
             GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().isKinematic = false;
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<HeadBop>().enabled = true;
             Zoomed = false;
+            Destroy(currentpuzzle);
         }
     }
     public void TaskComplete(bool failed)
@@ -44,7 +48,7 @@ public class ComputerZoom : MonoBehaviour
         if(active)
         {
             active = false;
-
+            Destroy(currentpuzzle);
             StartCoroutine(TaskDone(failed));
         }
       
@@ -52,6 +56,7 @@ public class ComputerZoom : MonoBehaviour
 
     IEnumerator TaskDone(bool failed)
     {
+
         while (GameObject.FindGameObjectWithTag("UI").GetComponentInChildren<TaskOrganizer>().busy)
         {
             yield return null;
@@ -86,6 +91,8 @@ public class ComputerZoom : MonoBehaviour
             
         }
     }
+  
+
     public void ReturnPlayer()
     {
         ZoomBackIenumerator = ZoomReturnCoroutine();
@@ -113,7 +120,7 @@ public class ComputerZoom : MonoBehaviour
 
     IEnumerator ZoomCoroutine()
     {
-        Instantiate(puzzles[Random.Range(0, puzzles.Length)], transform.position, Quaternion.identity);
+      currentpuzzle =  Instantiate(puzzles[Random.Range(0, puzzles.Length)], transform.position, Quaternion.identity);
         //zoom in
        while(Vector3.Distance(CameraPos.position,ZoomPos.position) > .2f )
         {

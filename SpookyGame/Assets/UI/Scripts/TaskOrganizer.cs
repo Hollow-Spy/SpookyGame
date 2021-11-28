@@ -9,6 +9,8 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class Task
 {
+  
+
     [SerializeField] public int Priority;
     [SerializeField] public bool active = true;
     [SerializeField] public string message;
@@ -29,6 +31,10 @@ public class Task
 
 public class TaskOrganizer : MonoBehaviour
 {
+    public static int Score;
+    [SerializeField]  int ScoreGain, ScoreLoss;
+    [SerializeField] float minspawnRate, maxspawnRate, incrementAmout, incrementTime;
+
     public Text[] text;
     public Text[] TimerText;
     public float[] timervalue;
@@ -45,13 +51,45 @@ public class TaskOrganizer : MonoBehaviour
     void Start()
     {
         poscheck = new bool[text.Length];
+        StartCoroutine(Spawner());
+        StartCoroutine(IncrementIncrease());
     }
+    IEnumerator IncrementIncrease()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(incrementTime);
+            minspawnRate -= incrementAmout / 2;
+            maxspawnRate -= incrementAmout / 2;
+
+
+
+        }
+    }
+    IEnumerator Spawner()
+    {
+        while(true)
+        {
+            Debug.Log("bf");
+            yield return new WaitForSeconds(Random.Range(minspawnRate, maxspawnRate));
+            Debug.Log("her");
+            if(!busy)
+            {
+                AddTask();
+            }
+           
+
+
+        }
+    }
+
 
     public void RemoveTask(GameObject taskobj, bool failed)
     {
         busy = true;
         int num = 0;
 
+       
 
         for (int i = 0; i < ActiveTasks.Count; i++)
         {
@@ -61,6 +99,7 @@ public class TaskOrganizer : MonoBehaviour
 
             }
         }
+
 
 
         IEnumerator RemoveCoroutine = RemoveNumerator(num,failed);
@@ -78,7 +117,20 @@ public class TaskOrganizer : MonoBehaviour
                 i = text.Length;
             }
         }
-        if(failed)
+
+        if (failed)
+        {
+            Score -= ScoreLoss;
+        }
+        else
+        {
+            int extraTime;
+            int.TryParse(TimerText[textnum].text, out extraTime);
+            Score += ScoreGain + extraTime;
+
+        }
+
+        if (failed)
         {
             text[textnum].color = Color.red;
             TimerText[textnum].color = Color.red;
@@ -108,7 +160,7 @@ public class TaskOrganizer : MonoBehaviour
         text[textnum].color = Color.white;
         TimerText[textnum].color = Color.white;
 
-        StopAllCoroutines();
+      //  StopAllCoroutines();
 
         IEnumerator SortingCoroutine = SortingNumerator;
        
@@ -182,7 +234,7 @@ public class TaskOrganizer : MonoBehaviour
 
                 }
                 busy = false;
-
+                yield break;
             }
             
             
@@ -233,7 +285,21 @@ public class TaskOrganizer : MonoBehaviour
         bool taskfound = true;
         int random = 0;
 
-        random = Random.Range(0, RegisteredTasks.Length);
+        for(int i=0;i<15;i++)
+        {
+
+            random = Random.Range(0, RegisteredTasks.Length);
+            if(RegisteredTasks[random].active)
+            {
+                i = 16;
+            }
+        }
+
+        if (!RegisteredTasks[random].active)
+        {
+            busy = false;
+            return;
+        }
 
         if (ActiveTasks.Count > 0)
         {
@@ -258,8 +324,7 @@ public class TaskOrganizer : MonoBehaviour
 
         }
 
-
-
+       
 
         RegisteredTasks[random].TaskObject.SetActive(true);
         ActiveTasks.Add(new Task(RegisteredTasks[random].Priority, RegisteredTasks[random].active, RegisteredTasks[random].message, RegisteredTasks[random].Time, RegisteredTasks[random].TaskObject));

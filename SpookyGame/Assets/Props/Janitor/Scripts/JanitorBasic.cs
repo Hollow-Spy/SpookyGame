@@ -37,7 +37,7 @@ public class JanitorBasic : MonoBehaviour
     public GameObject punchtrigger;
     float cooldown = 1;
 
-    bool SecondCatch;
+   public bool SecondCatch;
     public Camera grabcamera;
      Camera maincamera;
     public GameObject BlackOutScreen,punchblackout;
@@ -355,12 +355,15 @@ public class JanitorBasic : MonoBehaviour
 
                 yield return null;
             }
-            walkSound.Stop();
+           
+                walkSound.Stop();
 
-            animator.SetBool("sad", true);
-            int rand = Random.Range(0, 6);
-            yield return new WaitForSeconds(3 + rand);
-            animator.SetBool("sad", false);
+                animator.SetBool("sad", true);
+                int rand = Random.Range(0, 6);
+                yield return new WaitForSeconds(3 + rand);
+                animator.SetBool("sad", false);
+            
+           
            
         }
 
@@ -407,9 +410,11 @@ public class JanitorBasic : MonoBehaviour
 
     public void Investigate(Vector3 pos)
     {
-        if(Wandering)
+        if(Wandering && !inCutscene)
         {
             Wandering = false;
+            StopAllCoroutines();
+
             Investigating = true;
 
             agent.SetDestination(pos);

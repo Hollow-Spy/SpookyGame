@@ -5,10 +5,18 @@ using UnityEngine;
 public class PlayerComputing : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    GameObject mainpuzzle;
     void Start()
     {
         Cursor.lockState = CursorLockMode.None;
 
+    }
+
+    public void Win()
+    {
+        GameObject.FindGameObjectWithTag("Computer").SendMessage("TaskComplete",false);
+      
     }
 
     public void Exit()
