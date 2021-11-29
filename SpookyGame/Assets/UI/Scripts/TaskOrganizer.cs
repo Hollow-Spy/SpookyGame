@@ -376,13 +376,7 @@ public class TaskOrganizer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            
-
-            AddTask();
-        }
-     
+      
 
         for(int i=0;i<text.Length;i++)
         {
