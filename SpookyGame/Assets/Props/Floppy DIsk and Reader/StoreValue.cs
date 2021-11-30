@@ -43,7 +43,7 @@ public class StoreValue : MonoBehaviour
         {
             Instantiate(floppyDisk, Startpoint.position, Quaternion.identity);
             SpawnFloppy = false;
-           
+            
 
         }
         canInteract = false;
