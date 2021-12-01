@@ -30,16 +30,24 @@ public class WirePuzzle : MonoBehaviour
 
     Material plugMat;
 
-    int matchCount = 0;
+    int matchCount;
+
+    [SerializeField] Vector3[] spawnPosition = new Vector3[4];
 
     // Start is called before the first frame update
-    private void Start()
+    private void OnEnable()
     {
+        matchCount = 0;
         remainingColors = new List<Material>(wireColors);
         remainingJackIndex = new List<Wiring>();
         remainingPlugIndex = new List<Wiring>();
 
-        for (int i = 0; i < jacks.Count; i++) { remainingJackIndex.Add(jacks[i]); }
+        for (int i = 0; i < jacks.Count; i++)
+        {
+            remainingJackIndex.Add(jacks[i]);
+            jacks[i].transform.position = spawnPosition[i];
+            jacks[i].canMove = true;
+        }
         for (int i = 0; i < plugs.Count; i++) { remainingPlugIndex.Add(plugs[i]); }
 
         //While there are remaining entries in all lists this will run 
@@ -58,6 +66,16 @@ public class WirePuzzle : MonoBehaviour
             remainingJackIndex.Remove(chosenJack);
             remainingColors.Remove(chosenColor);
         }
+    }
+
+    IEnumerator TaskDone(bool failed)
+    {
+        while (GameObject.FindGameObjectWithTag("UI").GetComponentInChildren<TaskOrganizer>().busy)
+        {
+            yield return null;
+        }
+        GameObject.FindGameObjectWithTag("UI").GetComponentInChildren<TaskOrganizer>().RemoveTask(gameObject, failed);
+
     }
 
     GameObject ReturnClickedObject(out RaycastHit hit)
@@ -109,7 +127,7 @@ public class WirePuzzle : MonoBehaviour
             {
                 isDragged = true;
                 Debug.Log("target position :" + target.transform.position);
-                //Convert world position to screen position.
+
                 screenPosition = Camera.main.WorldToScreenPoint(target.transform.position);
                 offset = target.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPosition.z));
             }
@@ -138,12 +156,8 @@ public class WirePuzzle : MonoBehaviour
 
                 }
             }
-            //track mouse position.
             Vector3 currentScreenSpace = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPosition.z);
-            //convert screen position to world position with offset changes.
             Vector3 currentPosition = Camera.main.ScreenToWorldPoint(currentScreenSpace) + offset;
-
-            //It will update target gameobject's current postion.
             target.transform.position = currentPosition;
             if (target.GetComponentInChildren<Wiring>().canMove == false)
             {
@@ -153,8 +167,9 @@ public class WirePuzzle : MonoBehaviour
         }
         if (matchCount == 4)
         {
-            Debug.Log("Win!!");
-            Object.Destroy(this.transform.gameObject);
+
+            GameObject.FindGameObjectWithTag("UI").GetComponentInChildren<TaskOrganizer>().RemoveTask(gameObject, false);
+            this.transform.gameObject.SetActive(false);
         }
 
     }
