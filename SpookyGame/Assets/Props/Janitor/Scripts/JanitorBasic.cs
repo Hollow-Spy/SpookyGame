@@ -558,6 +558,7 @@ public class JanitorBasic : MonoBehaviour
             StopAllCoroutines();
 
             Investigating = true;
+            animator.SetBool("sad", false);
 
             agent.SetDestination(pos);
 

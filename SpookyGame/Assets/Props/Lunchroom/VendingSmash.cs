@@ -15,7 +15,7 @@ public class VendingSmash : MonoBehaviour
     private Transform drankPos;
     public int canAmount = 3;
     [SerializeField] Animator handanim;
-
+    [SerializeField] Transform inchild;
     AudioSource audioplayer;
    [SerializeField] AudioClip[] hitsounds;
 
@@ -38,7 +38,7 @@ public class VendingSmash : MonoBehaviour
         audioplayer.clip = hitsounds[Random.Range(0, hitsounds.Length)];
         audioplayer.Play();
         handanim.SetTrigger("fastpunch");
-        GameObject.FindGameObjectWithTag("Janitor").GetComponent<JanitorBasic>().Investigate(vendingMachine.transform.position);
+        GameObject.FindGameObjectWithTag("Janitor").GetComponent<JanitorBasic>().Investigate(inchild.position);
 
         Shake();    
         
