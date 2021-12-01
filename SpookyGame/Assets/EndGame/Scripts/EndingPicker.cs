@@ -8,6 +8,8 @@ public class EndingPicker : MonoBehaviour
     [SerializeField] GameObject goodEnd, badEnd, okEnd;
     void Start()
     {
+        PlayerPrefs.SetInt("Score",0);
+
         if(PlayerPrefs.GetInt("Score") >= goodscore)
         {
             goodEnd.SetActive(true);
