@@ -19,7 +19,7 @@ public class GameOverScreen : MonoBehaviour
 
 public void Restart()
     {
-        SceneManager.LoadScene("OfficeProp");
+        GameObject.Find("Sceneloader").GetComponent<SceneLoader>().LoadScene(SceneManager.GetActiveScene().buildIndex );
 
 
     }
