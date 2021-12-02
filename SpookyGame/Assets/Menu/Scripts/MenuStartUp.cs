@@ -7,9 +7,14 @@ public class MenuStartUp : MonoBehaviour
 {
     public Slider BrightnessSlider;
     [SerializeField] ScreenBrightness brightness;
+
+    private void Start()
+    {
+        BrightnessSlider.value = PlayerPrefs.GetFloat("Brightness");
+    }
     public void ChangeBrightness()
     {
-        PlayerPrefs.SetFloat("Brightness", BrightnessSlider.value);
+      
         brightness.ChangeBrightness(BrightnessSlider.value);
 
     }

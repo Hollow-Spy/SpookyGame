@@ -15,7 +15,7 @@ public class PhoneTutorial : MonoBehaviour
     [SerializeField] GameObject[] voices;
     GameObject currentvoice;
     AudioSource voiceplayer;
-
+    [SerializeField] GameObject Zor;
     [SerializeField] SceneLoader sceneloader;
     void Start()
     {
@@ -75,7 +75,7 @@ public class PhoneTutorial : MonoBehaviour
         }
         Instantiate(PickUpSFX, transform.position, Quaternion.identity);
 
-
+        Zor.layer = 8;
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Tiredness>().tiredLevel = 50;
 
         while (GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Tiredness>().isTired)

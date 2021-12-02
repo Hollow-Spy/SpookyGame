@@ -39,7 +39,7 @@ public class arrowpointer : MonoBehaviour
         {
             if (up)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y + 13f * Time.deltaTime, transform.position.z);
+                transform.position = new Vector3(transform.position.x, transform.position.y + 9f , transform.position.z);
                 if (transform.position.y >= a.transform.position.y)
                 {
                     up = false;
@@ -47,7 +47,7 @@ public class arrowpointer : MonoBehaviour
             }
             else
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y - 13f * Time.deltaTime, transform.position.z);
+                transform.position = new Vector3(transform.position.x, transform.position.y - 9f , transform.position.z);
                 if (transform.position.y <= b.transform.position.y)
                 {
                     up = true;
@@ -66,7 +66,7 @@ public class arrowpointer : MonoBehaviour
 
         if(shoot)
         {
-            transform.position = new Vector3(transform.position.x + 30 * Time.deltaTime, transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x + 15 , transform.position.y, transform.position.z);
             if(transform.position.x > end.transform.position.x)
             {
                 transform.position = start.position;

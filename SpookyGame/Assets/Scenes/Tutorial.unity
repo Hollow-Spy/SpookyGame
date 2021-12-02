@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 19
-  m_AmbientSkyColor: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 1}
+  m_AmbientSkyColor: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -570,7 +570,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hide under the desk 'LCtrl' to crouch
+  m_Text: Hide under the desk 'C' to crouch
 --- !u!222 &366511097
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2423,6 +2423,11 @@ Transform:
   m_Father: {fileID: 1413197209}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1397447935 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8271804701025109514, guid: be0a103646858814e842dbafed98a27b, type: 3}
+  m_PrefabInstance: {fileID: 9210692568895776603}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1398966980
 GameObject:
   m_ObjectHideFlags: 0
@@ -3349,6 +3354,7 @@ MonoBehaviour:
   - {fileID: 6836610279591652899, guid: 7dad473eaab7bff4da3e89fe46f5533d, type: 3}
   - {fileID: 6681813756502364226, guid: 988ddff00d0587c4eb103d6d952a0e14, type: 3}
   - {fileID: 2743835649652536611, guid: 46953f2aca09eda4f864b669aaf1ea02, type: 3}
+  Zor: {fileID: 1397447935}
   sceneloader: {fileID: 1860925510}
 --- !u!1 &1731420453
 GameObject:
@@ -101906,6 +101912,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: energydrink2
       objectReference: {fileID: 0}
+    - target: {fileID: 8271804701025109514, guid: be0a103646858814e842dbafed98a27b, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8755149546233945264, guid: be0a103646858814e842dbafed98a27b, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -101950,7 +101960,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -11.772
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6750962055289569608, guid: be0a103646858814e842dbafed98a27b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: be0a103646858814e842dbafed98a27b, type: 3}
 --- !u!4 &9210692568895776604 stripped
 Transform:

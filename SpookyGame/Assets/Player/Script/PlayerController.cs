@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
         MoveInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         MouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y") );
 
-        if(Input.GetKeyDown(KeyCode.LeftControl))
+        if(Input.GetKeyDown(KeyCode.C))
         {
             is_crouched = true;
             transform.localScale = new Vector3(1, .5f, 1);
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (Input.GetKeyUp(KeyCode.LeftControl) &&  !Physics.CheckSphere(new Vector3(body.transform.position.x,body.transform.position.y+.2f,body.transform.position.z),.3f,defaultlayer) ) 
+        if (Input.GetKeyUp(KeyCode.C) &&  !Physics.CheckSphere(new Vector3(body.transform.position.x,body.transform.position.y+.2f,body.transform.position.z),.3f,defaultlayer) ) 
         {
             
            
