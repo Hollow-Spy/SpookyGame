@@ -16,14 +16,17 @@ public class Clock : MonoBehaviour
     bool active=true;
     bool ending;
     [SerializeField]bool MainClock;
+    [SerializeField] GameObject ticksound;
      void Start()
     {
 
-        //10 mins
-        secondsWorth = 0.0303030303f;
-       
+        //12 mins
+      //  secondsWorth = 0.0303030303f;
 
-     
+        //5 around mins
+        secondsWorth = 0.0303030303f / 2.1f;
+
+
     }
   
 
@@ -42,7 +45,7 @@ public class Clock : MonoBehaviour
     }
     IEnumerator EndNumerator()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2.3f);
         active = false;
         yield return new WaitForSeconds(2);
         GameObject.Find("Sceneloader").GetComponent<SceneLoader>().LoadScene(3);
@@ -73,6 +76,8 @@ public class Clock : MonoBehaviour
                 minutes++;
 
                 secondPointer.transform.Rotate(0, -6f, 0);
+                Instantiate(ticksound, transform.position, Quaternion.identity);
+
 
                 hourPointer.transform.Rotate(0, -0.5f, 0);
             }
