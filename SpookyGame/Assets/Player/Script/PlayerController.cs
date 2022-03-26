@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+
+        AudioListener.volume = PlayerPrefs.GetFloat("Volume");
         Cursor.lockState = CursorLockMode.Locked;
         MainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 

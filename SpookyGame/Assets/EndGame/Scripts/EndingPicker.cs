@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EndingPicker : MonoBehaviour
 {
     [SerializeField]  int goodscore, badscore;
@@ -29,6 +30,14 @@ public class EndingPicker : MonoBehaviour
         }
 
 
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            FindObjectOfType<SceneLoader>().LoadScene(1);
+        }
     }
 
 }

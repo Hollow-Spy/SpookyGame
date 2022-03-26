@@ -24,9 +24,11 @@ public class Clock : MonoBehaviour
       //  secondsWorth = 0.0303030303f;
 
         //5 around mins
-        secondsWorth = 0.0303030303f / 2.1f;
+        //secondsWorth = 0.0303030303f / 2.1f;
 
 
+        //3 minutes?
+        secondsWorth = 0.0303030303f / 3f;
     }
   
 

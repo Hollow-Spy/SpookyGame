@@ -71,9 +71,9 @@ public class TaskOrganizer : MonoBehaviour
     {
         while(true)
         {
-            Debug.Log("bf");
+         
             yield return new WaitForSeconds(Random.Range(minspawnRate, maxspawnRate));
-            Debug.Log("her");
+         
             if(!busy)
             {
                 AddTask();

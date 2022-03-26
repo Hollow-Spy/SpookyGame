@@ -35,7 +35,7 @@ public class RoachSpawner : MonoBehaviour
 
             int i = Random.Range(0, SpawnLocation.Length);//this makes sure the cockroaches will spawn at a random position every time they're spawned.
             Instantiate(Cockroach, SpawnLocation[i].position, Quaternion.identity);//This spawns at a given position. in this case, a random point in spawnpoints array.
-            Debug.Log("spawned");
+            
             
 
         }                                                   

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8224,6 +8224,71 @@ Transform:
   m_Father: {fileID: 586659480}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!1001 &1856877412
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7239314249625781456, guid: d67a3bcc7b19b4445ada27f27a181089, type: 3}
+      propertyPath: m_RootOrder
+      value: 284
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239314249625781456, guid: d67a3bcc7b19b4445ada27f27a181089, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -15.59341
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239314249625781456, guid: d67a3bcc7b19b4445ada27f27a181089, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.165801
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239314249625781456, guid: d67a3bcc7b19b4445ada27f27a181089, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.1489043
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239314249625781456, guid: d67a3bcc7b19b4445ada27f27a181089, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239314249625781456, guid: d67a3bcc7b19b4445ada27f27a181089, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239314249625781456, guid: d67a3bcc7b19b4445ada27f27a181089, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239314249625781456, guid: d67a3bcc7b19b4445ada27f27a181089, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239314249625781456, guid: d67a3bcc7b19b4445ada27f27a181089, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239314249625781456, guid: d67a3bcc7b19b4445ada27f27a181089, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239314249625781456, guid: d67a3bcc7b19b4445ada27f27a181089, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239314249625781459, guid: d67a3bcc7b19b4445ada27f27a181089, type: 3}
+      propertyPath: m_Name
+      value: PauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239314249625781459, guid: d67a3bcc7b19b4445ada27f27a181089, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239314250216310082, guid: d67a3bcc7b19b4445ada27f27a181089, type: 3}
+      propertyPath: ButtonActive.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d67a3bcc7b19b4445ada27f27a181089, type: 3}
 --- !u!114 &1860925510 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8821062029205712278, guid: c7a5147b8db398b448b5ebd30324bcac, type: 3}
@@ -87810,7 +87875,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33898972783341452}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f4acec9ee0796748976acedc26b7fed, type: 3}
   m_Name: 
@@ -87821,6 +87886,7 @@ MonoBehaviour:
   seconds: 0
   minutes: 0
   MainClock: 0
+  ticksound: {fileID: 0}
 --- !u!1001 &33898974021989682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -96519,6 +96585,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 584248629556011226}
     m_Modifications:
+    - target: {fileID: 30158877085411393, guid: b968e8493b0bbcb4b976bef495950c7c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 567906740459402186, guid: b968e8493b0bbcb4b976bef495950c7c, type: 3}
       propertyPath: m_RootOrder
       value: 3
