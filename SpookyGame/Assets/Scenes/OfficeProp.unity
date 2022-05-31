@@ -4079,6 +4079,9 @@ GameObject:
   - component: {fileID: 119699431}
   - component: {fileID: 119699433}
   - component: {fileID: 119699432}
+  - component: {fileID: 119699436}
+  - component: {fileID: 119699435}
+  - component: {fileID: 119699434}
   m_Layer: 7
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -4102,6 +4105,7 @@ Transform:
   - {fileID: 1747159153}
   - {fileID: 1484969259}
   - {fileID: 8568224935881203757}
+  - {fileID: 777272995}
   m_Father: {fileID: 804869204}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4283,6 +4287,74 @@ MonoBehaviour:
   tiredLevel: 0
   grabDistance: 5
   isTired: 1
+--- !u!114 &119699434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119699425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f945d5eee929e4f8212fd43f07c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audiosource: {fileID: 777272997}
+  minPitch: 1
+  MaxPitch: 2
+  minDistancePitch: 5
+  maxDistancePitch: 9
+  Player: {fileID: 804869202}
+  Janitor: {fileID: 834855322}
+--- !u!114 &119699435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119699425}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ed554b23b541d4ea9201bf78a3e238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: 0a3c04d411f83614ab285ced492c8fcb, type: 3}
+  VHSClip: {fileID: 32900000, guid: 5cb845540095774449dfc0fe9ae3c1d1, type: 3}
+--- !u!328 &119699436
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119699425}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: 5cb845540095774449dfc0fe9ae3c1d1, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 119699428}
+  m_TargetTexture: {fileID: 0}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: _MainTex
+  m_RenderMode: 4
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 0
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 1
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
 --- !u!1 &119982542
 GameObject:
   m_ObjectHideFlags: 0
@@ -30711,6 +30783,143 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.020000009, y: 0.02000001, z: 0.017500004}
   m_Center: {x: 0, y: -0.000000004917965, z: 0.008750001}
+--- !u!1 &777272994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 777272995}
+  - component: {fileID: 777272997}
+  - component: {fileID: 777272996}
+  m_Layer: 7
+  m_Name: GlitchAudioSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &777272995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777272994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 119699426}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!170 &777272996
+AudioDistortionFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777272994}
+  m_Enabled: 1
+  m_DistortionLevel: 0.7
+--- !u!82 &777272997
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777272994}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 2275e7b849970194ba4482580eeca2cd, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &777452657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33187,6 +33396,7 @@ MonoBehaviour:
   punchposition: {fileID: 1334596846}
   maxDetection: 10
   punchtrigger: {fileID: 4983712818411525634, guid: 72a3b22b73e1e3c4d9439068131d55a5, type: 3}
+  HurtTimeMultiplier: 0.5
   SecondCatch: 0
   grabcamera: {fileID: 42488861}
   BlackOutScreen: {fileID: 2486639089239849432, guid: 6e41322ae9ea8f942a0c9df28afd67ab, type: 3}
@@ -33196,6 +33406,8 @@ MonoBehaviour:
   detectionSound: {fileID: 821525524}
   chasesong: {fileID: 518586387}
   walkSound: {fileID: 1325727254}
+  GlitchEffect: {fileID: 119699435}
+  glitchsound: {fileID: 119699434}
   swingSFX: {fileID: 1734439167276794758, guid: f1b9da9cea3084a48be47b1940992a77, type: 3}
   PunchSFX: {fileID: 7331217323139440859, guid: 75da1c1b9e16bed4dad3ab8f72a70216, type: 3}
   ChocoParticles: {fileID: 1225820994}
@@ -33242,7 +33454,7 @@ NavMeshAgent:
   m_Speed: 2
   m_Acceleration: 6
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 180
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -65823,8 +66035,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.4450914, b: 0, a: 1}
-  m_Intensity: 2.74
-  m_Range: 2.7990632
+  m_Intensity: 7.69
+  m_Range: 3.8531885
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -111701,7 +111913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c618951e9b3cd844db4e9d5aed738241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 10
+  fuel: 30
   LighterAnimator: {fileID: 9053259456034880152}
   lighterbarAnimator: {fileID: 2114208801}
   nofuelAlert: {fileID: 112707394}

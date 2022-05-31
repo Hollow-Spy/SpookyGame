@@ -61,7 +61,7 @@ public class PocketLighter : MonoBehaviour
         }
         else
         {
-            fuel += 1.5f * Time.deltaTime;
+            fuel += 4f * Time.deltaTime;
             lighterBarTransform.localScale = new Vector3(fuel / maxfuel * .1f, lighterBarTransform.localScale.y, lighterBarTransform.localScale.z);
 
             if (fuel >= maxfuel)

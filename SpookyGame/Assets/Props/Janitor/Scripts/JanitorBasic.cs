@@ -60,7 +60,7 @@ public class JanitorBasic : MonoBehaviour
     [SerializeField] float maxDetection;
     public GameObject punchtrigger;
     float cooldown = 1;
-
+    public float HurtTimeMultiplier;
    public bool SecondCatch;
     public Camera grabcamera;
      Camera maincamera;
@@ -74,6 +74,8 @@ public class JanitorBasic : MonoBehaviour
 
     bool inCutscene;
     public AudioSource detectionSound, chasesong, walkSound;
+    [SerializeField] VHSPostProcessEffect GlitchEffect;
+    [SerializeField] GlitchSound glitchsound;
     [SerializeField] GameObject swingSFX,PunchSFX;
     [SerializeField] GameObject ChocoParticles;
     [SerializeField] AudioSource CurrentVoice;
@@ -194,12 +196,16 @@ public class JanitorBasic : MonoBehaviour
             player.enabled = false;
             playerpos.GetComponent<Rigidbody>().AddForce(transform.forward * 10,ForceMode.Impulse);
             hurteffect.weight = 1;
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Tiredness>().isTired = false;
+            glitchsound.StartSound();
+            GlitchEffect.enabled = true;
             IEnumerator reducehurtcoroutine;
             reducehurtcoroutine = ReduceHurtNumerator();
             StartCoroutine(reducehurtcoroutine);
         }
         else
         {
+           
             agent.speed = BasicSpeed * 4;
             Instantiate(punchblackout, transform.position, Quaternion.identity);
             grabcoroutine = GrabCutscene();
@@ -215,9 +221,11 @@ public class JanitorBasic : MonoBehaviour
 
         while (hurteffect.weight > 0)
         {
-            hurteffect.weight -= Time.deltaTime * .25f;
+            hurteffect.weight -= Time.deltaTime * .25f * HurtTimeMultiplier;
             yield return new WaitForSeconds(.01f);
         }
+        glitchsound.StopSound();
+        GlitchEffect.enabled = false;
         hurteffect.weight = 0;
         yield return null;
 
@@ -349,7 +357,7 @@ public class JanitorBasic : MonoBehaviour
                         Vector3 dir = playerpos.position - transform.position;
                         dir.y = 0;//This allows the object to only rotate on its y axis
                         Quaternion rot = Quaternion.LookRotation(dir);
-                        transform.rotation = Quaternion.Lerp(transform.rotation, rot, 10 * Time.deltaTime);
+                        transform.rotation = Quaternion.Lerp(transform.rotation, rot, 30 * Time.deltaTime);
                         if (transform.rotation == rot)
                         {
                             i = 21;
@@ -358,7 +366,7 @@ public class JanitorBasic : MonoBehaviour
                     }
                     animator.SetTrigger("punch");
                     Instantiate(swingSFX, transform.position, Quaternion.identity);
-                    detection += detectionTime;
+                    detection += detectionTime + 2;
 
                 }
 
