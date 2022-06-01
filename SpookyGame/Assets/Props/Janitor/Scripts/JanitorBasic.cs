@@ -50,7 +50,7 @@ public class JanitorBasic : MonoBehaviour
     bool inRange;
     PlayerController player;
     bool knowshider;
-    private IEnumerator Chasecoroutine,Wandercoroutine;
+    private IEnumerator Chasecoroutine,Wandercoroutine,ChaseFOVCoroutine;
     [SerializeField] Transform[] PatrolPoints;
     Animator animator;
     float OGplayerspeed;
@@ -196,7 +196,7 @@ public class JanitorBasic : MonoBehaviour
             player.enabled = false;
             playerpos.GetComponent<Rigidbody>().AddForce(transform.forward * 10,ForceMode.Impulse);
             hurteffect.weight = 1;
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Tiredness>().isTired = false;
+              maincamera.GetComponent<Tiredness>().isTired = false;
             glitchsound.StartSound();
             GlitchEffect.enabled = true;
             IEnumerator reducehurtcoroutine;
@@ -560,13 +560,15 @@ public class JanitorBasic : MonoBehaviour
 
     public void Investigate(Vector3 pos)
     {
-        if(Wandering && !inCutscene)
+        if((Wandering && !inCutscene && !isEating) || Investigating)
         {
             Wandering = false;
             StopAllCoroutines();
 
             Investigating = true;
             animator.SetBool("sad", false);
+            animator.SetFloat("walkspeed", 1.2f);
+
 
             agent.SetDestination(pos);
 
@@ -581,8 +583,9 @@ public class JanitorBasic : MonoBehaviour
     IEnumerator InvestigationNumerator()
     {
         yield return new WaitForSeconds(.1f);
+        animator.SetFloat("walkspeed", 1);
 
-        while(agent.remainingDistance > .1f && Investigating)
+        while (agent.remainingDistance > .1f && Investigating)
         {
             yield return null;
         }
@@ -598,11 +601,32 @@ public class JanitorBasic : MonoBehaviour
         }
     }
 
+    IEnumerator ChaseFOVNumerator()
+    {
+        yield return new WaitForSeconds(.2f);
+        while(maincamera.fieldOfView < 80 && Chasing)
+        {
+            yield return null;
+            maincamera.fieldOfView += 12 * Time.deltaTime;
+        }
+        maincamera.fieldOfView = 80;
+    }
+
     IEnumerator ChaseNumerator()
     {
+        if(ChaseFOVCoroutine == null)
+        {
+           
+            ChaseFOVCoroutine = ChaseFOVNumerator();
+            StartCoroutine(ChaseFOVCoroutine);
+        }
+
+
         SayVoice("Chase");
         detectionSound.Stop();
         chasesong.Play();
+
+      
         chasesong.volume = 1;
         detectionSound.volume = 0;
 
@@ -685,6 +709,12 @@ public class JanitorBasic : MonoBehaviour
             yield return null;
             chasesong.volume -= Time.deltaTime;
         }
+        while(maincamera.fieldOfView > 60)
+        {
+            yield return null;
+            maincamera.fieldOfView -= 8 * Time.deltaTime;
+        }
+        maincamera.fieldOfView = 60;
       
     }
 
@@ -694,6 +724,9 @@ public class JanitorBasic : MonoBehaviour
     void Update()
     {
    
+
+     
+
         if(cooldown > 0)
         {
             cooldown -= Time.deltaTime;

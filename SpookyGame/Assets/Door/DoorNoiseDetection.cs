@@ -6,6 +6,7 @@ public class DoorNoiseDetection : MonoBehaviour
 {
    [SerializeField] float doorSensitivity;
     [SerializeField] float maxDetectionRange;
+    [SerializeField] Transform CheckPos;
     JanitorBasic janitor;
     private void Start()
     {
@@ -16,8 +17,8 @@ public class DoorNoiseDetection : MonoBehaviour
         if (collision.relativeVelocity.magnitude > doorSensitivity && collision.gameObject.CompareTag("Player") && Vector3.Distance(janitor.transform.position,transform.position) < maxDetectionRange )
         {
             // Instantiate(doorstepsfx, transform.position, Quaternion.identity);
-            janitor.Investigate(transform.position);
-            Debug.Log("coming");
+            janitor.Investigate(CheckPos.transform.position);
+            
         }
     }
 }
