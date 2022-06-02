@@ -48,6 +48,7 @@ public class JanitorBasic : MonoBehaviour
     public float ExtraChaseTime;
     Vector3 hidingplace;
     bool inRange;
+    public bool blind;
     PlayerController player;
     bool knowshider;
     private IEnumerator Chasecoroutine,Wandercoroutine,ChaseFOVCoroutine;
@@ -751,7 +752,7 @@ public class JanitorBasic : MonoBehaviour
 
 
 
-      if(fov.canSeePlayer && !isEating)
+      if(fov.canSeePlayer && !isEating && !blind)
        {
             detection += Time.deltaTime ;
             detection += .05f - Mathf.Clamp(Vector3.Distance(playerpos.position, transform.position),0,4) * .01f;
