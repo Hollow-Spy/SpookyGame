@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SecurityTask : MonoBehaviour
 {
@@ -8,15 +9,22 @@ public class SecurityTask : MonoBehaviour
     Transform CameraPos;
     bool Zoomed;
     Vector3 OGcam;
-    IEnumerator ZoomInumerator, ZoomBackIenumerator;
+    IEnumerator ZoomInumerator, ZoomBackIenumerator,SecondNumerator;
     [SerializeField] GameObject Crosshairs;
-    public GameObject[] puzzles;
+   
     [SerializeField] GameObject CameraOFF;
     bool active;
 
-    GameObject currentpuzzle;
+    [SerializeField] Text secondText,Cameratext;
+
+    [SerializeField] GameObject VideoQuad,CameraSwitchSFX;
+    int cameraIndex;
+    [SerializeField] GameObject[] Cameras;
     private void OnEnable()
     {
+        cameraIndex = 0;
+        VideoQuad.SetActive(false);
+     
         active = true;
         CameraOFF.SetActive(false);
 
@@ -34,13 +42,15 @@ public class SecurityTask : MonoBehaviour
                 Crosshairs.SetActive(true);
             }
             Cursor.lockState = CursorLockMode.Locked;
-            GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>().enabled = true;
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<StepSounds>().enabled = true;
             GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().isKinematic = false;
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<HeadBop>().enabled = true;
             GameObject.FindGameObjectWithTag("Janitor").GetComponent<JanitorBasic>().blind = false;
 
             Zoomed = false;
-            Destroy(currentpuzzle);
+            
+            VideoQuad.SetActive(false);
+           
         }
     }
     public void TaskComplete(bool failed)
@@ -48,7 +58,7 @@ public class SecurityTask : MonoBehaviour
         if (active)
         {
             active = false;
-            Destroy(currentpuzzle);
+           
             StartCoroutine(TaskDone(failed));
         }
 
@@ -79,7 +89,7 @@ public class SecurityTask : MonoBehaviour
 
             //the actives / deactives
             Crosshairs.SetActive(false);
-            GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>().enabled = false;
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<StepSounds>().enabled = false;
             GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().isKinematic = true;
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<HeadBop>().enabled = false;
             GameObject.FindGameObjectWithTag("Janitor").GetComponent<JanitorBasic>().blind = true;
@@ -88,12 +98,76 @@ public class SecurityTask : MonoBehaviour
 
 
             ZoomInumerator = ZoomCoroutine();
+            SecondNumerator = MiliSecondCountCoroutine();
 
             StartCoroutine(ZoomInumerator);
+
+            StartCoroutine(SecondNumerator);
+
 
         }
     }
 
+    private void Update()
+    {
+        if (Zoomed)
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                SwitchCamera(true);
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+               
+                SwitchCamera(false);
+            }
+        }
+    }
+
+    void SwitchCamera(bool nextcam)
+    {
+        Cameras[cameraIndex].SetActive(false);
+        if(nextcam)
+        {
+
+            cameraIndex++;
+            if (cameraIndex >= Cameras.Length)
+            {
+                cameraIndex = 0;
+
+            }
+          
+
+        }
+        else
+        {
+            cameraIndex--;
+            if (cameraIndex < 0)
+            {
+                cameraIndex = Cameras.Length - 1;
+            }
+        }
+        Instantiate(CameraSwitchSFX, transform.position, Quaternion.identity);
+        Cameras[cameraIndex].SetActive(true);
+        Cameratext.text = Cameras[cameraIndex].name;
+    }
+
+
+    IEnumerator MiliSecondCountCoroutine()
+    {
+        while(true)
+        {
+            yield return null;
+            float t = Time.time;
+
+            string seconds = (t % 60).ToString("f2");
+        
+                secondText.text = "00:00:" + seconds;
+          
+          
+
+        }
+    }
 
     public void ReturnPlayer()
     {
@@ -119,6 +193,8 @@ public class SecurityTask : MonoBehaviour
         GameObject.FindGameObjectWithTag("Janitor").GetComponent<JanitorBasic>().blind = false;
         Zoomed = false;
 
+
+
     }
 
     IEnumerator ZoomCoroutine()
@@ -133,7 +209,8 @@ public class SecurityTask : MonoBehaviour
             CameraPos.position = Vector3.Lerp(CameraPos.position, ZoomPos.position, Time.deltaTime * 8);
         }
 
-
+        VideoQuad.SetActive(true);
+       
 
 
     }

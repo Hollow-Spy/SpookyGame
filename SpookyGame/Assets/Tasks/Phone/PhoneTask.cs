@@ -27,7 +27,8 @@ public class PhoneTask : MonoBehaviour
 
     private void OnDisable()
     {
-        if(PickedUp)
+        phonering.Stop();
+        if (PickedUp)
         {
             GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>().enabled = true;
             GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().isKinematic = false;

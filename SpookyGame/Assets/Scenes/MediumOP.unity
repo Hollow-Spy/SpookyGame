@@ -5367,7 +5367,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &138702309
 Transform:
   m_ObjectHideFlags: 0
@@ -9668,7 +9668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &268745004
 Transform:
   m_ObjectHideFlags: 0
@@ -19937,7 +19937,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &528356020
 Transform:
   m_ObjectHideFlags: 0
@@ -48132,7 +48132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &991972479
 Transform:
   m_ObjectHideFlags: 0
@@ -49438,7 +49438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1021076515
 Transform:
   m_ObjectHideFlags: 0
@@ -56493,7 +56493,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1068768192
 Transform:
   m_ObjectHideFlags: 0
@@ -59598,7 +59598,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1145322683
 Transform:
   m_ObjectHideFlags: 0
@@ -60129,7 +60129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1172778826
 Transform:
   m_ObjectHideFlags: 0
@@ -60163,9 +60163,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ZoomPos: {fileID: 383080340}
   Crosshairs: {fileID: 1201949809}
-  puzzles:
-  - {fileID: 2302891666355355906, guid: aacd920220935674a97004bcfe8b9485, type: 3}
   CameraOFF: {fileID: 1617410763}
+  secondText: {fileID: 1670787972}
+  Cameratext: {fileID: 1090905982}
+  VideoQuad: {fileID: 1483217640}
+  CameraSwitchSFX: {fileID: 5111918606879073664, guid: 4601bfb247f3c4140839b1b49d11eaa5, type: 3}
+  Cameras:
+  - {fileID: 138702308}
+  - {fileID: 991972478}
+  - {fileID: 268745003}
+  - {fileID: 528356019}
+  - {fileID: 1068768191}
+  - {fileID: 1145322682}
+  - {fileID: 1021076514}
 --- !u!65 &1172778828
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -74936,6 +74946,24 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2762472744948416827, guid: 83e296bc4b5c69747939c9b58ce19d9f, type: 3}
+--- !u!1 &1327851864 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b41f0636138617646a77537f45d684f9, type: 3}
+  m_PrefabInstance: {fileID: 1714474903249462381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1327851865
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327851864}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0042831753, y: 0.0070000016, z: 0.006411649}
+  m_Center: {x: -0.0048562675, y: 0.0000000142179735, z: 0.003181432}
 --- !u!1 &1328978225
 GameObject:
   m_ObjectHideFlags: 0
@@ -80798,7 +80826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1483217641
 Transform:
   m_ObjectHideFlags: 0
@@ -112154,7 +112182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2052781431
 Transform:
   m_ObjectHideFlags: 0
