@@ -161,6 +161,7 @@ public class PlayerController : MonoBehaviour
     
     void MoveCamera()
     {
+        
         xRot -= MouseInput.y * sensitivity;
 
         xRot = Mathf.Clamp(xRot, -80, 80);

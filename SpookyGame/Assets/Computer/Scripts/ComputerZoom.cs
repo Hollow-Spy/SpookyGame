@@ -39,6 +39,8 @@ public class ComputerZoom : MonoBehaviour
             GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>().enabled = true;
             GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().isKinematic = false;
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<HeadBop>().enabled = true;
+            GameObject.FindGameObjectWithTag("Janitor").GetComponent<JanitorBasic>().blind = false ;
+
             Zoomed = false;
             Destroy(currentpuzzle);
         }
@@ -82,6 +84,8 @@ public class ComputerZoom : MonoBehaviour
             GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>().enabled = false;
             GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().isKinematic = true;
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<HeadBop>().enabled = false;
+            GameObject.FindGameObjectWithTag("Janitor").GetComponent<JanitorBasic>().blind = true;
+
             //end
 
 
@@ -114,6 +118,7 @@ public class ComputerZoom : MonoBehaviour
         GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>().enabled = true;
         GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().isKinematic = false;
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<HeadBop>().enabled = true;
+        GameObject.FindGameObjectWithTag("Janitor").GetComponent<JanitorBasic>().blind = false;
         Zoomed = false;
 
     }
