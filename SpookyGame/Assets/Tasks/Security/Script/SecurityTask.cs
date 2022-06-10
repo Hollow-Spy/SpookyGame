@@ -15,14 +15,24 @@ public class SecurityTask : MonoBehaviour
     [SerializeField] GameObject CameraOFF;
     bool active;
 
-    [SerializeField] Text secondText,Cameratext;
+    [SerializeField] Text secondText,Cameratext,PercentageText;
 
     [SerializeField] GameObject VideoQuad,CameraSwitchSFX;
     int cameraIndex;
     [SerializeField] GameObject[] Cameras;
-    [SerializeField] AudioSource CameraMoveSound;
+    [SerializeField] AudioSource CameraMoveSound,CamRecordSound;
+    int Progress;
+    [SerializeField] float progressTickTimer;
+    float Timer;
+    bool wonAlready;
     private void OnEnable()
     {
+        wonAlready = false;
+        PercentageText.text = "0%";
+        Progress = 0;
+        CamRecordSound.Stop();
+        Timer = 0;
+
         cameraIndex = 0;
         VideoQuad.SetActive(false);
      
@@ -170,7 +180,43 @@ public class SecurityTask : MonoBehaviour
         Cameratext.text = Cameras[cameraIndex].name;
     }
 
+    public void RecordingIncrement()
+    {
+        if (Progress == 100)
+        {
+            if(!wonAlready)
+            {
+                wonAlready = true;
+                StartCoroutine(TaskDone(false));
+            }
+            return;
 
+        }
+
+        if (Progress == 0)
+        {
+            CamRecordSound.Play();
+            Progress++;
+        }
+        else
+        {
+            CamRecordSound.UnPause();
+        }
+
+        Timer += Time.deltaTime;
+        if(Timer > progressTickTimer)
+        {
+            Progress++;
+            Timer = 0;
+            PercentageText.text = Progress + "%";
+        }
+     
+    }
+    public void RecordingStop()
+    {
+        CamRecordSound.Pause();
+
+    }
     IEnumerator MiliSecondCountCoroutine()
     {
         while(true)

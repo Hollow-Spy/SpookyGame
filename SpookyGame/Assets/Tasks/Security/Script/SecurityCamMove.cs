@@ -7,7 +7,10 @@ public class SecurityCamMove : MonoBehaviour
 
     [SerializeField] Vector3 RotationLockRight;
     [SerializeField] Vector3 RotationLockLeft, RotationLockDown;
+    [SerializeField] LayerMask RayMasks;
 
+    [SerializeField] SecurityTask securitytask;
+    
 
     void Update()
     {
@@ -56,5 +59,22 @@ public class SecurityCamMove : MonoBehaviour
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
 
         }
+        RaycastHit hit;
+        if(Physics.SphereCast(transform.position,.2f,transform.forward ,out hit, 35, RayMasks))
+        {
+            bool counting = false;
+            if (hit.collider.gameObject.CompareTag("Janitor"))
+            {
+                counting = true;
+                securitytask.RecordingIncrement();
+            }
+            if(!counting)
+            {
+                securitytask.RecordingStop();
+
+            }
+           
+        }
+
     }
 }

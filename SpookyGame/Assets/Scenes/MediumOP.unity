@@ -1607,7 +1607,7 @@ GameObject:
   - component: {fileID: 42968137}
   - component: {fileID: 42968136}
   - component: {fileID: 42968135}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5487,9 +5487,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15433eb3df0b90040955a435dce12d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotationLockRight: {x: 0, y: 222, z: 0}
-  RotationLockLeft: {x: 0, y: 150, z: 0}
-  RotationLockDown: {x: 50, y: 0, z: 0}
+  RotationLockRight: {x: 0, y: 240, z: 0}
+  RotationLockLeft: {x: 0, y: 130, z: 0}
+  RotationLockDown: {x: 80, y: 0, z: 0}
+  RayMasks:
+    serializedVersion: 2
+    m_Bits: 5
+  securitytask: {fileID: 1172778827}
 --- !u!1001 &141550632
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9334,7 +9338,7 @@ GameObject:
   - component: {fileID: 257662121}
   - component: {fileID: 257662120}
   - component: {fileID: 257662119}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9807,6 +9811,10 @@ MonoBehaviour:
   RotationLockRight: {x: 0, y: 270, z: 0}
   RotationLockLeft: {x: 0, y: 90, z: 0}
   RotationLockDown: {x: 90, y: 0, z: 0}
+  RayMasks:
+    serializedVersion: 2
+    m_Bits: 5
+  securitytask: {fileID: 1172778827}
 --- !u!1 &270217768
 GameObject:
   m_ObjectHideFlags: 0
@@ -12292,9 +12300,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
       propertyPath: m_Name
       value: SecurityCamera5
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4083501151425157549, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15678,7 +15698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 428915004}
   - component: {fileID: 428915005}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18942,7 +18962,7 @@ GameObject:
   m_Component:
   - component: {fileID: 509274117}
   - component: {fileID: 509274118}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20171,6 +20191,10 @@ MonoBehaviour:
   RotationLockRight: {x: 0, y: 230, z: 0}
   RotationLockLeft: {x: 0, y: 97, z: 0}
   RotationLockDown: {x: 70, y: 0, z: 0}
+  RayMasks:
+    serializedVersion: 2
+    m_Bits: 5
+  securitytask: {fileID: 1172778827}
 --- !u!1 &531649087
 GameObject:
   m_ObjectHideFlags: 0
@@ -28011,7 +28035,7 @@ GameObject:
   - component: {fileID: 615229986}
   - component: {fileID: 615229985}
   - component: {fileID: 615229984}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39879,9 +39903,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
       propertyPath: m_Name
       value: SecurityCamera3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4083501151425157549, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
       propertyPath: m_LocalRotation.w
@@ -48509,6 +48545,10 @@ MonoBehaviour:
   RotationLockRight: {x: 0, y: 120, z: 0}
   RotationLockLeft: {x: 0, y: 50, z: 0}
   RotationLockDown: {x: 60, y: 0, z: 0}
+  RayMasks:
+    serializedVersion: 2
+    m_Bits: 5
+  securitytask: {fileID: 1172778827}
 --- !u!1 &994457449
 GameObject:
   m_ObjectHideFlags: 0
@@ -48519,7 +48559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 994457450}
   - component: {fileID: 994457451}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49831,6 +49871,10 @@ MonoBehaviour:
   RotationLockRight: {x: 0, y: 60, z: 0}
   RotationLockLeft: {x: 0, y: 5, z: 0}
   RotationLockDown: {x: 60, y: 0, z: 0}
+  RayMasks:
+    serializedVersion: 2
+    m_Bits: 5
+  securitytask: {fileID: 1172778827}
 --- !u!1 &1022127480
 GameObject:
   m_ObjectHideFlags: 0
@@ -51320,9 +51364,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
       propertyPath: m_Name
       value: SecurityCamera6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4083501151425157549, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
       propertyPath: m_LocalRotation.w
@@ -56902,6 +56958,10 @@ MonoBehaviour:
   RotationLockRight: {x: 0, y: 300, z: 0}
   RotationLockLeft: {x: 0, y: 190, z: 0}
   RotationLockDown: {x: 50, y: 0, z: 0}
+  RayMasks:
+    serializedVersion: 2
+    m_Bits: 5
+  securitytask: {fileID: 1172778827}
 --- !u!1 &1071975885
 GameObject:
   m_ObjectHideFlags: 0
@@ -58475,7 +58535,7 @@ GameObject:
   - component: {fileID: 1094322167}
   - component: {fileID: 1094322166}
   - component: {fileID: 1094322165}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60023,6 +60083,10 @@ MonoBehaviour:
   RotationLockRight: {x: 0, y: 120, z: 0}
   RotationLockLeft: {x: 0, y: 30, z: 0}
   RotationLockDown: {x: 60, y: 0, z: 0}
+  RayMasks:
+    serializedVersion: 2
+    m_Bits: 5
+  securitytask: {fileID: 1172778827}
 --- !u!1 &1149431651 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7997720893811866364, guid: 5b1d1336d0235bc41acb6b1cb734bd7b, type: 3}
@@ -60465,6 +60529,7 @@ Transform:
   - {fileID: 383080340}
   - {fileID: 1483217641}
   - {fileID: 868691787}
+  - {fileID: 1952615558}
   m_Father: {fileID: 410450646}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -60485,6 +60550,7 @@ MonoBehaviour:
   CameraOFF: {fileID: 1617410763}
   secondText: {fileID: 1670787972}
   Cameratext: {fileID: 1090905982}
+  PercentageText: {fileID: 1665152702}
   VideoQuad: {fileID: 1483217640}
   CameraSwitchSFX: {fileID: 5111918606879073664, guid: 4601bfb247f3c4140839b1b49d11eaa5, type: 3}
   Cameras:
@@ -60496,6 +60562,8 @@ MonoBehaviour:
   - {fileID: 1145322682}
   - {fileID: 1021076514}
   CameraMoveSound: {fileID: 868691788}
+  CamRecordSound: {fileID: 1952615559}
+  progressTickTimer: 0.025
 --- !u!65 &1172778828
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -66995,7 +67063,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1246060746}
   - component: {fileID: 1246060747}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73008,7 +73076,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1290862278}
   - component: {fileID: 1290862279}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74597,7 +74665,7 @@ GameObject:
   - component: {fileID: 1324478792}
   - component: {fileID: 1324478791}
   - component: {fileID: 1324478790}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75975,7 +76043,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1345851840}
   - component: {fileID: 1345851841}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93684,9 +93752,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
       propertyPath: m_Name
       value: SecurityCamera1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4083501151425157549, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
       propertyPath: m_LocalRotation.w
@@ -97565,9 +97645,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
       propertyPath: m_Name
       value: SecurityCamera2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4083501151425157549, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
       propertyPath: m_LocalRotation.w
@@ -99101,9 +99193,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
       propertyPath: m_Name
       value: SecurityCamera7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4083501151425157549, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
       propertyPath: m_LocalRotation.w
@@ -100665,9 +100769,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
       propertyPath: m_Name
       value: SecurityCamera4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4083501151425157549, guid: 55d5eecbc71061c4eac8b02ade11ad11, type: 3}
       propertyPath: m_LocalRotation.w
@@ -107566,7 +107682,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1931467272}
   - component: {fileID: 1931467273}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108708,7 +108824,7 @@ GameObject:
   - component: {fileID: 1951833762}
   - component: {fileID: 1951833761}
   - component: {fileID: 1951833760}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108792,6 +108908,133 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1951833758}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1952615557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1952615558}
+  - component: {fileID: 1952615559}
+  m_Layer: 8
+  m_Name: CamerarecordSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1952615558
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952615557}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1172778826}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1952615559
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952615557}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c6fb1bdb3331d9b47a3c4ffb355ec438, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.3
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1954333254
 GameObject:
   m_ObjectHideFlags: 0
@@ -112303,7 +112546,7 @@ GameObject:
   - component: {fileID: 2042332056}
   - component: {fileID: 2042332055}
   - component: {fileID: 2042332054}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118623,7 +118866,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2986521460432433847, guid: 38aca9c48576731469193467490449e0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.7560043
+      value: -3.741
       objectReference: {fileID: 0}
     - target: {fileID: 2986521460432433847, guid: 38aca9c48576731469193467490449e0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -118949,7 +119192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2986521460432433847, guid: 38aca9c48576731469193467490449e0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.7560043
+      value: -3.741
       objectReference: {fileID: 0}
     - target: {fileID: 2986521460432433847, guid: 38aca9c48576731469193467490449e0, type: 3}
       propertyPath: m_LocalPosition.z
