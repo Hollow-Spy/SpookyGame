@@ -6,7 +6,7 @@ public class Clock : MonoBehaviour
 {
    
 
-    float secondsWorth;
+    [SerializeField] float secondsWorth;
     [SerializeField] Transform secondPointer;
     [SerializeField] Transform hourPointer;
     [SerializeField] GameObject Camera;
@@ -25,12 +25,15 @@ public class Clock : MonoBehaviour
 
         //5 around mins
         //secondsWorth = 0.0303030303f / 2.1f;
+        //0.01443001442f
 
 
         //3 minutes?
-        secondsWorth = 0.0303030303f / 3f;
+      //  secondsWorth = 0.0303030303f / 3f;
+        //0.0101010101
+
     }
-  
+
 
     public void EndGame()
     {

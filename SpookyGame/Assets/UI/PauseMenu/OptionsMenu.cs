@@ -23,7 +23,7 @@ public class OptionsMenu : MonoBehaviour
     float currentAudio;
     float currentBrightness;
     int currentDistortion;
-
+    int currentHighlights;
     
 
     private void OnEnable()
@@ -35,6 +35,8 @@ public class OptionsMenu : MonoBehaviour
         currentBrightness = PlayerPrefs.GetFloat("Brightness");
         currentAudio = PlayerPrefs.GetFloat("Volume");
         currentDistortion = PlayerPrefs.GetInt("Distortion");
+        currentHighlights = PlayerPrefs.GetInt("Highlight");
+
 
 
         BlackBars[0].localScale = new Vector3(1 - currentAudio, 1, 1);
@@ -185,11 +187,16 @@ public class OptionsMenu : MonoBehaviour
                 break;
 
                 case 3:
-               
+            
+                break;
+            case 4:
 
-                PlayerPrefs.SetFloat("Brightness",currentBrightness);
-                PlayerPrefs.SetFloat("Volume",currentAudio);       
+
+                PlayerPrefs.SetFloat("Brightness", currentBrightness);
+                PlayerPrefs.SetFloat("Volume", currentAudio);
                 PlayerPrefs.SetInt("Distortion", currentDistortion);
+                PlayerPrefs.SetInt("Highlight", currentHighlights);
+
                 PauseMenu.SetActive(true);
                 optionsMenu.SetActive(false);
 

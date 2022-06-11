@@ -133,7 +133,10 @@ public class SecurityTask : MonoBehaviour
             {
                 SwitchCamera(false);
             }
-
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                StartCoroutine(ZoomReturnCoroutine());
+            }
 
             if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)) )
             {
@@ -242,6 +245,9 @@ public class SecurityTask : MonoBehaviour
 
     IEnumerator ZoomReturnCoroutine()
     {
+        VideoQuad.SetActive(false);
+        Cameras[cameraIndex].SetActive(false);
+
         while (Vector3.Distance(CameraPos.position, OGcam) > .2f)
         {
 
@@ -251,13 +257,16 @@ public class SecurityTask : MonoBehaviour
         CameraPos.position = OGcam;
 
         Crosshairs.SetActive(true);
-        GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>().enabled = true;
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<StepSounds>().enabled = true;
         GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().isKinematic = false;
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<HeadBop>().enabled = true;
         GameObject.FindGameObjectWithTag("Janitor").GetComponent<JanitorBasic>().blind = false;
+      
+
+
         Zoomed = false;
 
-
+        
 
     }
 
