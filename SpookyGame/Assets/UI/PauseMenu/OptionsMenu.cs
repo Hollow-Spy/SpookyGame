@@ -37,11 +37,19 @@ public class OptionsMenu : MonoBehaviour
         currentDistortion = PlayerPrefs.GetInt("Distortion");
         currentHighlights = PlayerPrefs.GetInt("Highlight");
 
+      
 
+    
 
+        RenderSettings.ambientLight = new Color(currentBrightness, currentBrightness, currentBrightness, 1.0f);
+        RenderSettings.ambientLight = new Color(RenderSettings.ambientLight.r, RenderSettings.ambientLight.g, RenderSettings.ambientLight.b, currentDistortion);
+        AudioListener.volume = currentAudio;
+
+        ZeroOneTexts[0].text = currentDistortion.ToString();
+        ZeroOneTexts[1].text = currentHighlights.ToString();
         BlackBars[0].localScale = new Vector3(1 - currentAudio, 1, 1);
         BlackBars[1].localScale = new Vector3(1 - currentBrightness, 1, 1);
-        ZeroOneTexts[0].text = currentDistortion.ToString();
+      
     }
 
     // Update is called once per frame
@@ -187,7 +195,18 @@ public class OptionsMenu : MonoBehaviour
                 break;
 
                 case 3:
-            
+                if (currentHighlights == 0)
+                {
+                    currentHighlights = 1;
+                  
+                }
+                else
+                {
+                    currentHighlights = 0;
+                   
+                }
+                ZeroOneTexts[1].text = currentHighlights.ToString();
+
                 break;
             case 4:
 
