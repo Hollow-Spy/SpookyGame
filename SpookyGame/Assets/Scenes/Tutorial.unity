@@ -896,6 +896,7 @@ MonoBehaviour:
   detection: 0
   detectionTime: 3
   ExtraChaseTime: 5
+  blind: 0
   PatrolPoints:
   - {fileID: 1621939742}
   BasicSpeed: 2
@@ -70455,11 +70456,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b1d1336d0235bc41acb6b1cb734bd7b, type: 3}
---- !u!1 &33898973457602513 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7997720893811866364, guid: 5b1d1336d0235bc41acb6b1cb734bd7b, type: 3}
-  m_PrefabInstance: {fileID: 33898973457602512}
-  m_PrefabAsset: {fileID: 0}
 --- !u!222 &33898973459490576
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -76270,21 +76266,6 @@ MonoBehaviour:
     message: Printer Stuck
     Time: 25
     TaskObject: {fileID: 33898972884753885}
-  - Priority: 4
-    active: 1
-    message: Rat in Server
-    Time: 45
-    TaskObject: {fileID: 33898972926851141}
-  - Priority: 1
-    active: 1
-    message: Computer
-    Time: 98
-    TaskObject: {fileID: 33898972333435451}
-  - Priority: 4
-    active: 1
-    message: Save Floppy
-    Time: 50
-    TaskObject: {fileID: 33898973457602513}
   ActiveTasks: []
   pos:
   - {fileID: 33898973754719919}
@@ -88092,6 +88073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f4acec9ee0796748976acedc26b7fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  secondsWorth: 0
   secondPointer: {fileID: 33898972783341454}
   hourPointer: {fileID: 33898972783341453}
   Camera: {fileID: 0}

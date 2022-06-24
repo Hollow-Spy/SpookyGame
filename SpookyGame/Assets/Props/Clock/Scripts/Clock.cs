@@ -53,7 +53,7 @@ public class Clock : MonoBehaviour
         yield return new WaitForSeconds(2.3f);
         active = false;
         yield return new WaitForSeconds(2);
-        GameObject.Find("Sceneloader").GetComponent<SceneLoader>().LoadScene(3);
+        GameObject.Find("Sceneloader").GetComponent<SceneLoader>().LoadScene("EndGame");
     }
     void Update()
     {

@@ -127,7 +127,7 @@ public class PhoneTutorial : MonoBehaviour
             yield return null;
         }
         Instantiate(PickUpSFX, transform.position, Quaternion.identity);
-        sceneloader.LoadScene(2);
+        sceneloader.LoadScene("OfficeProp");
 
     }
 
