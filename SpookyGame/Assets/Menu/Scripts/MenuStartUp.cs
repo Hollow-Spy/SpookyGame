@@ -10,7 +10,14 @@ public class MenuStartUp : MonoBehaviour
 
     private void Start()
     {
+        if(PlayerPrefs.GetFloat("Volume") == 0)
+        {
+            PlayerPrefs.SetFloat("Volume", .5f);
+        }
         BrightnessSlider.value = PlayerPrefs.GetFloat("Brightness");
+
+        Cursor.lockState = CursorLockMode.None;
+
     }
     public void ChangeBrightness()
     {

@@ -16,7 +16,7 @@ public class RatAi : MonoBehaviour
     [SerializeField] float screamdelay;
     float delay;
     [SerializeField] GameObject ratcute;
-
+   
     private void OnEnable()
     {
         GetComponentInChildren<MeshRenderer>().enabled = true;

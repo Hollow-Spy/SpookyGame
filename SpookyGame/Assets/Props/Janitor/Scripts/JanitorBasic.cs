@@ -324,7 +324,7 @@ public class JanitorBasic : MonoBehaviour
             grabcamera.gameObject.SetActive(false);
             maincamera.tag = "MainCamera";
             player.speed = OGplayerspeed;
-         
+            maincamera.fieldOfView = 60;
 
 
         }

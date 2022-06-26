@@ -10,6 +10,7 @@ public class FuseTask : MonoBehaviour
     public GameObject handle;
     public GameObject lightHandler;
     public GameObject Fake;
+    [SerializeField] GameObject AmbienceGameObject;
     private Lights Lit;
     AudioSource audioplayer;
    [SerializeField] AudioClip[] hitsounds;
@@ -41,14 +42,16 @@ public class FuseTask : MonoBehaviour
     private void OnEnable()
     {       
         rotate();
-        active = false;  
+        active = false;
+        AmbienceGameObject.SetActive(false);
     }
     public void Interaction()    //as long as we are active we can flick the fuse box
     {
         Debug.Log(active);
         if(active == false)
         {
-           
+            AmbienceGameObject.SetActive(true);
+
             rotate();
             StartCoroutine(TaskDone(false));    
             active = true;     
