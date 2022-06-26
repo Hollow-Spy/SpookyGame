@@ -23,6 +23,7 @@ public class SecurityTask : MonoBehaviour
     [SerializeField] AudioSource CameraMoveSound,CamRecordSound;
     int Progress;
     [SerializeField] float progressTickTimer;
+    [SerializeField] GameObject JumpscareQuad;
     float Timer;
     bool wonAlready;
     private void OnEnable()
@@ -38,6 +39,13 @@ public class SecurityTask : MonoBehaviour
      
         active = true;
         CameraOFF.SetActive(false);
+
+
+        int randomJumpscare = Random.Range(0, 10);
+        if(randomJumpscare == 0)
+        {
+            JumpscareQuad.SetActive(true);
+        }
 
     }
 
@@ -117,10 +125,18 @@ public class SecurityTask : MonoBehaviour
 
             StartCoroutine(SecondNumerator);
 
+            StartCoroutine(JumpScareAway());
+
 
         }
     }
 
+
+    IEnumerator JumpScareAway()
+    {
+        yield return new WaitForSeconds(1.7f);
+        JumpscareQuad.SetActive(false);
+    }
     private void Update()
     {
         if (Zoomed)
