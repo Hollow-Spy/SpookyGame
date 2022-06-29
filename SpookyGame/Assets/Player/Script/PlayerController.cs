@@ -28,8 +28,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpforce;
     public Locker currentlocker;
     Camera MainCam;
-
+    [SerializeField] StaminaMeter staminameter;
    
+  
 
     public void Hiding(Vector3 pos, bool isdesk)
     {
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-
+        
         AudioListener.volume = PlayerPrefs.GetFloat("Volume");
         Cursor.lockState = CursorLockMode.Locked;
         MainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -59,7 +60,7 @@ public class PlayerController : MonoBehaviour
             RenderSettings.ambientLight = new Color(RenderSettings.ambientLight.r, RenderSettings.ambientLight.g, RenderSettings.ambientLight.b, .0f);
         }
 
-        
+      
     }
 
 
@@ -127,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
 
         float movespeed = speed;
-        if(Input.GetKey(KeyCode.LeftShift))
+        if(Input.GetKey(KeyCode.LeftShift) && staminameter.CanRun)
         {
             movespeed *= sprintmultiplier;
             is_sprinting = true;
