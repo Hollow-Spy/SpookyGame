@@ -48,6 +48,11 @@ public class TaskOrganizer : MonoBehaviour
 
 
     public bool busy;
+
+    int TaskStreak=0;
+    [SerializeField] Text StreakText, StreakText2;
+    [SerializeField] GameObject StreakIcon;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -90,7 +95,7 @@ public class TaskOrganizer : MonoBehaviour
         busy = true;
         int num = 0;
 
-       
+
 
         for (int i = 0; i < ActiveTasks.Count; i++)
         {
@@ -102,10 +107,57 @@ public class TaskOrganizer : MonoBehaviour
         }
 
 
+        //streak attribute
+        StreakAttribution(failed, num);
 
         IEnumerator RemoveCoroutine = RemoveNumerator(num,failed);
-        StartCoroutine(RemoveCoroutine);
+        StartCoroutine(RemoveCoroutine); 
+
     }
+
+
+    void StreakAttribution(bool failed, int num)
+    {
+        if (!failed)
+        {
+            bool continueStreak = true;
+            for (int i = 0; i < ActiveTasks.Count; i++)
+            {
+                if (ActiveTasks[num].Priority > ActiveTasks[i].Priority)
+                {
+                    continueStreak = false;
+                }
+            }
+
+            if (continueStreak)
+            {
+                TaskStreak++;
+                if (TaskStreak > 1)
+                {
+                    StreakIcon.SetActive(false);
+                    StreakIcon.SetActive(true);
+                    StreakText.text = TaskStreak.ToString();
+                    StreakText2.text = TaskStreak.ToString();
+
+
+                    Score += ScoreGain * TaskStreak;
+                }
+
+            }
+            else
+            {
+                TaskStreak = 0;
+
+
+            }
+        }
+        else
+        {
+            TaskStreak = 0;
+        }
+
+    }
+
     IEnumerator RemoveNumerator(int num,bool failed)
     {
 
