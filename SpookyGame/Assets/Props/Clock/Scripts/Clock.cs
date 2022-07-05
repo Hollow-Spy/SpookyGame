@@ -17,11 +17,16 @@ public class Clock : MonoBehaviour
     bool ending;
     [SerializeField]bool MainClock;
     [SerializeField] GameObject ticksound;
+    [SerializeField] int scoreToWin;
+    [SerializeField] string currentLevel;
+    [SerializeField] string levelToUnlock;
      void Start()
     {
 
+        PlayerPrefs.SetInt(currentLevel, 1);
+
         //12 mins
-      //  secondsWorth = 0.0303030303f;
+        //  secondsWorth = 0.0303030303f;
 
         //5 around mins
         //secondsWorth = 0.0303030303f / 2.1f;
@@ -29,7 +34,7 @@ public class Clock : MonoBehaviour
 
 
         //3 minutes?
-      //  secondsWorth = 0.0303030303f / 3f;
+        //  secondsWorth = 0.0303030303f / 3f;
         //0.0101010101
 
     }
@@ -45,6 +50,12 @@ public class Clock : MonoBehaviour
         Camera.SetActive(true);
         Camera.tag = "MainCamera";
         secondPointer.transform.localRotation = new Quaternion(0.706077278f, -0.0679001883f, 0.0678997561f, -0.703839719f);
+
+        if(PlayerPrefs.GetInt("Score") >= scoreToWin)
+        {
+            PlayerPrefs.SetInt(levelToUnlock, 1);
+        }
+
         StartCoroutine(EndNumerator());
 
     }

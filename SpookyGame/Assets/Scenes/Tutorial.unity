@@ -72349,7 +72349,7 @@ MonoBehaviour:
   body: {fileID: 33898972633600657}
   is_crouched: 0
   speed: 3
-  sprintmultiplier: 2
+  sprintmultiplier: 2.5
   sensitivity: 3
   jumpforce: 8
   currentlocker: {fileID: 0}
@@ -76398,6 +76398,9 @@ MonoBehaviour:
   check: {fileID: 5496757117075534945, guid: cf4ecf7a6a470554db3e627a4bfe2b68, type: 3}
   cross: {fileID: 3524902958079635074, guid: 7db2a9aec1782de40bb97229566eae69, type: 3}
   busy: 0
+  StreakText: {fileID: 0}
+  StreakText2: {fileID: 0}
+  StreakIcon: {fileID: 0}
 --- !u!1 &33898973661152300
 GameObject:
   m_ObjectHideFlags: 0
@@ -88204,6 +88207,9 @@ MonoBehaviour:
   minutes: 0
   MainClock: 0
   ticksound: {fileID: 0}
+  scoreToWin: 0
+  currentLevel: 
+  levelToUnlock: 
 --- !u!1001 &33898974021989682
 PrefabInstance:
   m_ObjectHideFlags: 0
