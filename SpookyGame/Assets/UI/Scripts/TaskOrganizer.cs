@@ -16,7 +16,7 @@ public class Task
     [SerializeField] public string message;
     [SerializeField] public float Time;
     [SerializeField] public GameObject TaskObject;
-    
+ 
     //  [SerializeField] public int OrderIndex;
 
     public Task(int _priority, bool _active, string _message, float _time, GameObject _taskObject)

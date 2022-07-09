@@ -15,6 +15,7 @@ public class Locker : MonoBehaviour
     Quaternion targetRotation;
     //handle hidden trigger
     public BoxCollider HideTrigger;
+    [SerializeField] GameObject lockerSound;
 
     void Start() 
     {
@@ -56,7 +57,7 @@ public class Locker : MonoBehaviour
     {
         if(!rotate)
         {
-           
+            Instantiate(lockerSound, transform.position, Quaternion.identity);
             if (HideTrigger.enabled)
             {
                 HideTrigger.enabled = false;

@@ -17,6 +17,8 @@ public class PauseMenuActivator : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 60;
+
         PauseMenu.SetActive(true);
         OptionsMenu.SetActive(true);
         OptionsMenu.SetActive(false);

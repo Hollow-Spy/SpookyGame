@@ -9,6 +9,7 @@ public class VentScript : MonoBehaviour
      ConfigurableJoint joint;
     HandAnimator animator;
     bool active;
+    [SerializeField] GameObject VentOpenSound;
    private void Start()
     {
         joint = GetComponent<ConfigurableJoint>();
@@ -20,6 +21,7 @@ public class VentScript : MonoBehaviour
     {
         if(!active)
         {
+            Instantiate(VentOpenSound, transform.position, Quaternion.identity);
             timeout = 1;
             active = true;
             gameObject.layer = 0;
