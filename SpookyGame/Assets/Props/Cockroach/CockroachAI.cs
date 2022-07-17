@@ -25,14 +25,18 @@ public class CockroachAI : MonoBehaviour
         
         Speed = Random.Range(1, 4);
         current = 0;
-        pos = points.Waypoints[current];//direct reference to the static variable called Waypoints in points script. 
+        if(current<points.Waypoints.Length )
+        {
+            pos = points.Waypoints[current];//direct reference to the static variable called Waypoints in points script. 
+        
+       
         transform.LookAt(pos.position);
         squish = GetComponent<AudioSource>();
         path = true;
-        
-        
 
-        
+        }
+
+
     }
 
     // Update is called once per frame

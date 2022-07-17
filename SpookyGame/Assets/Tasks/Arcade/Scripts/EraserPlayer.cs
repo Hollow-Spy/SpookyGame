@@ -7,7 +7,7 @@ public class EraserPlayer : MonoBehaviour
     [SerializeField] float Speed;
     Rigidbody2D body;
     bool Alive=true;
-
+    [SerializeField] float MaxSpeed;
     private void OnEnable()
     {
         Alive = true;
@@ -23,18 +23,40 @@ public class EraserPlayer : MonoBehaviour
     {
         if(Alive)
         {
-            body.velocity = transform.up * Speed;
-          
-            if(Input.GetKey(KeyCode.A))
+
+
+            if (Input.GetKey(KeyCode.W))
             {
-                transform.Rotate(0, 0, 6);
+               
+                body.AddForce(transform.up * Speed);
+                
+            }
+
+            if (Input.GetKey(KeyCode.S))
+            {
+
+                body.AddForce(-transform.up * Speed);
+            }
+
+            if (Input.GetKey(KeyCode.A))
+            {
+
+                body.AddForce(-transform.right * Speed);
             }
             if (Input.GetKey(KeyCode.D))
             {
-                transform.Rotate(0, 0, -6);
+
+                body.AddForce(transform.right * Speed);
 
 
             }
+
+         
+            if (body.velocity.magnitude > MaxSpeed)
+            {
+                body.velocity = new Vector2(Mathf.Lerp(body.velocity.x, MaxSpeed, Time.deltaTime), Mathf.Lerp(body.velocity.y, MaxSpeed, Time.deltaTime));
+            }
+
         }
         
     }
