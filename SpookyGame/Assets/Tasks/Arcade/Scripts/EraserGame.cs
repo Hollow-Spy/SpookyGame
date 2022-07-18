@@ -22,9 +22,18 @@ public class EraserGame : MonoBehaviour
     [SerializeField] GameObject CarPrefab,LoseScreen;
     [SerializeField] GameObject[] Warnings;
     [SerializeField] Canvas thecanvas;
- 
+
+    [SerializeField] arcadeinteract arcadeInteract;
+
+    Vector3 spawnpos;
+    
     private void OnEnable()
     {
+        Player.transform.position = new Vector3(985.0f, 211.0f, 0.0f);
+        Player.transform.rotation = Quaternion.Euler(0,0,0);
+        Player.enabled = false;
+      
+        RoadAnimator.SetFloat("Speed", 0);
         spawning = true;
         maxtime = maxtimeOG;
         Increment = 0;
@@ -40,22 +49,44 @@ public class EraserGame : MonoBehaviour
 
     }
 
+    private void OnDisable()
+    {
+        LoseScreen.SetActive(false);
+    }
+
+
     public void StopGame()
     {
         if(counting)
         {
-            music.Stop();
+            counting = false;
+            Player.enabled = false;
             RoadAnimator.enabled = false;
             LoseScreen.SetActive(true);
-            counting = false;
+          
             StopAllCoroutines();
             StartCoroutine(waiting());
+
+          
+
         }
    
     }
     IEnumerator waiting()
     {
+        yield return new WaitForSeconds(0.01f);
+        music.Stop();
         yield return new WaitForSeconds(2);
+
+        if (meterLapsed > 3000)
+        {
+            arcadeInteract.TaskComplete(false);
+        }
+        else
+        {
+            arcadeInteract.TaskComplete(true);
+
+        }
 
     }
 
@@ -106,7 +137,14 @@ public class EraserGame : MonoBehaviour
 
             music.pitch = 1 + pitche;
 
-           
+
+            if(!music.isPlaying)
+            {
+                arcadeInteract.TaskComplete(false);
+
+            }
+
+
         }
 
     }

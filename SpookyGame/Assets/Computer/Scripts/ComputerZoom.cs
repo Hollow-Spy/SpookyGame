@@ -55,6 +55,17 @@ public class ComputerZoom : MonoBehaviour
         }
       
     }
+    private void Update()
+    {
+        if(Zoomed)
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                Destroy(currentpuzzle);
+                ReturnPlayer();
+            }
+        }
+    }
 
     IEnumerator TaskDone(bool failed)
     {
@@ -71,7 +82,7 @@ public class ComputerZoom : MonoBehaviour
     public void Interaction()
     {
        
-        if(!Zoomed)
+        if(!Zoomed && !GameObject.FindObjectOfType<JanitorBasic>().Chasing)
         {
             
             Zoomed = true;
@@ -99,6 +110,7 @@ public class ComputerZoom : MonoBehaviour
 
     public void ReturnPlayer()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         ZoomBackIenumerator = ZoomReturnCoroutine();
         StartCoroutine(ZoomBackIenumerator);
 

@@ -98,7 +98,7 @@ public class SecurityTask : MonoBehaviour
     public void Interaction()
     {
 
-        if (!Zoomed)
+        if (!Zoomed && !GameObject.FindObjectOfType<JanitorBasic>().Chasing)
         {
 
             Zoomed = true;
