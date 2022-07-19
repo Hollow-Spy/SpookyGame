@@ -13,7 +13,7 @@ public class ClawMachine : MonoBehaviour
     bool busy;
     [SerializeField] GameObject Soda;
     [SerializeField] float leftLimit, rightLimit;
-
+    [SerializeField] GameObject ClawSound;
     public void Check()
     {
         if(movableObject.transform.localPosition.z < leftLimit && movableObject.transform.localPosition.z > rightLimit)
@@ -59,7 +59,7 @@ public class ClawMachine : MonoBehaviour
         {
             busy = true;
             moving = false;
-
+            Instantiate(ClawSound, transform.position, Quaternion.identity);
             ClawAnimator.SetTrigger("Pick");
 
 
