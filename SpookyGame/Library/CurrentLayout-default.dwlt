@@ -19,9 +19,9 @@ MonoBehaviour:
     width: 1366
     height: 685
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Game
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -119,10 +119,10 @@ MonoBehaviour:
     y: 30
     width: 1366
     height: 635
-  m_MinSize: {x: 679, y: 492}
-  m_MaxSize: {x: 14002, y: 14042}
+  m_MinSize: {x: 677, y: 492}
+  m_MaxSize: {x: 14001, y: 14042}
   vertical: 0
-  controlID: 38
+  controlID: 150
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,10 +144,10 @@ MonoBehaviour:
     y: 0
     width: 981
     height: 635
-  m_MinSize: {x: 403, y: 492}
+  m_MinSize: {x: 402, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 39
+  controlID: 78
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,10 +169,10 @@ MonoBehaviour:
     y: 0
     width: 981
     height: 364
-  m_MinSize: {x: 403, y: 221}
-  m_MaxSize: {x: 8003, y: 4021}
+  m_MinSize: {x: 402, y: 221}
+  m_MaxSize: {x: 8002, y: 4021}
   vertical: 0
-  controlID: 40
+  controlID: 79
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -192,8 +192,8 @@ MonoBehaviour:
     y: 0
     width: 330
     height: 364
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -275,8 +275,8 @@ MonoBehaviour:
     y: 0
     width: 385
     height: 635
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -38202
+  m_LastSelectedObjectID: -72568
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -339,21 +339,21 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 96}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 60f5ffff26fbffff6e410000c8470000884b00007c570000f65c0000
+      scrollPos: {x: 0, y: 1398}
+      m_SelectedIDs: 88e4feff
+      m_LastClickedID: -72568
+      m_ExpandedIDs: 3479feffc8b5feffccb5feff1a02ffff1495fffffc98ffff16d6ffff20e0ffff60f5ffff26fbffff68410000c0470000804b000074570000ee5c0000e05e000016610000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: FeetPos
-        m_OriginalName: FeetPos
+        m_Name: MainCamera
+        m_OriginalName: MainCamera
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 21854
+        m_UserData: 16744
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -402,9 +402,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -4.592426, y: 3.7774215, z: -7.544145}
+    m_Target: {x: -1.5228368, y: 4.3168097, z: -7.2586193}
     speed: 2
-    m_Value: {x: -4.592426, y: 3.7774215, z: -7.544145}
+    m_Value: {x: -1.5228368, y: 4.3168097, z: -7.2586193}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -451,13 +451,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.15519866, y: -0.8445219, z: 0.35042435, w: 0.37407312}
+    m_Target: {x: 0.056382097, y: 0.94350135, z: -0.23871937, w: 0.22289312}
     speed: 2
-    m_Value: {x: 0.1551962, y: -0.84450847, z: 0.3504188, w: 0.3740672}
+    m_Value: {x: 0.056380913, y: 0.94348156, z: -0.23871437, w: 0.22288844}
   m_Size:
-    m_Target: 3.0297875
+    m_Target: 3.0733132
     speed: 2
-    m_Value: 3.0297875
+    m_Value: 3.0733132
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1077,22 +1077,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Editor
+    - Assets/Props/Janitor/Jumpscares/Stand
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Editor
+  - Assets/Props/Janitor/Jumpscares/Stand
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Spy\Desktop\Spookygame\SpookyGame\SpookyGame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 507e0000
-    m_LastClickedID: 32336
-    m_ExpandedIDs: 00000000aa7d0000ac7d0000ae7d0000b07d0000b27d0000b47d00005e7e000000ca9a3b
+    scrollPos: {x: 0, y: 682}
+    m_SelectedIDs: 2e9e0200
+    m_LastClickedID: 171566
+    m_ExpandedIDs: 00000000a47d0000a67d0000a87d0000aa7d0000ac7d0000ae7d00004c7e0000807e0000149e020000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1120,7 +1120,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000aa7d0000ac7d0000ae7d0000b07d0000b27d0000b47d0000
+    m_ExpandedIDs: 00000000a47d0000a67d0000a87d0000aa7d0000ac7d0000ae7d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
