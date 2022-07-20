@@ -22,13 +22,13 @@ public class JumpscareFOV : MonoBehaviour
     public LayerMask obstructionMask;
 
     public bool canSeePlayer;
-    
 
-    private void Start()
+
+    private void OnEnable()
     {
-
         StartCoroutine(FOVRoutine());
     }
+    
 
     public bool CheckVision(Transform objSeen)
     {

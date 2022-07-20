@@ -5253,6 +5253,7 @@ GameObject:
   - component: {fileID: 119699435}
   - component: {fileID: 119699434}
   - component: {fileID: 119699436}
+  - component: {fileID: 119699437}
   m_Layer: 7
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -5526,6 +5527,18 @@ MonoBehaviour:
   maxDistancePitch: 9
   Player: {fileID: 804869202}
   Janitor: {fileID: 834855322}
+--- !u!114 &119699437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119699425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee23aac442362243a13df792710463a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &119982542
 GameObject:
   m_ObjectHideFlags: 0
@@ -46210,36 +46223,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8755149546233945264, guid: 5d91eefed66843f4f93c229adba9eb88, type: 3}
   m_PrefabInstance: {fileID: 921876446}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &923702754
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 923702755}
-  m_Layer: 0
-  m_Name: checkpos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &923702755
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 923702754}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0027, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1314126904}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &924217333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80322,7 +80305,6 @@ GameObject:
   - component: {fileID: 1314126905}
   - component: {fileID: 1314126911}
   - component: {fileID: 1314126910}
-  - component: {fileID: 1314126912}
   m_Layer: 0
   m_Name: Pivot (7)
   m_TagString: Untagged
@@ -80342,7 +80324,6 @@ Transform:
   m_LocalScale: {x: 278.08835, y: 585.1279, z: 585.1279}
   m_Children:
   - {fileID: 3884089775926310269}
-  - {fileID: 923702755}
   m_Father: {fileID: 0}
   m_RootOrder: 72
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -80604,21 +80585,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorstepsfx: {fileID: 2722334566001049483, guid: f1e5d7d6b93d2a743b9c9e914a76b56f, type: 3}
---- !u!114 &1314126912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1314126903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cf0aa60c6114904aa6e4c3f68feb17d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorSensitivity: 3
-  maxDetectionRange: 15
-  CheckPos: {fileID: 923702755}
 --- !u!1 &1314413971
 GameObject:
   m_ObjectHideFlags: 0

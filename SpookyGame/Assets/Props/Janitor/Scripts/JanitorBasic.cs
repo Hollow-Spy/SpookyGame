@@ -188,12 +188,12 @@ public class JanitorBasic : MonoBehaviour
     {
 
         Instantiate(PunchSFX, transform.position, Quaternion.identity);
+        maincamera.GetComponent<CameraShake>().ShakeScreen(0.24f, 0.021f, 0.35f);
         if(hurteffect.weight == 0)
         {
             
             cooldown = 3f;
             Physics.IgnoreCollision(GetComponent<BoxCollider>(), GameObject.FindGameObjectWithTag("Player").GetComponent<CapsuleCollider>(), true);
-
             player.enabled = false;
             playerpos.GetComponent<Rigidbody>().AddForce(transform.forward * 10,ForceMode.Impulse);
             hurteffect.weight = 1;
@@ -206,7 +206,7 @@ public class JanitorBasic : MonoBehaviour
         }
         else
         {
-           
+            maincamera.GetComponent<PlayerInteract>().active = false;
             agent.speed = BasicSpeed * 4;
             Instantiate(punchblackout, transform.position, Quaternion.identity);
             grabcoroutine = GrabCutscene();
@@ -225,9 +225,13 @@ public class JanitorBasic : MonoBehaviour
             hurteffect.weight -= Time.deltaTime * .25f * HurtTimeMultiplier;
             yield return new WaitForSeconds(.01f);
         }
-        glitchsound.StopSound();
-        GlitchEffect.enabled = false;
-        hurteffect.weight = 0;
+        if(maincamera.gameObject.activeInHierarchy)
+        {
+            glitchsound.StopSound();
+            GlitchEffect.enabled = false;
+            hurteffect.weight = 0;
+        }
+      
         yield return null;
 
     }
@@ -308,6 +312,7 @@ public class JanitorBasic : MonoBehaviour
             yield return new WaitForSeconds(5);
             transform.position = PatrolPoints[Random.Range(2, 4)].position;
             agent.SetDestination(PatrolPoints[Random.Range(0, PatrolPoints.Length)].position);
+            
             Chasing = false;
             inRange = false;
             inCutscene = false;
@@ -325,6 +330,14 @@ public class JanitorBasic : MonoBehaviour
             maincamera.tag = "MainCamera";
             player.speed = OGplayerspeed;
             maincamera.fieldOfView = 60;
+            maincamera.GetComponent<PlayerInteract>().active = true;
+            glitchsound.StopSound();
+            GlitchEffect.enabled = false;
+            hurteffect.weight = 0;
+            
+            blind = true;
+            yield return new WaitForSeconds(2);
+            blind = false;
 
 
         }
@@ -605,23 +618,22 @@ public class JanitorBasic : MonoBehaviour
     IEnumerator ChaseFOVNumerator()
     {
         yield return new WaitForSeconds(.2f);
-        while(maincamera.fieldOfView < 80 && Chasing)
+        while(maincamera.fieldOfView > 40 && Chasing)
         {
             yield return null;
-            maincamera.fieldOfView += 12 * Time.deltaTime;
+            maincamera.fieldOfView -= 12 * Time.deltaTime;
         }
-        maincamera.fieldOfView = 80;
+        maincamera.fieldOfView = 40;
     }
 
     IEnumerator ChaseNumerator()
     {
-        if(ChaseFOVCoroutine == null)
+      /*  if(ChaseFOVCoroutine == null)
         {
-           
-            ChaseFOVCoroutine = ChaseFOVNumerator();
-            StartCoroutine(ChaseFOVCoroutine);
-        }
-
+            ChaseFOVCoroutine = ChaseFOVNumerator();    
+        }*/
+        StartCoroutine(ChaseFOVNumerator());
+       
 
         SayVoice("Chase");
         detectionSound.Stop();
@@ -710,10 +722,10 @@ public class JanitorBasic : MonoBehaviour
             yield return null;
             chasesong.volume -= Time.deltaTime;
         }
-        while(maincamera.fieldOfView > 60)
+        while(maincamera.fieldOfView < 60)
         {
             yield return null;
-            maincamera.fieldOfView -= 8 * Time.deltaTime;
+            maincamera.fieldOfView += 8 * Time.deltaTime;
         }
         maincamera.fieldOfView = 60;
       
