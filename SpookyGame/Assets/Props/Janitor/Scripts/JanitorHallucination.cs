@@ -4,18 +4,35 @@ using UnityEngine;
 
 public class JanitorHallucination : MonoBehaviour
 {
-  [SerializeField]  LayerMask masks;
-  [SerializeField]  Transform cameratransform;
-    [SerializeField] float radius;
-    
- 
+    [SerializeField] JumpscareFOV fov;
+    [SerializeField] Collider colliderObj;
+    bool active;
+    [SerializeField] float WaitTilFade;
+    [SerializeField] GameObject ScarySound;
+
+    private void OnEnable()
+    {
+        active = true;
+    }
+
     private void Update()
     {
-       
-        RaycastHit hit;
-        if(Physics.SphereCast(cameratransform.position,radius,cameratransform.forward,out hit, 10,masks) && hit.collider.gameObject == gameObject)
+        if(fov.Refs.Count > 0)
         {
-            Debug.Log("Hit");
+          if(fov.CheckVision(colliderObj.transform) && active)
+            {
+                active = false;
+                StartCoroutine(FadeAway());
+            }
         }
     }
+
+    IEnumerator FadeAway()
+    {
+        yield return new WaitForSeconds(WaitTilFade);
+        Instantiate(ScarySound, transform.position, Quaternion.identity);
+        gameObject.SetActive(false);
+    }
+
+
 }

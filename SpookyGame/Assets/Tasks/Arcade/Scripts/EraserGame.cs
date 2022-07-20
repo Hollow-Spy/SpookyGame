@@ -24,6 +24,7 @@ public class EraserGame : MonoBehaviour
     [SerializeField] Canvas thecanvas;
 
     [SerializeField] arcadeinteract arcadeInteract;
+    [SerializeField] GameObject JanitorJumpscare;
 
     Vector3 spawnpos;
     
@@ -140,6 +141,7 @@ public class EraserGame : MonoBehaviour
 
             if(!music.isPlaying)
             {
+                JanitorJumpscare.SetActive(true);
                 arcadeInteract.TaskComplete(false);
 
             }

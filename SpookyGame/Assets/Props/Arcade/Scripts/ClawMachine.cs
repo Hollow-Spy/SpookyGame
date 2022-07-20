@@ -43,6 +43,7 @@ public class ClawMachine : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Soda.transform.SetParent(null);
         Soda.GetComponent<Rigidbody>().isKinematic = false;
+        Soda.layer = 8;
 
     }
 

@@ -30,6 +30,20 @@ public class JumpscareFOV : MonoBehaviour
         StartCoroutine(FOVRoutine());
     }
 
+    public bool CheckVision(Transform objSeen)
+    {
+        bool seen=false;
+        for(int i=0;i<Refs.Count;i++)
+        {
+            if(Refs[i].transform == objSeen )
+            {
+                seen = true;
+            }
+        }
+
+        return seen;
+    }
+
     private IEnumerator FOVRoutine()
     {
         WaitForSeconds wait = new WaitForSeconds(0.2f);
@@ -38,6 +52,7 @@ public class JumpscareFOV : MonoBehaviour
         {
             yield return wait;
             FieldOfViewCheck();
+            ListObjectCheck();
         }
     }
 
@@ -45,6 +60,34 @@ public class JumpscareFOV : MonoBehaviour
     private void ListObjectCheck()
     {
 
+        for(int b=0;b<Refs.Count;b++)
+        {
+
+    
+        Transform target = Refs[b].transform;
+        Vector3 directionToTarget = (target.position - new Vector3(transform.position.x, transform.position.y, transform.position.z)).normalized;
+
+        if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
+        {
+            float distanceToTarget = Vector3.Distance(new Vector3(transform.position.x, transform.position.y, transform.position.z), target.position);
+
+            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z), directionToTarget, distanceToTarget, obstructionMask))
+            {
+                    Refs.RemoveAt(b);
+                    b = 0;
+            }
+         
+
+        }
+        else
+            {
+                Refs.RemoveAt(b);
+                b = 0;
+            }
+               
+            
+
+        }
     }
 
     private void FieldOfViewCheck()
@@ -53,27 +96,44 @@ public class JumpscareFOV : MonoBehaviour
 
         if (rangeChecks.Length != 0)
         {
-            Transform target = rangeChecks[0].transform;
-            Vector3 directionToTarget = (target.position - new Vector3(transform.position.x, transform.position.y , transform.position.z)).normalized;
-
-            if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
+            for(int i=0;i<rangeChecks.Length;i++)
             {
-                float distanceToTarget = Vector3.Distance(new Vector3(transform.position.x, transform.position.y, transform.position.z), target.position);
+                Transform target = rangeChecks[i].transform;
+                Vector3 directionToTarget = (target.position - new Vector3(transform.position.x, transform.position.y, transform.position.z)).normalized;
 
-                if (!Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z), directionToTarget, distanceToTarget, obstructionMask))
+                if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
                 {
-                   
-                    canSeePlayer = true;
-                   
+                    float distanceToTarget = Vector3.Distance(new Vector3(transform.position.x, transform.position.y, transform.position.z), target.position);
+
+                    if (!Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z), directionToTarget, distanceToTarget, obstructionMask))
+                    {
+
+                        //   canSeePlayer = true;
+                        bool alreadyexist=false;
+                        for(int a=0;a<Refs.Count;a++)
+                        {
+                           if(target.gameObject == Refs[a].gameObject )
+                            {
+                                alreadyexist = true;
+                            }
+                        }
+                        if(!alreadyexist)
+                        {
+                            Refs.Add(target.gameObject);
+                        }
+
+
+                    }
+                    else
+                    {
+                        canSeePlayer = false;
+                    }
+
                 }
                 else
-                {
                     canSeePlayer = false;
-                }
-                  
             }
-            else
-                canSeePlayer = false;
+           
         }
         else if (canSeePlayer)
             canSeePlayer = false;
