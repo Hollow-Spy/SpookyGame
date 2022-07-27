@@ -42,7 +42,7 @@ public class Locker : MonoBehaviour
 
         if (rotate)
         {
-            objToRotate.transform.rotation = Quaternion.Slerp(objToRotate.transform.rotation, targetRotation, speed * Time.deltaTime);
+            objToRotate.transform.rotation = Quaternion.SlerpUnclamped(objToRotate.transform.rotation, targetRotation, speed * Time.deltaTime);
             //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
             if (objToRotate.transform.rotation.normalized == targetRotation.normalized)
             {
