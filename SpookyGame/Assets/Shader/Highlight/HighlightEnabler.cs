@@ -6,7 +6,7 @@ public class HighlightEnabler : MonoBehaviour
 {
     [SerializeField] GameObject HighlightObject;
     Renderer render;
-    Transform playerpos;
+   [SerializeField] Transform playerpos;
     [SerializeField] LayerMask masks;
     [SerializeField] Collider TaskCollider;
     bool HighlightsEnabled;
@@ -34,7 +34,7 @@ public class HighlightEnabler : MonoBehaviour
 
     private void Start()
     {
-        playerpos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+      
         render = HighlightObject.GetComponent<Renderer>();
        
     }

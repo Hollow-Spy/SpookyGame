@@ -80,6 +80,7 @@ public class JanitorBasic : MonoBehaviour
     [SerializeField] GameObject swingSFX,PunchSFX;
     [SerializeField] GameObject ChocoParticles;
     [SerializeField] AudioSource CurrentVoice;
+    [SerializeField] GameObject StompSFX;
     int LastVoicePriority;
     void Awake()
     {
@@ -341,15 +342,7 @@ public class JanitorBasic : MonoBehaviour
 
 
         }
-        else
-        {
-            yield return new WaitForSeconds(4);
-            GameObject screen = Instantiate(LoseScreen, transform.position, Quaternion.identity);
-            screen.GetComponentInChildren<Text>().text = "The Janitor Caught You";
-
-
-
-        }
+  
 
     }
 
@@ -554,13 +547,41 @@ public class JanitorBasic : MonoBehaviour
         Instantiate(BlackOutScreen, transform.position, Quaternion.identity);
     }
 
+
+    IEnumerator KillingPlayer()
+    {
+        SayVoice("Death");
+        yield return null;
+
+        int randomkill = Random.Range(0, 0);
+
+        switch(randomkill)
+        {
+            case 0:
+                animator.Play("StompKill");
+                grabcamera.GetComponent<Animator>().Play("StompCam");  
+                break;
+        }
+
+    }
+    public void StompSound()
+    {
+        Instantiate(StompSFX, transform.position, Quaternion.identity);
+    }
+
+    public void LoseScreenFunc(string message)
+    {
+        GameObject screen = Instantiate(LoseScreen, transform.position, Quaternion.identity);
+        screen.GetComponentInChildren<Text>().text = message;
+    }
+
+
     public void JanitorGrabFreezer()
     {
         if(SecondCatch)
         {
-            grabcamera.GetComponent<Animator>().SetTrigger("kill");
-            SayVoice("Death");
 
+            StartCoroutine(KillingPlayer());
 
         }
         else

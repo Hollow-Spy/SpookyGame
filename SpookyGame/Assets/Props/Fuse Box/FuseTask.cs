@@ -14,7 +14,7 @@ public class FuseTask : MonoBehaviour
     private Lights Lit;
     AudioSource audioplayer;
    [SerializeField] AudioClip[] hitsounds;
-
+    [SerializeField] GameObject JumpscareObject;
 
 
 
@@ -44,6 +44,13 @@ public class FuseTask : MonoBehaviour
         rotate();
         active = false;
         AmbienceGameObject.SetActive(false);
+
+        int chance = Random.Range(0, 5);
+        if(chance == 0)
+        {
+            JumpscareObject.SetActive(true);
+        }
+
     }
     public void Interaction()    //as long as we are active we can flick the fuse box
     {

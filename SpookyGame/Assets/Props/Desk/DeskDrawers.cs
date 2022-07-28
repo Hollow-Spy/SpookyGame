@@ -11,8 +11,11 @@ public class DeskDrawers : MonoBehaviour
 
     public Vector3 openPos, closedPos, targetPos;
 
+    [SerializeField] AudioSource drawerAudioSource;
+
     void Start()
     {
+        drawerAudioSource = GetComponent<AudioSource>();
         closedPos = transform.localPosition;    // I'm using localPosition so that it work if object is rotated 
         openPos = closedPos + new Vector3(0f, -0.00377f, 0f);
     }
@@ -50,6 +53,8 @@ public class DeskDrawers : MonoBehaviour
     public void Interaction()
     {
         moving = true;
+        drawerAudioSource.pitch = Random.Range(.8f, 1.1f);
+        drawerAudioSource.Play();
     }
 
 
