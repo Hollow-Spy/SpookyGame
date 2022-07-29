@@ -81,6 +81,7 @@ public class JanitorBasic : MonoBehaviour
     [SerializeField] GameObject ChocoParticles;
     [SerializeField] AudioSource CurrentVoice;
     [SerializeField] GameObject StompSFX;
+    [SerializeField] GameObject SmallBlackout;
     int LastVoicePriority;
     void Awake()
     {
@@ -348,6 +349,8 @@ public class JanitorBasic : MonoBehaviour
 
 
 
+
+
     private void OnTriggerStay(Collider other)
     {
         if(!isEating && !inCutscene)
@@ -548,21 +551,41 @@ public class JanitorBasic : MonoBehaviour
     }
 
 
+   
+
     IEnumerator KillingPlayer()
     {
-        SayVoice("Death");
+        
         yield return null;
-
-        int randomkill = Random.Range(0, 0);
+        int randomkill = Random.Range(0, 2);
 
         switch(randomkill)
         {
             case 0:
+                SayVoice("Death");
                 animator.Play("StompKill");
                 grabcamera.GetComponent<Animator>().Play("StompCam");  
                 break;
+            case 1:
+                yield return new WaitForSeconds(2);
+                Instantiate(SmallBlackout, transform.position, Quaternion.identity);
+                animator.Play("PunchKill");
+                grabcamera.GetComponent<Animator>().Play("PunchKillCam");
+                break;
+
         }
 
+    }
+    ///                          ///
+    /// ANIMATION HELPERS &      ///
+    ///     SOUNDS              ///
+    public void PunchHitSFXFunc()
+    {
+        Instantiate(PunchSFX, transform.position, Quaternion.identity);
+    }
+    public void SwingSFXFunc()
+    {
+        Instantiate(swingSFX, transform.position, Quaternion.identity);
     }
     public void StompSound()
     {
