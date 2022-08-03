@@ -20,6 +20,7 @@ public class PipeTaskMeter : MonoBehaviour
     [SerializeField] float PipeShakeDivider;
     [SerializeField] float pipevolume;
     [SerializeField] GameObject CurrenctActivatorObj;
+    [SerializeField] AudioSource TickSound;
 
     float PressureIncrement=1;
     int SolidPressureIncrement=1;
@@ -54,7 +55,7 @@ public class PipeTaskMeter : MonoBehaviour
             }
             Tick = TickTimer;
 
-
+           
 
             CurrentRot += SolidPressureIncrement;
             PressureIncrement += Time.deltaTime * 3;
@@ -66,6 +67,13 @@ public class PipeTaskMeter : MonoBehaviour
                 CurrenctActivatorObj.SendMessage("PressureBroke");
             }
             lastLevelCheck = CurrentLevel;
+
+            TickSound.pitch = 1 + PressureIncrement / 5;
+            if (!TickSound.isPlaying)
+            {
+                TickSound.Play();
+              
+            }
         }
         else
         {
