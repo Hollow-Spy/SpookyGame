@@ -25,6 +25,7 @@ public class PlayerInteract : MonoBehaviour
                 {
                     hit.transform.gameObject.SendMessage("Interaction");
                 }
+                
             }
             else
             {
