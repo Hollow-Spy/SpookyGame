@@ -28,10 +28,13 @@ public class PipeTaskButtonOne : MonoBehaviour
             if (Input.GetMouseButton(0) && Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, 2, InteractiveLayer) && hit.transform.gameObject == gameObject)
             {
                 Meter.ReducePressure();
+                Meter.busy = true;
             }
             else
             {
                 ButtonUnpressed();
+                Meter.busy = false;
+
             }
         }
      
@@ -42,6 +45,7 @@ public class PipeTaskButtonOne : MonoBehaviour
 
     void ButtonUnpressed()
     {
+        Meter.busy = false;
         Pressing = false;
         Meter.ResetPressureTimer();
         Instantiate(UnpressSound, transform.position, Quaternion.identity);

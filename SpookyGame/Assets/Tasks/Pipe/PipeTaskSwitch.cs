@@ -8,6 +8,7 @@ public class PipeTaskSwitch : MonoBehaviour
     [SerializeField] Material FlippedOnMat, FlippedOffMat;
     [SerializeField] MeshRenderer switchRenderer;
     [SerializeField] PipeTaskSwitchManager manager;
+    [SerializeField] GameObject FlipSoundOn, FlipSoundOff;
    public void Interaction()
     {
         if(!Flipped)
@@ -16,6 +17,7 @@ public class PipeTaskSwitch : MonoBehaviour
             switchRenderer.material = FlippedOnMat;
             gameObject.layer = 0;
             manager.SwitchFlip();
+            Instantiate(FlipSoundOn, transform.position, Quaternion.identity);
         }
     }
 
@@ -27,6 +29,8 @@ public class PipeTaskSwitch : MonoBehaviour
             Flipped = false;
             gameObject.layer = 8;
             switchRenderer.material = FlippedOffMat;
+            Instantiate(FlipSoundOff, transform.position, Quaternion.identity);
+
         }
     }
 

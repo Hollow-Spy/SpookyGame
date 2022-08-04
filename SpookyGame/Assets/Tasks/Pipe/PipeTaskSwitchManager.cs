@@ -30,6 +30,7 @@ public class PipeTaskSwitchManager : MonoBehaviour
     }
     public void PressureBroke()
     {
+        meter.busy = false;
         switchFrame.ShakeScreen(0.16f, 0.021f, 0.35f);
         meter.ResetPressureTimer();
         StopAllCoroutines();
@@ -43,10 +44,12 @@ public class PipeTaskSwitchManager : MonoBehaviour
 
         IEnumerator FlipTimer()
     {
-        float TimerValue = Random.Range(1, 3);
+        float TimerValue = Random.Range(1, 2);
         while (TimerValue > 0)
         {
             meter.ReducePressure();
+            meter.busy = true;
+
             TimerValue -= Time.deltaTime;
             yield return null;
         }
@@ -80,6 +83,8 @@ public class PipeTaskSwitchManager : MonoBehaviour
                 break;
         }
         meter.ResetPressureTimer();
+        meter.busy = false;
+
 
     }
 

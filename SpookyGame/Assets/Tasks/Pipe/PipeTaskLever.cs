@@ -46,7 +46,8 @@ public class PipeTaskLever : MonoBehaviour
                     {
                         GreenLight.SetActive(true);
                         Meter.ReducePressure();
-                        if(!ClickOnce)
+                        Meter.busy = true;
+                        if (!ClickOnce)
                         {
                             ClickOnce = true;
                             Instantiate(ClickSound, transform.position, Quaternion.identity);
@@ -65,6 +66,7 @@ public class PipeTaskLever : MonoBehaviour
             else
             {
                  ButtonUnpressed();
+                Meter.busy = false;
             }
         }
 
@@ -90,6 +92,7 @@ public class PipeTaskLever : MonoBehaviour
 
     void ButtonUnpressed()
     {
+        Meter.busy = false;
         ClickOnce = false;
         CreakOnce = false;
         Pressing = false;

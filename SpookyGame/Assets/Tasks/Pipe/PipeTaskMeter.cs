@@ -14,7 +14,7 @@ public class PipeTaskMeter : MonoBehaviour
     [SerializeField] AudioSource SmokeSound, PipeSound;
     [SerializeField] float decaySpeed;
 
-    float CurrentLevel=1;
+   public float CurrentLevel=1;
 
     [SerializeField] float frequencyShake, MagnitudeShake;
     [SerializeField] float PipeShakeDivider;
@@ -30,6 +30,10 @@ public class PipeTaskMeter : MonoBehaviour
 
     float lastLevelCheck=0;
 
+    public bool busy;
+
+   
+
     private void Start()
     {
         OGPipePos = PipeObj.transform.localPosition;
@@ -37,6 +41,9 @@ public class PipeTaskMeter : MonoBehaviour
 
     private void OnEnable()
     {
+        CurrentRot = Random.Range(358, 245);
+        decaySpeed = Random.Range(0.1f, 0.2f);
+
         ResetPressureTimer();
         StartCoroutine(DecayMeterNumerator());
         StartCoroutine(PointerShacker());
