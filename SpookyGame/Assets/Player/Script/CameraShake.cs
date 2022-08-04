@@ -10,7 +10,7 @@ public class CameraShake : MonoBehaviour
     {
         OGPos = transform.localPosition;
     }
-    //cam hit default: 0.16f ; 0.021f ; 0.35f
+    //cam hit default: 0.16f , 0.021f , 0.35f
 
    /* private void Update()
     {
