@@ -73,6 +73,7 @@ public class JanitorBasic : MonoBehaviour
 
     float contactTime;
 
+    [SerializeField] bool RandomizeSpawn;
     bool inCutscene;
     public AudioSource detectionSound, chasesong, walkSound;
     [SerializeField] VHSPostProcessEffect GlitchEffect;
@@ -93,6 +94,11 @@ public class JanitorBasic : MonoBehaviour
       playerpos = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         fov = GetComponent<JanitorFOV>();
+
+        if(RandomizeSpawn)
+        {
+            agent.Warp(PatrolPoints[Random.Range(0, PatrolPoints.Length)].position); 
+        }
     }
     
     public void SayVoice(string spot)
@@ -312,7 +318,8 @@ public class JanitorBasic : MonoBehaviour
             }
 
             yield return new WaitForSeconds(5);
-            transform.position = PatrolPoints[Random.Range(2, 4)].position;
+            agent.Warp(PatrolPoints[Random.Range(2, 4)].position);
+
             agent.SetDestination(PatrolPoints[Random.Range(0, PatrolPoints.Length)].position);
             
             Chasing = false;
