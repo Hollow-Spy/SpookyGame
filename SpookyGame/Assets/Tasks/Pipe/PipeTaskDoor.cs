@@ -8,7 +8,7 @@ public class PipeTaskDoor : MonoBehaviour
     [SerializeField] Transform DoorRotTarget;
     [SerializeField] GameObject PipeObjs;
     Quaternion InitialRot;
-    [SerializeField] GameObject DoorSound;
+    [SerializeField] GameObject DoorSoundOpen,DoorSoundClose;
     private void Start()
     {
         InitialRot = transform.rotation;
@@ -19,7 +19,7 @@ public class PipeTaskDoor : MonoBehaviour
         if(!Open)
         {
             Open = true;
-            Instantiate(DoorSound, transform.position, Quaternion.identity);
+            Instantiate(DoorSoundOpen, transform.position, Quaternion.identity);
             gameObject.layer = 0;
             StartCoroutine(OpenDoorNumerator());
         }
@@ -27,7 +27,7 @@ public class PipeTaskDoor : MonoBehaviour
     }
     public void CloseDoor()
     {
-        Instantiate(DoorSound, transform.position, Quaternion.identity);
+        Instantiate(DoorSoundClose, transform.position, Quaternion.identity);
 
         gameObject.layer = 0;
         Open = false;
