@@ -482,6 +482,13 @@ public class JanitorBasic : MonoBehaviour
     {
         animator.SetFloat("walkspeed", 1);
         agent.speed = BasicSpeed;
+
+        while (chasesong.volume > 0)
+        {
+            yield return null;
+            chasesong.volume -= Time.deltaTime;
+        }
+
         while (Wandering)
         {
             Vector3 randompatrol = PatrolPoints[Random.Range(0, PatrolPoints.Length)].position;

@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody body;
     public bool is_crouched;
      public float speed;
+    public float OGSpeed, SlowSpeed;
     public float sprintmultiplier;
     [SerializeField] float sensitivity;
     [SerializeField] float jumpforce;

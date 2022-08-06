@@ -17,7 +17,10 @@ public class FuseTask : MonoBehaviour
     [SerializeField] GameObject JumpscareObject;
 
 
-
+    private void Start()
+    {
+        audioplayer = GetComponent<AudioSource>();
+    }
     void Update()
     {
         lightHandler = GameObject.Find("RotationPoint");
