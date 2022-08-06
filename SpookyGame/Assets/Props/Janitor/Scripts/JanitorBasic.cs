@@ -74,7 +74,7 @@ public class JanitorBasic : MonoBehaviour
     float contactTime;
 
     [SerializeField] bool RandomizeSpawn;
-    bool inCutscene;
+   public  bool inCutscene;
     public AudioSource detectionSound, chasesong, walkSound;
     [SerializeField] VHSPostProcessEffect GlitchEffect;
     [SerializeField] GlitchSound glitchsound;
@@ -241,6 +241,32 @@ public class JanitorBasic : MonoBehaviour
         }
       
         yield return null;
+
+    }
+
+    public void ChaseSlip()
+    {
+        if(Chasing)
+        {
+            StartCoroutine(ChaseSlipNumerator());
+            
+
+        }
+    }
+    
+    IEnumerator ChaseSlipNumerator()
+    {
+        agent.isStopped = true;
+        animator.SetBool("sad", true);
+
+        CurrentVoice.clip = voices.Idle.Lines[8];
+        CurrentVoice.Play();
+        LastVoicePriority = voices.Idle.priority;
+
+        yield return new WaitForSeconds(1.5f);
+        animator.SetBool("sad", false);
+        agent.isStopped = false;
+
 
     }
 

@@ -12,14 +12,24 @@ public class PauseMenuScript : MonoBehaviour
     [SerializeField] GameObject[] menuSelectArrow;
     [SerializeField] GameObject WholeMenu,OptionsMenu,SmallPauseMenu;
     [SerializeField] GameObject AppearSound, DissapearSound,ClickSound;
-    
+
+    bool playerWasDisabled;
 
     private void OnEnable()
     {
        
         if(FindObjectOfType<PlayerController>() )
         {
-            FindObjectOfType<PlayerController>().enabled = false;
+            if (FindObjectOfType<PlayerController>().enabled)
+            {
+                FindObjectOfType<PlayerController>().enabled = false;
+                playerWasDisabled = false;
+            }
+            else
+            {
+                playerWasDisabled = true;
+            }
+          
         }
        
         Instantiate(AppearSound, transform.position, Quaternion.identity);
@@ -77,7 +87,7 @@ public class PauseMenuScript : MonoBehaviour
                 Time.timeScale = 1;
                 WholeMenu.SetActive(false);
                 Instantiate(DissapearSound, transform.position, Quaternion.identity);
-                if (FindObjectOfType<PlayerController>())
+                if (FindObjectOfType<PlayerController>() && !playerWasDisabled)
                 {
                     FindObjectOfType<PlayerController>().enabled = true;
                 }
