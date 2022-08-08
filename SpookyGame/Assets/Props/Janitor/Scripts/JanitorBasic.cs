@@ -74,6 +74,10 @@ public class JanitorBasic : MonoBehaviour
     float contactTime;
 
     [SerializeField] bool RandomizeSpawn;
+
+    [SerializeField] bool SpawnWetFloor;
+    [SerializeField] GameObject Wetsign;
+
    public  bool inCutscene;
     public AudioSource detectionSound, chasesong, walkSound;
     [SerializeField] VHSPostProcessEffect GlitchEffect;
@@ -91,16 +95,34 @@ public class JanitorBasic : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>();
 
         OGplayerspeed = player.speed;
-      playerpos = GameObject.FindGameObjectWithTag("Player").transform;
+        playerpos = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         fov = GetComponent<JanitorFOV>();
 
-        if(RandomizeSpawn)
+        if (RandomizeSpawn)
         {
-            agent.Warp(PatrolPoints[Random.Range(0, PatrolPoints.Length)].position); 
+            agent.Warp(PatrolPoints[Random.Range(0, PatrolPoints.Length)].position);
+        }
+        if (SpawnWetFloor)
+        {
+            StartCoroutine(SpawningWetFloorNumnerator());
         }
     }
     
+    IEnumerator SpawningWetFloorNumnerator()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(Random.Range(25, 35));
+            if(!Chasing)
+            {
+               GameObject spawn = Instantiate(Wetsign, transform.position, Wetsign.transform.rotation);
+                spawn.transform.eulerAngles = new Vector3(spawn.transform.eulerAngles.x, Random.Range(0, 360), spawn.transform.eulerAngles.z);
+                spawn.transform.position = new Vector3(spawn.transform.position.x, spawn.transform.position.y + 0.320416f, spawn.transform.position.z);
+            }
+        }
+    }
+
     public void SayVoice(string spot)
     {
       switch(spot)

@@ -9,17 +9,41 @@ public class WetSignSlow : MonoBehaviour
     JanitorBasic Jani;
     Transform CamTrans;
     [SerializeField] GameObject SlipSound;
+
+    Transform playerbody;
     private void Start()
     {
          controller = GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>();
         Jani = GameObject.FindGameObjectWithTag("Janitor").GetComponent<JanitorBasic>();
         CamTrans = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        playerbody = GameObject.FindGameObjectWithTag("Player").transform;
+
+        StartCoroutine(DissapearCoroutine());
+
     }
+
+
+    IEnumerator DissapearCoroutine()
+    {
+        yield return new WaitForSeconds(20);
+
+        while (Vector3.Distance(transform.position,playerbody.position) < 15 )
+        {
+            yield return null;
+
+        }
+
+        Destroy(gameObject);
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Player") )
         {
             controller.speed = controller.SlowSpeed;
+            other.GetComponentInChildren<Footprint>().TimeActive = 10;
+           
+       
 
             if(controller.is_sprinting && !SlipCooldown)
             {

@@ -19,7 +19,7 @@ public class StepSounds : MonoBehaviour
     void Update()
     {
         
-        if(controller.is_walking)
+        if(controller.is_walking && !controller.is_airborn)
         {
            
             delay -= Time.deltaTime;
