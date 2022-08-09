@@ -28,7 +28,11 @@ public class HighlightEnabler : MonoBehaviour
     }
     private void OnDisable()
     {
-        HighlightObject.SetActive(false);
+        if(HighlightObject)
+        {
+            HighlightObject.SetActive(false);
+        }
+      
 
     }
 

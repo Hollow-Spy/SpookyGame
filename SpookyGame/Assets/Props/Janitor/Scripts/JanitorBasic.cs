@@ -78,6 +78,9 @@ public class JanitorBasic : MonoBehaviour
     [SerializeField] bool SpawnWetFloor;
     [SerializeField] GameObject Wetsign;
 
+
+    [SerializeField] int InvestigationPatiences=3;
+
    public  bool inCutscene;
     public AudioSource detectionSound, chasesong, walkSound;
     [SerializeField] VHSPostProcessEffect GlitchEffect;
@@ -88,6 +91,8 @@ public class JanitorBasic : MonoBehaviour
     [SerializeField] GameObject StompSFX;
     [SerializeField] GameObject SmallBlackout;
     int LastVoicePriority;
+
+    
     void Awake()
     {
         maincamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -537,6 +542,14 @@ public class JanitorBasic : MonoBehaviour
             chasesong.volume -= Time.deltaTime;
         }
 
+        if (maincamera.gameObject.activeInHierarchy)
+        {
+            glitchsound.StopSound();
+            GlitchEffect.enabled = false;
+            hurteffect.weight = 0;
+        }
+
+
         while (Wandering)
         {
             Vector3 randompatrol = PatrolPoints[Random.Range(0, PatrolPoints.Length)].position;
@@ -678,10 +691,28 @@ public class JanitorBasic : MonoBehaviour
       
     }
 
+    IEnumerator RecharingPatiencesNumerator()
+    {
+        yield return new WaitForSeconds(10);
+        InvestigationPatiences = 3;
+    }
+
     public void Investigate(Vector3 pos)
     {
-        if((Wandering && !inCutscene && !isEating) || Investigating)
+        if((Wandering && !inCutscene && !isEating && !Chasing) || Investigating)
         {
+            if(Investigating)
+            {
+                InvestigationPatiences--;
+                if(InvestigationPatiences == 0)
+                {
+                    InvestigationPatiences = -1;
+                    StartCoroutine(RecharingPatiencesNumerator());
+                }
+
+            }
+
+           
             Wandering = false;
             StopAllCoroutines();
 
@@ -689,8 +720,15 @@ public class JanitorBasic : MonoBehaviour
             animator.SetBool("sad", false);
             animator.SetFloat("walkspeed", 1.2f);
 
-
-            agent.SetDestination(pos);
+            if (InvestigationPatiences <= 0)
+            {
+                agent.SetDestination(playerpos.position);
+            }
+            else
+            {
+                agent.SetDestination(pos);
+            }
+           
 
             IEnumerator InvestigationCoroutine = InvestigationNumerator();
             StartCoroutine(InvestigationCoroutine);

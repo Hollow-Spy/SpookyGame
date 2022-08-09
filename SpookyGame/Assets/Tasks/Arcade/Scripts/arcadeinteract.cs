@@ -45,13 +45,14 @@ public class arcadeinteract : MonoBehaviour
 
     private void OnDisable()
     {
-        if (Zoomed)
+        if (Zoomed && GameObject.FindGameObjectWithTag("Player") != null)
         {
             if (CameraPos)
             {
                 CameraPos.position = OGcam;
                 Crosshairs.SetActive(true);
             }
+            
             Cursor.lockState = CursorLockMode.Locked;
             GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>().enabled = true;
             GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().isKinematic = false;

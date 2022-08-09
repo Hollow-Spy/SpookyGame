@@ -15,6 +15,7 @@ public class Extinguisher : MonoBehaviour
     AudioSource soundplayer;
     Vector3 ogPos;
     bool active;
+    [SerializeField] LayerMask FireLayer;
     private void Awake()
     {
         soundplayer = GetComponent<AudioSource>();
@@ -28,7 +29,7 @@ public class Extinguisher : MonoBehaviour
         Particles.gameObject.SetActive(true);
         Particles.Stop();
 
-        Debug.Log("sec");
+       
 
         ExtinnguishPos.localPosition = ogPos;
         transform.position = SpawnPos.position;
@@ -116,7 +117,7 @@ public class Extinguisher : MonoBehaviour
 
                 RaycastHit hit;
 
-                if (Physics.Raycast(GameObject.FindGameObjectWithTag("MainCamera").transform.position, GameObject.FindGameObjectWithTag("MainCamera").transform.forward, out hit, 4))
+                if (Physics.SphereCast(GameObject.FindGameObjectWithTag("MainCamera").transform.position, 1, GameObject.FindGameObjectWithTag("MainCamera").transform.forward, out hit, 4,FireLayer))
                 {
                     if(hit.transform.gameObject == Fire)
                     {
