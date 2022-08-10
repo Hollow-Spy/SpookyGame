@@ -118,7 +118,7 @@ public class JanitorBasic : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(Random.Range(25, 35));
+            yield return new WaitForSeconds(Random.Range(15, 25));
             if(!Chasing)
             {
                GameObject spawn = Instantiate(Wetsign, transform.position, Wetsign.transform.rotation);
@@ -542,12 +542,7 @@ public class JanitorBasic : MonoBehaviour
             chasesong.volume -= Time.deltaTime;
         }
 
-        if (maincamera.gameObject.activeInHierarchy)
-        {
-            glitchsound.StopSound();
-            GlitchEffect.enabled = false;
-            hurteffect.weight = 0;
-        }
+      
 
 
         while (Wandering)

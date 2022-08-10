@@ -53,6 +53,8 @@ public class TaskOrganizer : MonoBehaviour
     [SerializeField] Text StreakText, StreakText2;
     [SerializeField] GameObject StreakIcon;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,6 +89,18 @@ public class TaskOrganizer : MonoBehaviour
 
 
         }
+    }
+
+
+    public void RemoveAllTaks()
+    {
+        StopAllCoroutines();
+
+        for (int i = 0; i < ActiveTasks.Count; i++)
+        {
+            ActiveTasks[i].TaskObject.SetActive(false);
+        }
+
     }
 
 

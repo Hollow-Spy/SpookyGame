@@ -158,7 +158,7 @@ public class WirePuzzle : MonoBehaviour
             }
             Vector3 currentScreenSpace = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPosition.z);
             Vector3 currentPosition = Camera.main.ScreenToWorldPoint(currentScreenSpace) + offset;
-            target.transform.position = currentPosition;
+            target.transform.position = new Vector3(currentPosition.x,currentPosition.y,target.transform.position.z);
             if (target.GetComponentInChildren<Wiring>().canMove == false)
             {
                 Vector3 snapOffset = new Vector3(-0.05f, 0.0f, 0.0f);

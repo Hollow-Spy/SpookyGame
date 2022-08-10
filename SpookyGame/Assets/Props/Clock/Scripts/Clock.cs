@@ -20,6 +20,8 @@ public class Clock : MonoBehaviour
     [SerializeField] int scoreToWin;
     [SerializeField] string currentLevel;
     [SerializeField] string levelToUnlock;
+
+    [SerializeField] TaskOrganizer taskorganizer;
      void Start()
     {
 
@@ -56,6 +58,8 @@ public class Clock : MonoBehaviour
             PlayerPrefs.SetInt(levelToUnlock, 1);
         }
 
+        taskorganizer.RemoveAllTaks();
+
         StartCoroutine(EndNumerator());
 
     }
@@ -82,9 +86,12 @@ public class Clock : MonoBehaviour
 
             if(time >= secondsWorth)
            {
+           while(time > 0)
+            {
+                time -= secondsWorth;
+                seconds++;
+            }
            
-            time -= secondsWorth;
-            seconds++;
             if (seconds >= 60)
             {
                 seconds = 0;
