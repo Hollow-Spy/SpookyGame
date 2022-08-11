@@ -72,6 +72,8 @@ public class HeadBop : MonoBehaviour
             frequency = ogfrequency;
         }
 
+     
+
         
             if (!controller.is_airborn && controller.is_walking)
             {

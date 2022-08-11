@@ -35928,6 +35928,7 @@ MonoBehaviour:
   - {fileID: 1756319670}
   BasicSpeed: 2
   freezerpos: {fileID: 1453194951}
+  Smallfade: {fileID: 1897467550834100449, guid: 5e89b6dd58a8e304fa2fde99b5199bb4, type: 3}
   punchposition: {fileID: 1334596846}
   maxDetection: 10
   punchtrigger: {fileID: 4983712818411525634, guid: 72a3b22b73e1e3c4d9439068131d55a5, type: 3}
@@ -35939,6 +35940,10 @@ MonoBehaviour:
   LoseScreen: {fileID: 3407166106537364294, guid: 48da5eea42ac5154ebf1ff3520e1284d, type: 3}
   hurteffect: {fileID: 754394098}
   RandomizeSpawn: 1
+  SpawnWetFloor: 0
+  Wetsign: {fileID: 1280607730725091726, guid: 65f001d2cc13636409fa7fc12d0ba8a3, type: 3}
+  InvestigationPatiences: 3
+  inCutscene: 0
   detectionSound: {fileID: 821525524}
   chasesong: {fileID: 518586387}
   walkSound: {fileID: 1325727254}
@@ -35946,6 +35951,7 @@ MonoBehaviour:
   glitchsound: {fileID: 119699434}
   swingSFX: {fileID: 1734439167276794758, guid: f1b9da9cea3084a48be47b1940992a77, type: 3}
   PunchSFX: {fileID: 7331217323139440859, guid: 75da1c1b9e16bed4dad3ab8f72a70216, type: 3}
+  FreezerImpactSFX: {fileID: 8836195470487505586, guid: a1e8666ba4117354ab4b5b0da3350495, type: 3}
   ChocoParticles: {fileID: 1225820994}
   CurrentVoice: {fileID: 934187272}
   StompSFX: {fileID: 436185985712430282, guid: 22b6a7790f7851f47a2b8f016c8d1c0a, type: 3}
@@ -55640,6 +55646,7 @@ MonoBehaviour:
   scoreToWin: 1000
   currentLevel: LevelUnlocked0
   levelToUnlock: LevelUnlocked1
+  taskorganizer: {fileID: 0}
 --- !u!1 &1099848456
 GameObject:
   m_ObjectHideFlags: 0
@@ -90098,6 +90105,8 @@ MonoBehaviour:
   body: {fileID: 804869205}
   is_crouched: 0
   speed: 3
+  OGSpeed: 0
+  SlowSpeed: 0
   sprintmultiplier: 2.5
   sensitivity: 3
   jumpforce: 8
@@ -111758,6 +111767,9 @@ MonoBehaviour:
   Particles: {fileID: 563573916}
   Fire: {fileID: 1880114660}
   FireOutParticle: {fileID: 2049483433983940327, guid: 1539c1bbeb3c8804d9a49674bca0fb46, type: 3}
+  FireLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &2142234464
 GameObject:
   m_ObjectHideFlags: 0

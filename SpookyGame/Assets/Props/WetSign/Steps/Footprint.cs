@@ -14,10 +14,7 @@ public class Footprint : MonoBehaviour
 
     public float TimeActive=10;
 
-    private void OnEnable()
-    {
-        TimeActive = 10;
-    }
+ 
 
     void Start()
     {

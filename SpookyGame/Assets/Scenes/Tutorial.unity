@@ -901,6 +901,7 @@ MonoBehaviour:
   - {fileID: 1621939742}
   BasicSpeed: 2
   freezerpos: {fileID: 33898973150378813}
+  Smallfade: {fileID: 1897467550834100449, guid: 5e89b6dd58a8e304fa2fde99b5199bb4, type: 3}
   punchposition: {fileID: 4051103}
   maxDetection: 10
   punchtrigger: {fileID: 4983712818411525634, guid: 72a3b22b73e1e3c4d9439068131d55a5, type: 3}
@@ -911,6 +912,11 @@ MonoBehaviour:
   punchblackout: {fileID: 2518971367554552950, guid: 63f9daeb1fb74404aaafb360fea39bfe, type: 3}
   LoseScreen: {fileID: 3407166106537364294, guid: 48da5eea42ac5154ebf1ff3520e1284d, type: 3}
   hurteffect: {fileID: 736925706}
+  RandomizeSpawn: 0
+  SpawnWetFloor: 0
+  Wetsign: {fileID: 0}
+  InvestigationPatiences: 3
+  inCutscene: 0
   detectionSound: {fileID: 1136650586}
   chasesong: {fileID: 102044976}
   walkSound: {fileID: 1562950182}
@@ -918,6 +924,7 @@ MonoBehaviour:
   glitchsound: {fileID: 33898973048123688}
   swingSFX: {fileID: 1734439167276794758, guid: f1b9da9cea3084a48be47b1940992a77, type: 3}
   PunchSFX: {fileID: 7331217323139440859, guid: 75da1c1b9e16bed4dad3ab8f72a70216, type: 3}
+  FreezerImpactSFX: {fileID: 8836195470487505586, guid: a1e8666ba4117354ab4b5b0da3350495, type: 3}
   ChocoParticles: {fileID: 1855737648}
   CurrentVoice: {fileID: 1398966981}
   StompSFX: {fileID: 436185985712430282, guid: 22b6a7790f7851f47a2b8f016c8d1c0a, type: 3}
@@ -71337,6 +71344,9 @@ MonoBehaviour:
   Particles: {fileID: 0}
   Fire: {fileID: 0}
   FireOutParticle: {fileID: 0}
+  FireLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &33898973442119278
 GameObject:
   m_ObjectHideFlags: 0
@@ -73880,6 +73890,8 @@ MonoBehaviour:
   body: {fileID: 33898972633600657}
   is_crouched: 0
   speed: 3
+  OGSpeed: 0
+  SlowSpeed: 0
   sprintmultiplier: 2.5
   sensitivity: 3
   jumpforce: 8
@@ -90955,6 +90967,7 @@ MonoBehaviour:
   scoreToWin: 0
   currentLevel: 
   levelToUnlock: 
+  taskorganizer: {fileID: 0}
 --- !u!1001 &33898974021989682
 PrefabInstance:
   m_ObjectHideFlags: 0

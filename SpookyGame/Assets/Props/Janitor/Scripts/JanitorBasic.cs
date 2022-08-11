@@ -57,6 +57,7 @@ public class JanitorBasic : MonoBehaviour
     float OGplayerspeed;
     [SerializeField] float BasicSpeed;
     [SerializeField] Transform freezerpos;
+    [SerializeField] GameObject Smallfade;
     [SerializeField] Transform punchposition;
     [SerializeField] float maxDetection;
     public GameObject punchtrigger;
@@ -77,7 +78,7 @@ public class JanitorBasic : MonoBehaviour
 
     [SerializeField] bool SpawnWetFloor;
     [SerializeField] GameObject Wetsign;
-
+    bool SecondCatchCheck;
 
     [SerializeField] int InvestigationPatiences=3;
 
@@ -85,12 +86,13 @@ public class JanitorBasic : MonoBehaviour
     public AudioSource detectionSound, chasesong, walkSound;
     [SerializeField] VHSPostProcessEffect GlitchEffect;
     [SerializeField] GlitchSound glitchsound;
-    [SerializeField] GameObject swingSFX,PunchSFX;
+    [SerializeField] GameObject swingSFX,PunchSFX,FreezerImpactSFX;
     [SerializeField] GameObject ChocoParticles;
     [SerializeField] AudioSource CurrentVoice;
     [SerializeField] GameObject StompSFX;
     [SerializeField] GameObject SmallBlackout;
     int LastVoicePriority;
+    
 
     
     void Awake()
@@ -346,6 +348,22 @@ public class JanitorBasic : MonoBehaviour
             {
                 walkSound.Play();
             }
+
+            while(!SecondCatchCheck)
+            {
+                yield return null;
+            }
+
+            if(Vector3.Distance(transform.position,freezerpos.position) > 30)
+            {
+                Instantiate(Smallfade, transform.position, Quaternion.identity);
+                agent.Warp(PatrolPoints[0].position);
+            }
+           
+            agent.SetDestination(freezerpos.position);
+            yield return new WaitForSeconds(.1f);
+
+
             while (agent.remainingDistance > .1f)
             {
                 
@@ -369,12 +387,18 @@ public class JanitorBasic : MonoBehaviour
                 animator.SetBool("grabunder", false);
 
             }
+            Instantiate(swingSFX, transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(.7f);
+            Instantiate(FreezerImpactSFX, transform.position, Quaternion.identity);
 
-            yield return new WaitForSeconds(5);
+
+            yield return new WaitForSeconds(4.3f);
             agent.Warp(PatrolPoints[Random.Range(2, 4)].position);
 
             agent.SetDestination(PatrolPoints[Random.Range(0, PatrolPoints.Length)].position);
-            
+        
+
+
             Chasing = false;
             inRange = false;
             inCutscene = false;
@@ -437,6 +461,12 @@ public class JanitorBasic : MonoBehaviour
                     animator.SetTrigger("punch");
                     Instantiate(swingSFX, transform.position, Quaternion.identity);
                     detection += detectionTime + 2;
+                    if(!Chasing)
+                    {
+                        Chasecoroutine = ChaseNumerator();
+                        StartCoroutine(Chasecoroutine);
+                        Chasing = true;
+                    }
 
                 }
 
@@ -681,7 +711,7 @@ public class JanitorBasic : MonoBehaviour
         {
            
             agent.speed = BasicSpeed * 2;
-            agent.SetDestination(freezerpos.position);
+            SecondCatchCheck = true;       
         }
       
     }

@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     public Locker currentlocker;
     Camera MainCam;
     [SerializeField] StaminaMeter staminameter;
-   
+ 
   
 
     public void Hiding(Vector3 pos, bool isdesk)
@@ -104,10 +104,13 @@ public class PlayerController : MonoBehaviour
         if (!Physics.CheckSphere(GroundCheck.position, .1f, GroundLayer))
         {
             is_airborn = true;
+           
+        
 
         }
         else
         {
+            
             is_airborn = false;
         }
 
@@ -155,12 +158,22 @@ public class PlayerController : MonoBehaviour
             if(Physics.CheckSphere(GroundCheck.position,.1f,GroundLayer ))
             {
                 body.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
-
+               
             }
         }
 
     }
-    
+
+
+   
+     
+      
+
+
+
+   
+
+
     void MoveCamera()
     {
         

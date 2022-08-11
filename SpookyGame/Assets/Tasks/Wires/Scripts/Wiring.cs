@@ -15,7 +15,16 @@ public class Wiring : MonoBehaviour
     void Start()
     {
         meshRenderer = GetComponentInChildren<MeshRenderer>();
-        Physics.IgnoreCollision(GetComponent<BoxCollider>(), GameObject.FindGameObjectWithTag("Player").GetComponent<CapsuleCollider>(), true);
+        try
+        {
+            Physics.IgnoreCollision(GetComponent<BoxCollider>(), GameObject.FindGameObjectWithTag("Player").GetComponent<CapsuleCollider>(), true);
+
+        }
+        catch
+        {
+
+        }
+       
     }
 
     public void SetMaterial(Material material)
