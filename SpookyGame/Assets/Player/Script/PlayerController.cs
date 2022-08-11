@@ -30,9 +30,11 @@ public class PlayerController : MonoBehaviour
     public Locker currentlocker;
     Camera MainCam;
     [SerializeField] StaminaMeter staminameter;
- 
-  
 
+    [SerializeField] GameObject JumpSFX;
+
+    bool LandSound;
+    [SerializeField] StepSounds stepsounds;
     public void Hiding(Vector3 pos, bool isdesk)
     {
         hiddendesk = isdesk;
@@ -104,14 +106,17 @@ public class PlayerController : MonoBehaviour
         if (!Physics.CheckSphere(GroundCheck.position, .1f, GroundLayer))
         {
             is_airborn = true;
-           
-        
-
+            LandSound = true;
         }
         else
         {
             
             is_airborn = false;
+            if(LandSound)
+            {
+                LandSound = false;
+                stepsounds.LandSound();
+            }
         }
 
 
@@ -158,7 +163,7 @@ public class PlayerController : MonoBehaviour
             if(Physics.CheckSphere(GroundCheck.position,.1f,GroundLayer ))
             {
                 body.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
-               
+                Instantiate(JumpSFX, transform.position, Quaternion.identity);
             }
         }
 

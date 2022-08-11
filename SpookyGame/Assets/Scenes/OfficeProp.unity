@@ -90112,6 +90112,8 @@ MonoBehaviour:
   jumpforce: 8
   currentlocker: {fileID: 0}
   staminameter: {fileID: 784551239}
+  JumpSFX: {fileID: 2872215436939404452, guid: 72c81147367733f4581ac5a2ebff3d67, type: 3}
+  stepsounds: {fileID: 119699432}
 --- !u!1 &1671997237
 GameObject:
   m_ObjectHideFlags: 0
@@ -116335,6 +116337,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 253466633, guid: 6c5df4b4c1d67f8498c3448d765ca0a2, type: 3}
+      propertyPath: m_Size.y
+      value: 1.9791756
+      objectReference: {fileID: 0}
+    - target: {fileID: 253466633, guid: 6c5df4b4c1d67f8498c3448d765ca0a2, type: 3}
+      propertyPath: m_Center.y
+      value: -0.48958778
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486977091181376281, guid: 6c5df4b4c1d67f8498c3448d765ca0a2, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4486977091450740678, guid: 6c5df4b4c1d67f8498c3448d765ca0a2, type: 3}
       propertyPath: m_RootOrder
       value: 276
@@ -116383,11 +116397,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: JumpscareDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 4486977091450740681, guid: 6c5df4b4c1d67f8498c3448d765ca0a2, type: 3}
+      propertyPath: fov
+      value: 
+      objectReference: {fileID: 997505205}
     - target: {fileID: 4486977092322881332, guid: 6c5df4b4c1d67f8498c3448d765ca0a2, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4486977091181376279, guid: 6c5df4b4c1d67f8498c3448d765ca0a2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6c5df4b4c1d67f8498c3448d765ca0a2, type: 3}
 --- !u!4 &4591288536924194815
 Transform:

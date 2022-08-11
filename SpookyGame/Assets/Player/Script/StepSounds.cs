@@ -15,7 +15,14 @@ public class StepSounds : MonoBehaviour
         controller = GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>();  
     }
 
- 
+ public void LandSound()
+    {
+        GameObject sound = Instantiate(StepSFX[SFXIndex], transform.position, Quaternion.identity);
+        sound.GetComponent<AudioSource>().pitch = Random.Range(.8f, 1.1f);
+        sound.GetComponent<AudioSource>().volume = sound.GetComponent<AudioSource>().volume + .3f;
+    }
+
+
     void Update()
     {
         

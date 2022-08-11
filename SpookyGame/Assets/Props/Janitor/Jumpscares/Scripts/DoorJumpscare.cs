@@ -8,60 +8,35 @@ public class DoorJumpscare : MonoBehaviour
     bool busy;
   [SerializeField]  Renderer JanitorRenderer;
 
-    [SerializeField] float jumpscareDelay;
-    float delay;
     [SerializeField] Animator janitoranimator;
     [SerializeField] GameObject JumpscareSound;
 
     [SerializeField] Collider visionCollider;
-    Transform playerpos;
-    Transform campos;
-    
-  public void EnableJumpscare()
+  
+    [SerializeField] JumpscareFOV fov;
+    public void EnableJumpscare()
     {
         if(!busy)
         {
             janitoranimator.Play("Idle");
-            delay = jumpscareDelay;
+   
             JumpscareObject.SetActive(true);
 
         }
-    }
-
-    private void Start()
-    {
-        playerpos = GameObject.FindGameObjectWithTag("Player").transform;
-        campos = Camera.main.transform;
     }
 
 
 
     private void Update()
     {
-        if(JumpscareObject.activeSelf)
+        if (JumpscareObject.activeSelf && fov.Refs.Count > 0)
         {
-            RaycastHit hit1,hit2;
-
-            bool check1 = Physics.Raycast(visionCollider.transform.position, playerpos.position - visionCollider.transform.position,out hit1,30);
-            bool check2 = Physics.Raycast(campos.transform.position, campos.forward , out hit2, 30);
-           
-
-            if (hit1.collider.CompareTag("Player") && hit2.collider == visionCollider)
+            if (fov.CheckVision(visionCollider.transform) && !busy)
             {
-                delay -= Time.deltaTime;
-                if (delay <= 0 && !busy)
-                {
-                    busy = true;
-                    StartCoroutine(ScaringNumerator());
-                }
+                busy = true;
+                StartCoroutine(ScaringNumerator());
             }
-            else
-            {
-                delay = jumpscareDelay;
-            }
-
         }
-
 
 
     }
