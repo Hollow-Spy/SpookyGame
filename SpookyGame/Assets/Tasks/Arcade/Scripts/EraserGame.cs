@@ -34,6 +34,11 @@ public class EraserGame : MonoBehaviour
         Player.transform.rotation = Quaternion.Euler(0,0,0);
         Player.enabled = false;
       
+        for(int i=0;i < Warnings.Length;i++)
+        {
+            Warnings[i].SetActive(false);
+        }
+
         RoadAnimator.SetFloat("Speed", 0);
         spawning = true;
         maxtime = maxtimeOG;
