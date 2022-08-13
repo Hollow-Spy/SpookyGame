@@ -13,24 +13,12 @@ public class PauseMenuScript : MonoBehaviour
     [SerializeField] GameObject WholeMenu,OptionsMenu,SmallPauseMenu;
     [SerializeField] GameObject AppearSound, DissapearSound,ClickSound;
 
-    bool playerWasDisabled;
 
+  [SerializeField]  PauseMenuActivator activator;
     private void OnEnable()
     {
        
-        if(FindObjectOfType<PlayerController>() )
-        {
-            if (FindObjectOfType<PlayerController>().enabled)
-            {
-                FindObjectOfType<PlayerController>().enabled = false;
-                playerWasDisabled = false;
-            }
-            else
-            {
-                playerWasDisabled = true;
-            }
-          
-        }
+     
        
         Instantiate(AppearSound, transform.position, Quaternion.identity);
         Time.timeScale = 0;
@@ -74,6 +62,11 @@ public class PauseMenuScript : MonoBehaviour
             ClickButton();
         }
 
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            CurrentOption = 0;
+            ClickButton();
+        }
 
     }
 
@@ -87,7 +80,7 @@ public class PauseMenuScript : MonoBehaviour
                 Time.timeScale = 1;
                 WholeMenu.SetActive(false);
                 Instantiate(DissapearSound, transform.position, Quaternion.identity);
-                if (FindObjectOfType<PlayerController>() && !playerWasDisabled)
+                if (FindObjectOfType<PlayerController>() && !activator.playerWasDisabled)
                 {
                     FindObjectOfType<PlayerController>().enabled = true;
                 }

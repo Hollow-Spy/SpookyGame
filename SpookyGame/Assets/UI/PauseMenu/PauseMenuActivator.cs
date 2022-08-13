@@ -6,11 +6,26 @@ public class PauseMenuActivator : MonoBehaviour
 {
 
     [SerializeField] GameObject PauseMenu,OptionsMenu;
-    
+    public bool playerWasDisabled;
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
+            if (!PauseMenu.activeSelf && FindObjectOfType<PlayerController>())
+            {
+                if (FindObjectOfType<PlayerController>().enabled)
+                {
+                    FindObjectOfType<PlayerController>().enabled = false;
+                    playerWasDisabled = false;
+                }
+                else
+                {
+                    playerWasDisabled = true;
+                }
+
+            }
+
             PauseMenu.SetActive(true);
         }
     }
