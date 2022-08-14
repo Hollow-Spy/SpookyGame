@@ -16,7 +16,7 @@ public class BossSacrificeTask : MonoBehaviour
 
     [SerializeField] Animator Gramoanimator;
     [SerializeField] AudioSource GramoMusic,SpawnSound;
-
+ 
   
     private void OnEnable()
     {
@@ -51,6 +51,12 @@ public class BossSacrificeTask : MonoBehaviour
         RedLight.gameObject.SetActive(false);
         SpawnSound.Stop();
 
+
+        if(!MeatTransform)
+        {
+            GameObject.FindGameObjectWithTag("Janitor").GetComponent<JanitorBasic>().RitualWarp();
+        }
+
         for (int i = 0; i < Meats.Length; i++)
         {
             Meats[i].layer = 0;
@@ -72,6 +78,16 @@ public class BossSacrificeTask : MonoBehaviour
         GramoMusic.Play();
         DisableMaterials();
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (WaitingSacrifice && other.CompareTag("Janitor") && Vector3.Distance(other.transform.position,CenterCircle.position ) < 2 )
+        {
+            InstructionDisplay.SetBool("Show", false);
+            other.GetComponent<JanitorBasic>().RitualKill();
+            WaitingSacrifice = false;
+            StartCoroutine(RitualNumerator());
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -89,10 +105,13 @@ public class BossSacrificeTask : MonoBehaviour
                 WaitingSacrifice = false;
                 StartCoroutine(RitualNumerator());
             }
+           
 
         }
      
     }
+
+   
 
     IEnumerator RotateMeatNumerator()
     {
@@ -133,15 +152,22 @@ public class BossSacrificeTask : MonoBehaviour
         Sacrificing = true;
         Gramoanimator.SetFloat("Speed", 0);
         GramoMusic.Stop();
+        if(MeatTransform)
+        {
+            MeatTransform.GetComponent<Rigidbody>().isKinematic = true;
 
-        MeatTransform.GetComponent<Rigidbody>().isKinematic = true;
-        while(Vector3.Distance(MeatTransform.position,CenterCircle.position) > .2f)
+        
+        while (Vector3.Distance(MeatTransform.position,CenterCircle.position) > .2f)
         {
             yield return null;
            MeatTransform.position = Vector3.MoveTowards(MeatTransform.position, CenterCircle.position, 3 * Time.deltaTime);
         }
         yield return new WaitForSeconds(.5f);
-        StartCoroutine(RotateMeatNumerator());
+      
+            StartCoroutine(RotateMeatNumerator());
+
+        }
+        
         StartCoroutine(LightFlickerNumerator());
         SpawnSound.Play();
         shaker.ShakeScreen(0.26f, 0.021f, 5);
