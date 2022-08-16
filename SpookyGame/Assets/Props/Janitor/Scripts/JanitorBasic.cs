@@ -92,9 +92,9 @@ public class JanitorBasic : MonoBehaviour
     [SerializeField] GameObject StompSFX;
     [SerializeField] GameObject SmallBlackout;
     int LastVoicePriority;
-    
 
-    
+    [SerializeField] SkinnedMeshRenderer SkinRenderer;
+    [SerializeField] Material BoneFace;
     void Awake()
     {
         maincamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -273,13 +273,41 @@ public class JanitorBasic : MonoBehaviour
 
     }
 
+    public void RitualKill()
+    {
+        if(Chasing && !inCutscene)
+        {
+            inCutscene = true;
+            StartCoroutine(RitualNumerator());
+
+        }
+    }
+
+    public void RitualWarp()
+    {
+        SkinRenderer.material = BoneFace;
+        agent.Warp(PatrolPoints[Random.Range(0,PatrolPoints.Length)].position );
+
+    }
+
+    IEnumerator RitualNumerator()
+    {
+        agent.isStopped = true;
+        animator.Play("Dying");
+        detection = 0;
+        blind = true;
+        yield return new WaitForSeconds(5.5f);
+        agent.isStopped = false;
+        blind = false;
+        inCutscene = false;
+    }
+
     public void ChaseSlip()
     {
         if(Chasing)
         {
             StartCoroutine(ChaseSlipNumerator());
             
-
         }
     }
     

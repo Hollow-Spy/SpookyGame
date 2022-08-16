@@ -216,6 +216,8 @@ public class OptionsMenu : MonoBehaviour
                 PlayerPrefs.SetInt("Distortion", currentDistortion);
                 PlayerPrefs.SetInt("Highlight", currentHighlights);
 
+               
+
                 PauseMenu.SetActive(true);
                 optionsMenu.SetActive(false);
 
