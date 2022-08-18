@@ -25,6 +25,11 @@ public class Clock : MonoBehaviour
      void Start()
     {
 
+        if(secondsWorth <= 0)
+        {
+            secondsWorth =  0.0101010101f;
+        }
+
         PlayerPrefs.SetInt(currentLevel, 1);
 
         //12 mins
