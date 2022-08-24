@@ -37,7 +37,7 @@ public class EndingPicker : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            FindObjectOfType<SceneLoader>().LoadScene(1);
+            FindObjectOfType<SceneLoader>().LoadScene("Menu");
         }
     }
 

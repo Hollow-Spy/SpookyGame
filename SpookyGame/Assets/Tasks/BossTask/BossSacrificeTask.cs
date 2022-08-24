@@ -52,7 +52,7 @@ public class BossSacrificeTask : MonoBehaviour
         SpawnSound.Stop();
 
 
-        if(!MeatTransform)
+        if(!MeatTransform && Sacrificing)
         {
             GameObject.FindGameObjectWithTag("Janitor").GetComponent<JanitorBasic>().RitualWarp();
         }

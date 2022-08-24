@@ -125,7 +125,7 @@ public class JanitorBasic : MonoBehaviour
             {
                GameObject spawn = Instantiate(Wetsign, transform.position, Wetsign.transform.rotation);
                 spawn.transform.eulerAngles = new Vector3(spawn.transform.eulerAngles.x, Random.Range(0, 360), spawn.transform.eulerAngles.z);
-                spawn.transform.position = new Vector3(spawn.transform.position.x, spawn.transform.position.y + 0.320416f, spawn.transform.position.z);
+                spawn.transform.position = new Vector3(spawn.transform.position.x, spawn.transform.position.y + 0.330416f, spawn.transform.position.z);
             }
         }
     }
@@ -465,7 +465,7 @@ public class JanitorBasic : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(!isEating && !inCutscene)
+        if(!isEating && !inCutscene && !blind)
         {
             if (other.CompareTag("Player") )
             {
